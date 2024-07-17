@@ -3,37 +3,87 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package vista;
+import Controlador.BibliotecarioControlador;
+import java.util.Scanner;
+import modelo.Bibliotecario;
+
 /**
  *
  * @author USER
  */
-import Controlador.LibroControlador;
-import modelo.Autor;
-import modelo.Genero;
-import modelo.Libro;
+import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) {
-        // Configurar datos de conexión a la base de datos
-        String url = "jdbc:mysql://localhost:3306/libros_db";
-        String usuario = "root";
-        String contraseña = "1005336308KA";
+        Scanner es = new Scanner(System.in);
+        int i = 1;
+        
+        do {
+            System.out.println("BIENVENIDO");
+            System.out.println("Elija la opción que Usted requiera ejecutar:\n"
+                    + "1.Crear Bibliotecario\n"
+                    + "0.Salir");
+            int op1 = es.nextInt();
+            es.nextLine(); // Consumir el salto de línea pendiente
+            
+            if (op1 == 1) {
+                System.out.println("Ingrese los datos del bibliotecario:");
+                Bibliotecario b = new Bibliotecario();
 
-        // Crear instancia del controlador
-        LibroControlador libroControlador = new LibroControlador(url, usuario, contraseña);
+                System.out.println("Ingrese los nombres:");
+                b.setNombres(es.nextLine());
 
-        // Ejemplo de creación de Autor y Género
-        Autor autor = new Autor(123, "Premioss de Literatura");
-        Genero genero = new Genero(23, "Ciencia Ficción");
+                System.out.println("Ingrese los apellidos:");
+                b.setApellidos(es.nextLine());
 
-        // Insertar Autor y Género en la base de datos
-        libroControlador.crearAutor(autor);
-        libroControlador.crearGenero(genero);
+                System.out.println("Ingrese el usuario:");
+                b.setUsuario(es.nextLine());
 
-        // Ejemplo de creación de un libro asociado al Autor y Género creados
-        Libro libro = new Libro(67, "El del Viento", autor, "12345678923", 2007, "Disponible", 5, genero);
+                System.out.println("Ingrese la contraseña:");
+                b.setContraseña(es.nextLine());
 
-        // Insertar el libro en la base de datos
-        libroControlador.crearLibro(libro);
+                System.out.println("Ingrese la cédula:");
+                b.setCedula(es.nextLine());
+
+                System.out.println("Ingrese la fecha de nacimiento (yyyy-MM-dd):");
+                b.setFechaNace(es.nextLine());
+
+                System.out.println("Ingrese la dirección:");
+                b.setDireccion(es.nextLine());
+
+                System.out.println("Ingrese el teléfono:");
+                while (!es.hasNextDouble()) {
+                    System.out.println("Por favor, ingrese un número válido para el teléfono:");
+                    es.next(); // Consumir la entrada incorrecta
+                }
+                b.setTelefono(es.nextDouble());
+                es.nextLine(); // Consumir el salto de línea pendiente
+
+                System.out.println("Ingrese el correo institucional:");
+                b.setCorreoInstitucional(es.nextLine());
+
+                System.out.println("Ingrese el sexo:");
+                b.setSexo(es.nextLine());
+
+                System.out.println("Ingrese el puesto del bibliotecario:");
+                b.setPuesto(es.nextLine());
+
+                System.out.println("Ingrese el horario del bibliotecario (por ejemplo, 8.5 para horas diarias):");
+                while (!es.hasNextDouble()) {
+                    System.out.println("Por favor, ingrese un número válido para el horario:");
+                    es.next(); // Consumir la entrada incorrecta
+                }
+                b.setHorario(es.nextDouble());
+                es.nextLine(); // Consumir el salto de línea pendiente
+
+                BibliotecarioControlador bc = new BibliotecarioControlador();
+                bc.crearPersona(b);
+            } else if (op1 == 0) {
+                i = 0;
+            }
+        } while (i == 1);
+        
+        es.close(); // Cerrar el scanner al final
     }
 }
+
