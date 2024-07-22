@@ -8,12 +8,11 @@ package modelo;
  *
  * @author USER
  */
-public class Persona {
-    private int idPersona;
+public class Usuario {
     private String nombres;
     private String apellidos;
     private String usuario;
-    private String contraseña;
+    private String clave;
     private String cedula;
     private String fechaNace;
     private String direccion;
@@ -21,15 +20,14 @@ public class Persona {
     private String correoInstitucional;
     private String sexo;
 
-    public Persona() {
+    public Usuario() {
     }
 
-    public Persona(int idPersona, String nombres, String apellidos, String usuario, String contraseña, String cedula, String fechaNace, String direccion, Double telefono, String correoInstitucional, String sexo) {
-        this.idPersona = idPersona;
+    public Usuario(String nombres, String apellidos, String usuario, String clave, String cedula, String fechaNace, String direccion, Double telefono, String correoInstitucional, String sexo) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.usuario = usuario;
-        this.contraseña = contraseña;
+        this.clave = clave;
         this.cedula = cedula;
         this.fechaNace = fechaNace;
         this.direccion = direccion;
@@ -38,13 +36,9 @@ public class Persona {
         this.sexo = sexo;
     }
 
-    public int getIdPersona() {
-        return idPersona;
-    }
+    
 
-    public void setIdPersona(int idPersona) {
-        this.idPersona = idPersona;
-    }
+    
 
     public String getNombres() {
         return nombres;
@@ -70,20 +64,12 @@ public class Persona {
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getClave() {
+        return clave;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
     public String getFechaNace() {
@@ -118,6 +104,14 @@ public class Persona {
         this.correoInstitucional = correoInstitucional;
     }
 
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
     public String getSexo() {
         return sexo;
     }
@@ -125,9 +119,10 @@ public class Persona {
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
+    
+    
     public String imprimir(){
         return"--------DATOS PERSONA--------\n"
-                + "Id: "+getIdPersona()+"\n"
                 + "NOMBRE: "+getNombres()+"\n"
                 + "APELLIDOS: "+getApellidos()+"\n"
                 + "TELEFONO: "+getTelefono()+"\n"
@@ -135,4 +130,5 @@ public class Persona {
                 + "FECHA DE NACIMIENTO: "+getFechaNace()+"\n"
                 + "CORREO INSTITUCIONAL: "+getCorreoInstitucional()+"\n";
     }
+    
 }

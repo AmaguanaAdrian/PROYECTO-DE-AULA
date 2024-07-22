@@ -4,15 +4,19 @@
  */
 package vista;
 import Controlador.BibliotecarioControlador;
+import Controlador.EstudianteControlador;
+import Controlador.PersonaControlador;
+import Controlador.ReservaControlador;
 import java.util.Scanner;
 import modelo.Bibliotecario;
+import modelo.Estudiante;
+import modelo.Reserva;
+import modelo.Usuario;
 
 /**
  *
  * @author USER
  */
-import java.util.Scanner;
-
 public class main {
     public static void main(String[] args) {
         Scanner es = new Scanner(System.in);
@@ -21,10 +25,12 @@ public class main {
         do {
             System.out.println("BIENVENIDO");
             System.out.println("Elija la opción que Usted requiera ejecutar:\n"
-                    + "1.Crear Bibliotecario\n"
-                    + "0.Salir");
+                    + "1. Crear Bibliotecario\n"
+                    + "2. Crear Reserva\n"
+                    + "3. Crear Estudiante\n"
+                    + "0. Salir");
             int op1 = es.nextInt();
-            es.nextLine(); // Consumir el salto de línea pendiente
+            es.nextLine(); // salto de línea pendiente
             
             if (op1 == 1) {
                 System.out.println("Ingrese los datos del bibliotecario:");
@@ -40,7 +46,7 @@ public class main {
                 b.setUsuario(es.nextLine());
 
                 System.out.println("Ingrese la contraseña:");
-                b.setContraseña(es.nextLine());
+                b.setClave(es.nextLine());
 
                 System.out.println("Ingrese la cédula:");
                 b.setCedula(es.nextLine());
@@ -54,10 +60,10 @@ public class main {
                 System.out.println("Ingrese el teléfono:");
                 while (!es.hasNextDouble()) {
                     System.out.println("Por favor, ingrese un número válido para el teléfono:");
-                    es.next(); // Consumir la entrada incorrecta
+                    es.next(); // Dtecta entrada incorrecta
                 }
                 b.setTelefono(es.nextDouble());
-                es.nextLine(); // Consumir el salto de línea pendiente
+                es.nextLine(); // salto de línea pendiente
 
                 System.out.println("Ingrese el correo institucional:");
                 b.setCorreoInstitucional(es.nextLine());
@@ -71,13 +77,86 @@ public class main {
                 System.out.println("Ingrese el horario del bibliotecario (por ejemplo, 8.5 para horas diarias):");
                 while (!es.hasNextDouble()) {
                     System.out.println("Por favor, ingrese un número válido para el horario:");
-                    es.next(); // Consumir la entrada incorrecta
+                    es.next(); // Dtecta la entrada incorrecta
                 }
                 b.setHorario(es.nextDouble());
-                es.nextLine(); // Consumir el salto de línea pendiente
+                es.nextLine(); // salto de línea pendiente
 
                 BibliotecarioControlador bc = new BibliotecarioControlador();
                 bc.crearPersona(b);
+
+            } else if (op1 == 2) {
+                Reserva r = new Reserva();
+                System.out.println("Ingrese el ID del estudiante:");
+                r.setIdEstudiante(es.nextInt());
+                es.nextLine(); // Consumir el salto de línea pendiente
+
+                System.out.println("Ingrese la fecha de retiro (yyyy-MM-dd):");
+                r.setFechaRetiro(es.nextLine());
+                
+                System.out.println("Ingrese la fecha de reserva (yyyy-MM-dd):");
+                r.setFechaReserva(es.nextLine());
+
+                System.out.println("Ingrese la fecha de devolución (yyyy-MM-dd):");
+                r.setFechaDevolucion(es.nextLine());
+
+                ReservaControlador rc = new ReservaControlador();
+                rc.crearReserva(r);
+
+            } else if (op1 == 3) {
+                System.out.println("Ingrese los datos personales del estudiante:");
+                Usuario p = new Usuario();
+                System.out.println("Ingrese sus Nombres:");
+                p.setNombres(es.nextLine());
+
+                System.out.println("Ingrese sus Apellidos:");
+                p.setApellidos(es.nextLine());
+
+                System.out.println("Ingrese su número de cédula:");
+                p.setCedula(es.next());
+
+                System.out.println("Ingrese un Usuario:");
+                p.setUsuario(es.next());
+
+                System.out.println("Ingrese una Clave:");
+                p.setClave(es.next());
+
+                System.out.println("Ingrese una Dirección:");
+                p.setDireccion(es.next());
+
+                System.out.println("Ingrese su Correo Electrónico:");
+                p.setCorreoInstitucional(es.next());
+
+                System.out.println("Ingrese el sexo:");
+                p.setSexo(es.next());
+
+                System.out.println("Ingrese su Fecha de Nacimiento:");
+                p.setFechaNace(es.next());
+
+                System.out.println("Ingrese un número Telefónico:");
+                p.setTelefono(es.nextDouble());
+                es.nextLine(); // Consumir el salto de línea pendiente
+
+                // CONTROLADOR
+                PersonaControlador pc = new PersonaControlador();
+                pc.crearPersona(p);
+
+                System.out.println("Ingrese los siguientes datos del estudiante:");
+                int idPersona = pc.buscarIdPersona(p.getCedula());
+                System.out.println("-------------" + idPersona);
+
+                Estudiante est = new Estudiante();
+                System.out.println("Ingrese número de matrícula:");
+                est.setMatricula(es.next());
+
+                System.out.println("Ingrese la jornada de estudio:");
+                est.setJornada(es.next());
+
+                est.setIdPersona(idPersona);
+
+                EstudianteControlador estC = new EstudianteControlador();
+                estC.crearEstudiante(est);
+
             } else if (op1 == 0) {
                 i = 0;
             }
@@ -86,4 +165,3 @@ public class main {
         es.close(); // Cerrar el scanner al final
     }
 }
-

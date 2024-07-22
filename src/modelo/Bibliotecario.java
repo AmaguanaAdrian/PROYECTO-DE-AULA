@@ -8,7 +8,7 @@ package modelo;
  *
  * @author USER
  */
-public class Bibliotecario extends Persona{
+public class Bibliotecario extends Usuario{
     private int idBibliotecario;
     private String puesto;
     private double horario;
@@ -22,8 +22,8 @@ public class Bibliotecario extends Persona{
         this.horario = horario;
     }
 
-    public Bibliotecario(int idBibliotecario, String puesto, double horario, int idPersona, String nombres, String apellidos, String usuario, String contraseña, String cedula, String fechaNace, String direccion, Double telefono, String correoInstitucional, String sexo) {
-        super(idPersona, nombres, apellidos, usuario, contraseña, cedula, fechaNace, direccion, telefono, correoInstitucional, sexo);
+    public Bibliotecario(int idBibliotecario, String puesto, double horario, String nombres, String apellidos, String usuario, String contraseña, String cedula, String fechaNace, String direccion, Double telefono, String correoInstitucional, String sexo) {
+        super(nombres, apellidos, usuario, contraseña, cedula, fechaNace, direccion, telefono, correoInstitucional, sexo);
         this.idBibliotecario = idBibliotecario;
         this.puesto = puesto;
         this.horario = horario;
@@ -52,9 +52,10 @@ public class Bibliotecario extends Persona{
     public void setHorario(double horario) {
         this.horario = horario;
     }
+    
+
     public String imprimir(){
         return"--------DATOS PERSONABICLIOTECARIO--------\n"
-                + "Id: "+getIdPersona()+"\n"
                 + "NOMBRE: "+getNombres()+"\n"
                 + "APELLIDOS: "+getApellidos()+"\n"
                 + "TELEFONO: "+getTelefono()+"\n"

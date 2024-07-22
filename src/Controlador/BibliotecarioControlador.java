@@ -26,7 +26,7 @@ public class BibliotecarioControlador {
     public void crearPersona(Bibliotecario b) {
         try {
             // String estático con componentes dinámicos (gets)
-            String consultaSQL = "INSERT INTO Bibliotecario (bib_idPersona, bib_nombres, bib_apellidos, bib_usuario, bib_contraseña, bib_cedula, bib_fechaNace, bib_direccion, bib_telefono, bib_correoInstitucional, bib_sexo, bib_puesto, bib_horario) VALUES (" + b.getIdPersona() + ", '" + b.getNombres() + "', '" + b.getApellidos() + "', '" + b.getUsuario() + "', '" + b.getContraseña() + "', '" + b.getCedula() + "', '" + b.getFechaNace() + "', '" + b.getDireccion() + "', " + b.getTelefono() + ", '" + b.getCorreoInstitucional() + "', '" + b.getSexo() + "', '" + b.getPuesto() + "', " + b.getHorario() + ");";
+            String consultaSQL = "INSERT INTO Bibliotecario (bib_idPersona, bib_nombres, bib_apellidos, bib_usuario, bib_contraseña, bib_cedula, bib_fechaNace, bib_direccion, bib_telefono, bib_correoInstitucional, bib_sexo, bib_puesto, bib_horario) VALUES ('" + b.getNombres() + "', '" + b.getApellidos() + "', '" + b.getUsuario() + "', '" + b.getClave() + "', '" + b.getCedula() + "', '" + b.getFechaNace() + "', '" + b.getDireccion() + "', " + b.getTelefono() + ", '" + b.getCorreoInstitucional() + "', '" + b.getSexo() + "', '" + b.getPuesto() + "', " + b.getHorario() + ");";
             PreparedStatement ejecutar=(PreparedStatement)connection.prepareCall(consultaSQL);
             int resultado = ejecutar.executeUpdate();
             // Ejecuta

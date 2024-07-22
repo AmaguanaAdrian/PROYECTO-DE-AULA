@@ -7,7 +7,7 @@ package Controlador;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.ResultSet;
-import modelo.Persona;
+import modelo.Usuario;
 
 /**
  *
@@ -16,7 +16,7 @@ import modelo.Persona;
 public class PersonaControlador {
     //ATRIBUTOS
     //DEL MODELO
-    private Persona persona;
+    private Usuario persona;
     //CONEXION
     Conexion conexion=new Conexion();
     Connection connection=(Connection)conexion.conectar();
@@ -25,10 +25,10 @@ public class PersonaControlador {
     
     //INSERTAR FILAS EN TABLA
     //Insetar filas en una tabla
-    public void crearPersona(Persona p){
+    public void crearPersona(Usuario p){
         try {//exception que lanza la consulta
             //String estatico con componentes dinamicos(gets)
-            String consultaSQL = "INSERT INTO personas(per_nombres, per_apellidos, per_usuario, per_contraseña, per_cedula, per_fechaNace, per_direccion, per_telefono, per_correoInstitucional, per_sexo) VALUES ('" + p.getNombres() + "', '" + p.getApellidos() + "', '" + p.getUsuario() + "', '" + p.getContraseña() + "', '" + p.getCedula() + "', '" + p.getFechaNace() + "', '" + p.getDireccion() + "', " + p.getTelefono() + ", '" + p.getCorreoInstitucional() + "', '" + p.getSexo() + "');";
+            String consultaSQL = "INSERT INTO personas(per_nombres, per_apellidos, per_usuario, per_clave, per_cedula, per_fechaNace, per_direccion, per_telefono, per_correoInstitucional, per_sexo) VALUES ('" + p.getNombres() + "', '" + p.getApellidos() + "','" + p.getClave() + "', '" + p.getCedula() + "', '" + p.getFechaNace() + "', '" + p.getDireccion() + "', " + p.getTelefono() + ", '" + p.getCorreoInstitucional() + "');";
             ejecutar=(PreparedStatement)connection.prepareCall(consultaSQL);
             //DAR CLICK EN EL PLAY EJECUTA LA CONSULTA
             int res=ejecutar.executeUpdate();
