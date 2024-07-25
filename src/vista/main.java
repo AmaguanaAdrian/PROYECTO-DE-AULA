@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -5,7 +6,7 @@
 package vista;
 import Controlador.BibliotecarioControlador;
 import Controlador.EstudianteControlador;
-import Controlador.PersonaControlador;
+
 import Controlador.ReservaControlador;
 import java.util.Scanner;
 import modelo.Bibliotecario;
@@ -13,14 +14,12 @@ import modelo.Estudiante;
 import modelo.Reserva;
 import modelo.Usuario;
 
-/**
- *
- * @author USER
- */
+
 public class main {
     public static void main(String[] args) {
         Scanner es = new Scanner(System.in);
         int i = 1;
+
         
         do {
             System.out.println("BIENVENIDO");
@@ -137,26 +136,18 @@ public class main {
                 p.setTelefono(es.nextDouble());
                 es.nextLine(); // Consumir el salto de línea pendiente
 
-                // CONTROLADOR
-                PersonaControlador pc = new PersonaControlador();
-                pc.crearPersona(p);
 
-                System.out.println("Ingrese los siguientes datos del estudiante:");
-                int idPersona = pc.buscarIdPersona(p.getCedula());
-                System.out.println("-------------" + idPersona);
-
+               
                 Estudiante est = new Estudiante();
                 System.out.println("Ingrese número de matrícula:");
-                est.setMatricula(es.next());
+                est.setNumMatricula(es.next());
 
                 System.out.println("Ingrese la jornada de estudio:");
-                est.setJornada(es.next());
+                est.setNumMatricula(es.next());
 
-                est.setIdPersona(idPersona);
-
+              
                 EstudianteControlador estC = new EstudianteControlador();
-                estC.crearEstudiante(est);
-
+                estC.crearPersona(est);
             } else if (op1 == 0) {
                 i = 0;
             }
@@ -165,3 +156,4 @@ public class main {
         es.close(); // Cerrar el scanner al final
     }
 }
+

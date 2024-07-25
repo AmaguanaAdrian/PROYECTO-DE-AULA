@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Controlador;
+import controlador.ConexionBDD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +17,7 @@ import java.sql.SQLException;
  */
 public class ReservaControlador {
     // Conexión
-    Conexion conexion = new Conexion();
+    ConexionBDD conexion = new ConexionBDD();
     Connection connection = conexion.conectar();
     PreparedStatement ejecutar;
     ResultSet resultado;

@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -9,6 +10,8 @@ package modelo;
  * @author USER
  */
 public class Estudiante extends Usuario{
+
+
     private int idEstudiante;
     private String carreraCursando;
     private String numMatricula;
@@ -73,17 +76,12 @@ public class Estudiante extends Usuario{
                 + "NIVEL ACTUAL: "+getNivelCursando()+"\n";
     }
 
-    public void setMatricula(String next) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
-    public void setJornada(String next) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void setIdPersona(int idPersona) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-   
+  
     
 }
+
+   
+    
+
+

@@ -7,6 +7,7 @@ package Controlador;
  *
  * @author USER
  */
+import controlador.ConexionBDD;
 import modelo.Bibliotecario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +18,7 @@ public class BibliotecarioControlador {
     // ATRIBUTOS
     private Bibliotecario bibliotecario;
     // CONEXION
-    Conexion conexion = new Conexion();
+    ConexionBDD conexion = new ConexionBDD();
     Connection connection = conexion.conectar();
     PreparedStatement ejecutar;
     ResultSet resultado;
