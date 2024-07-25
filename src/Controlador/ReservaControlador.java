@@ -24,7 +24,7 @@ public class ReservaControlador {
     public void crearReserva(Reserva r) {
         try {
             // String estático con componentes dinámicos (gets)
-            String consultaSQL = "INSERT INTO Reserva (est_id, res_fechaRetiro, res_fechaReserva, res_fechaDevolucion) VALUES (" + r.getIdEstudiante() + ", '" + r.getFechaRetiro() + "', '" + r.getFechaReserva() + "', '" + r.getFechaDevolucion() + "');";
+            String consultaSQL = "INSERT INTO Reserva (res_fechaRetiro, res_fechaReserva, res_fechaDevolucion) VALUES ('" + r.getFechaRetiro() + "', '" + r.getFechaReserva() + "', '" + r.getFechaDevolucion() + "');";
             PreparedStatement ejecutar = connection.prepareCall(consultaSQL);
             int resultado = ejecutar.executeUpdate();
             // Ejecuta
@@ -47,13 +47,7 @@ public class ReservaControlador {
             String consultaSQL = "SELECT * FROM Reserva WHERE res_id = " + idReserva;
             PreparedStatement ejecutar = connection.prepareCall(consultaSQL);
             ResultSet resultado = ejecutar.executeQuery();
-            if (resultado.next()) {
-                r.setIdReserva(resultado.getInt("res_id"));
-                r.setIdEstudiante(resultado.getInt("est_id"));
-                r.setFechaRetiro(resultado.getString("res_fechaRetiro"));
-                r.setFechaReserva(resultado.getString("res_fechaReserva"));
-                r.setFechaDevolucion(resultado.getString("res_fechaDevolucion"));
-            } else {
+            {
                 System.out.println("No se encontró una reserva con el ID proporcionado");
             }
             ejecutar.close();
@@ -70,15 +64,6 @@ public class ReservaControlador {
             String consultaSQL = "SELECT * FROM Reserva";
             PreparedStatement ejecutar = connection.prepareCall(consultaSQL);
             ResultSet resultado = ejecutar.executeQuery();
-            while (resultado.next()) {
-                Reserva r = new Reserva();
-                r.setIdReserva(resultado.getInt("res_id"));
-                r.setIdEstudiante(resultado.getInt("est_id"));
-                r.setFechaRetiro(resultado.getString("res_fechaRetiro"));
-                r.setFechaReserva(resultado.getString("res_fechaReserva"));
-                r.setFechaDevolucion(resultado.getString("res_fechaDevolucion"));
-                listaReservas.add(r);
-            }
             ejecutar.close();
         } catch (SQLException e) {
             System.out.println("ERROR: " + e.getMessage());
