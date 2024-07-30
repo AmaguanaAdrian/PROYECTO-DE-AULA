@@ -24,7 +24,7 @@ public class EstudianteControlador {
     // INSERTAR FILAS EN UNA TABLA
     public void crearPersona(Estudiante est) {
         try {// EXCEPCION QUE LANZA LA CONSULATA
-            String consultaSQL = "insert into estudiante(est_nombres,est_apellidos,est_usuario,est_contraseña,est_cedula,est_fechaNace,est_direccion,est_telefono,est_correoInstitucional, est_sexo,est_carreraCursando,est_numMatricula,est_nivelCursando)values('"+est.getNombres()+"','"+est.getApellidos()+"','"+est.getUsuario()+"','"+est.getContraseña()+"','"+est.getCedula()+"','"+est.getFechaNace()+"','"+est.getDireccion()+"','"+est.getTelefono()+"','"+est.getCorreoInstitucional()+"','"+est.getSexo()+"','"+est.getCarreraCursando()+"','"+est.getNumMatricula()+"','"+est.getNivelCursando()+"');";
+            String consultaSQL = "insert into estudiante(est_nombres,est_apellidos,est_usuario,est_contraseña,est_cedula,est_fechaNace,est_direccion,est_telefono,est_correoInstitucional, est_sexo,est_carreraCursando,est_numMatricula,est_nivelCursando)values('"+est.getNombres()+"','"+est.getApellidos()+"','"+est.getUsuario()+"','"+est.getContraseña()+"','"+est.getCedula()+"','"+est.getFechaNace()+"','"+est.getDireccion()+"',"+est.getTelefono()+",'"+est.getCorreoInstitucional()+"','"+est.getSexo()+"','"+est.getCarreraCursando()+"','"+est.getNumMatricula()+"',"+est.getNivelCursando()+");";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             // DAR CLIC EN EL PLAY (ejecutar la consulta)
             int res = ejecutar.executeUpdate();

@@ -3,37 +3,37 @@ package modelo;
  *
  * @author david
  */
-public class Persona {
+public class Usuario {
+    private int idPersona;
     private String nombres;
     private String apellidos;
-    private String usuario;
     private String contraseña;
     private String cedula;
-    private String fechaNace;
     private String direccion;
-    private Double telefono;
+    private int telefono;
     private String correoInstitucional;
-    private String sexo;
 
-    public Persona() {
+    public Usuario() {
     }
 
-    public Persona(String nombres, String apellidos, String usuario, String contraseña, String cedula, String fechaNace, String direccion, Double telefono, String correoInstitucional, String sexo) {
+    public Usuario(int idPersona, String nombres, String apellidos, String contraseña, String cedula, String direccion, int telefono, String correoInstitucional) {
+        this.idPersona = idPersona;
         this.nombres = nombres;
         this.apellidos = apellidos;
-        this.usuario = usuario;
         this.contraseña = contraseña;
         this.cedula = cedula;
-        this.fechaNace = fechaNace;
         this.direccion = direccion;
         this.telefono = telefono;
         this.correoInstitucional = correoInstitucional;
-        this.sexo = sexo;
     }
 
-    
+    public int getIdPersona() {
+        return idPersona;
+    }
 
-    
+    public void setIdPersona(int idPersona) {
+        this.idPersona = idPersona;
+    }
 
     public String getNombres() {
         return nombres;
@@ -51,14 +51,6 @@ public class Persona {
         this.apellidos = apellidos;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
     public String getContraseña() {
         return contraseña;
     }
@@ -67,12 +59,12 @@ public class Persona {
         this.contraseña = contraseña;
     }
 
-    public String getFechaNace() {
-        return fechaNace;
+    public String getCedula() {
+        return cedula;
     }
 
-    public void setFechaNace(String fechaNace) {
-        this.fechaNace = fechaNace;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
     public String getDireccion() {
@@ -83,11 +75,11 @@ public class Persona {
         this.direccion = direccion;
     }
 
-    public Double getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Double telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
@@ -99,21 +91,7 @@ public class Persona {
         this.correoInstitucional = correoInstitucional;
     }
 
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
+   
     
     
     public String imprimir(){
@@ -122,8 +100,7 @@ public class Persona {
                 + "APELLIDOS: "+getApellidos()+"\n"
                 + "TELEFONO: "+getTelefono()+"\n"
                 + "DIRECCIÓN: "+getDireccion()+"\n"
-                + "FECHA DE NACIMIENTO: "+getFechaNace()+"\n"
-                + "CORREO INSTITUCIONAL: "+getCorreoInstitucional()+"\n";
+                + "CORREO INSTITUCIONAL: "+getCorreoInstitucional();
     }
     
 }
