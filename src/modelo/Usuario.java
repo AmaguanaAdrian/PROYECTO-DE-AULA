@@ -36,10 +36,6 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    
-
-    
-
     public String getNombres() {
         return nombres;
     }

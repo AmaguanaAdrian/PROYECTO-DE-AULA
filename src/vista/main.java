@@ -86,10 +86,6 @@ public class main {
 
             } else if (op1 == 2) {
                 Reserva r = new Reserva();
-                System.out.println("Ingrese el ID del estudiante:");
-                r.setIdEstudiante(es.nextInt());
-                es.nextLine(); // Consumir el salto de línea pendiente
-
                 System.out.println("Ingrese la fecha de retiro (yyyy-MM-dd):");
                 r.setFechaRetiro(es.nextLine());
                 

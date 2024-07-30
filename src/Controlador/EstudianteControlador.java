@@ -2,7 +2,6 @@ package Controlador;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
-import controlador.ConexionBDD;
 //import static java.awt.Event.INSERT;
 import java.sql.ResultSet;
 import modelo.Estudiante;
@@ -12,14 +11,10 @@ import modelo.Estudiante;
  * @author david
  */
 public class EstudianteControlador {
-
-    // ATRIBUTO DEL MODELO
-    private Estudiante estudiante;
     //CONEXION 
    ConexionBDD conexion = new ConexionBDD();
     java.sql.Connection connection = conexion.conectar();
     java.sql.PreparedStatement ejecutar;
-    ResultSet resultado;
 
     // INSERTAR FILAS EN UNA TABLA
     public void crearPersona(Estudiante est) {
@@ -41,4 +36,5 @@ public class EstudianteControlador {
             System.out.println("Error" + e);
         }
     }
+   
 }
