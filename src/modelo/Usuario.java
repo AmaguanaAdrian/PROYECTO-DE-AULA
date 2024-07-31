@@ -1,39 +1,46 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package modelo;
 
 /**
  *
- * @author USER
+ * @author
  */
 public class Usuario {
+    private int idUsuario;
     private String nombres;
     private String apellidos;
-    private String usuario;
     private String clave;
     private String cedula;
-    private String fechaNace;
     private String direccion;
     private Double telefono;
     private String correoInstitucional;
-    private String sexo;
+    private int rol;
 
     public Usuario() {
     }
+    public Usuario(String nombres,String apellidos ){
+        this.nombres=nombres;
+        this.apellidos=apellidos;
+    }
 
-    public Usuario(String nombres, String apellidos, String usuario, String clave, String cedula, String fechaNace, String direccion, Double telefono, String correoInstitucional, String sexo) {
+    public Usuario(int idUsuario, String nombres, String apellidos, String clave, String cedula, String direccion, Double telefono, String correoInstitucional, int rol) {
+        this.idUsuario = idUsuario;
         this.nombres = nombres;
         this.apellidos = apellidos;
-        this.usuario = usuario;
         this.clave = clave;
         this.cedula = cedula;
-        this.fechaNace = fechaNace;
         this.direccion = direccion;
         this.telefono = telefono;
         this.correoInstitucional = correoInstitucional;
-        this.sexo = sexo;
+        this.rol = rol;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNombres() {
@@ -51,29 +58,12 @@ public class Usuario {
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
     public String getClave() {
         return clave;
     }
 
     public void setClave(String clave) {
         this.clave = clave;
-    }
-
-    public String getFechaNace() {
-        return fechaNace;
-    }
-
-    public void setFechaNace(String fechaNace) {
-        this.fechaNace = fechaNace;
     }
 
     public String getDireccion() {
@@ -108,13 +98,15 @@ public class Usuario {
         this.cedula = cedula;
     }
 
-    public String getSexo() {
-        return sexo;
+   
+    public int getRol() {
+        return rol;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setRol(int rol) {
+        this.rol = rol;
     }
+    
     
     
     public String imprimir(){
@@ -123,8 +115,8 @@ public class Usuario {
                 + "APELLIDOS: "+getApellidos()+"\n"
                 + "TELEFONO: "+getTelefono()+"\n"
                 + "DIRECCIÓN: "+getDireccion()+"\n"
-                + "FECHA DE NACIMIENTO: "+getFechaNace()+"\n"
                 + "CORREO INSTITUCIONAL: "+getCorreoInstitucional()+"\n";
     }
     
+     
 }

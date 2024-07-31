@@ -7,16 +7,16 @@ package modelo;
  *
  * @author USER
  */
-public class libro {
+public class Libro {
     private int idLibro;
     private String titulo;
     private String fechaPublicado;
     private String isbn;
 
-    public libro() {
+    public Libro() {
     }
 
-    public libro(int idLibro, String titulo, String fechaPublicado, String isbn) {
+    public Libro(int idLibro, String titulo, String fechaPublicado, String isbn) {
         this.idLibro = idLibro;
         this.titulo = titulo;
         this.fechaPublicado = fechaPublicado;

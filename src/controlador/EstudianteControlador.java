@@ -19,7 +19,7 @@ public class EstudianteControlador {
     // INSERTAR FILAS EN UNA TABLA
     public void crearPersona(Estudiante est) {
         try {// EXCEPCION QUE LANZA LA CONSULATA
-            String consultaSQL = "insert into estudiante(est_nombres,est_apellidos,est_usuario,est_contraseña,est_cedula,est_fechaNace,est_direccion,est_telefono,est_correoInstitucional, est_sexo,est_carreraCursando,est_numMatricula,est_nivelCursando)values('"+est.getNombres()+"','"+est.getApellidos()+"','"+est.getUsuario()+"','"+est.getClave()+"','"+est.getCedula()+"','"+est.getFechaNace()+"','"+est.getDireccion()+"','"+est.getTelefono()+"','"+est.getCorreoInstitucional()+"','"+est.getSexo()+"','"+est.getCarreraCursando()+"','"+est.getNumMatricula()+"','"+est.getNivelCursando()+"');";
+            String consultaSQL = "INSERT INTO estudiantes(est_carreraCursando,est_numMatricula,est_nivelCursando,usu_id)VALUES('"+est.getCarreraCursando()+"','"+est.getNumMatricula()+"',"+est.getNivelCursando()+","+est.getIdUsuario()+");";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             // DAR CLIC EN EL PLAY (ejecutar la consulta)
             int res = ejecutar.executeUpdate();
@@ -33,7 +33,7 @@ public class EstudianteControlador {
             }
         } catch (Exception e) {
             //captura el error y permite que la consola se siga ejecuntando
-            System.out.println("Error" + e);
+            System.out.println("Error1" + e);
         }
     }
    
