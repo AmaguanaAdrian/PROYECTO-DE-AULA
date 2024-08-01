@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controlador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +8,7 @@ import modelo.Reserva;
 import java.sql.SQLException;
 /**
  *
- * @author USER
+ * @author
  */
 public class ReservaControlador {
     // Conexión
@@ -25,7 +21,7 @@ public class ReservaControlador {
         try {
             // String estático con componentes dinámicos (gets)
             String consultaSQL = "INSERT INTO Reserva (res_fechaRetiro, res_fechaReserva, res_fechaDevolucion) VALUES ('" + r.getFechaRetiro() + "', '" + r.getFechaReserva() + "', '" + r.getFechaDevolucion() + "');";
-            PreparedStatement ejecutar = connection.prepareCall(consultaSQL);
+            ejecutar=(com.mysql.jdbc.PreparedStatement)connection.prepareCall(consultaSQL);
             int resultado = ejecutar.executeUpdate();
             // Ejecuta
             if (resultado > 0) {

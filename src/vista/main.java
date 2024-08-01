@@ -1,9 +1,8 @@
 package vista;
-
+import Controlador.BibliotecarioControlador;
+import Controlador.EstudianteControlador;
 import Controlador.BibliotecarioControlador;
 import Controlador.ConexionBDD;
-import Controlador.EstudianteControlador;
-
 import Controlador.ReservaControlador;
 import controlador.UsuarioControlador;
 import java.util.Scanner;
@@ -11,25 +10,24 @@ import modelo.Bibliotecario;
 import modelo.Estudiante;
 import modelo.Reserva;
 import modelo.Usuario;
-
 public class main {
-
     public static void main(String[] args) {
         //        CONEXION A BASE DE DATOS
-//        ConexionBDD cb = new ConexionBDD();
-//        cb.conectar();
+        ConexionBDD cb = new ConexionBDD();
+        cb.conectar();
 
         Scanner es = new Scanner(System.in);
         int i = 1;
 
         do {
             System.out.println("""
-                              |   BIENVENIDO AL SISTEMA DE RESERVA DE LIBROS   |
+                              |          SISTEMA DE RESERVA DE LIBROS          |
                               |------------------------------------------------|
                               |  OPCIONES:                                     |
                               |   1. Crear Bibliotecario                       |
                               |   2. Hacer Reserva                             |
                               |   3. Crear Estudiante                          |
+                              |   4. Gestión de Libros                         | 
                               |   0. Salir                                     |
                                
                                """);
@@ -38,7 +36,7 @@ public class main {
             es.nextLine(); // salto de línea pendiente
 
             if (op1 == 1) {
-                System.out.println("-----DATOS DE PERSONA-----");
+                System.out.println("-----DATOS DE PERSONALES-----");
                 Bibliotecario b = new Bibliotecario();
 
                 System.out.println("Ingrese los nombres:");
@@ -112,25 +110,20 @@ public class main {
                 System.out.println("Ingrese su número Telefónico:");
                 p.setTelefono(es.next());
                 es.nextLine(); // Consumir el salto de línea pendiente
-                
                 System.out.println("Ingrese el rol:");
                 p.setRol(es.nextInt());
-                es.nextLine(); // Consumir el salto de línea pendiente
 
                 UsuarioControlador usuC = new UsuarioControlador();
                 usuC.crearUsuario(p);
 
                 
-                
-                System.out.println("Ingrese los siguentes datos de estudiante\n");
-                //OBTENER ID DE LA SUPER CLASE
+                System.out.println("Ingrese los siguientes datos de estudiante\n");
+                // OBTENER ID DE LA SUPER CLASE
                 int idUsuario = usuC.buscarIdUsuario(p.getCedula());
                 System.out.println("-------------------" + idUsuario);
-
-                
                 
                 Estudiante est = new Estudiante();
-                System.out.println("Ingrese la carrera que esta cursando:");
+                System.out.println("Ingrese la carrera que está cursando:");
                 est.setCarreraCursando(es.next());
 
                 System.out.println("Ingrese número de matrícula:");
@@ -138,14 +131,16 @@ public class main {
                 EstudianteControlador estC = new EstudianteControlador();
                 estC.crearUsuario(est);
 
-//                System.out.println("Ingrese la jornada de estudio:");
-//                est.setNumMatricula(es.next());
+               
+                est.setIdUsuario(es.nextInt());
                 
+            } else if (op1 == 4) {
+                // Llama al main de la clase mainLibros
+                mainLibros.main(null);
             } else if (op1 == 0) {
                 i = 0;
             }
         } while (i == 1);
-
-        es.close(); // Cerrar el scanner al final
+        es.close();
     }
 }

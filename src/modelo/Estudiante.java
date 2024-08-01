@@ -1,13 +1,8 @@
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
 /**
  *
- * @author USER
+ * @author
  */
 public class Estudiante extends Usuario{
 
@@ -62,7 +57,7 @@ public class Estudiante extends Usuario{
     
     @Override
     public String imprimir(){
-        return"--------DATOS PERSONA--------\n"
+        return"--------DATOS ESTUDIANTE--------\n"
                 + "NOMBRE: "+getNombres()+"\n"
                 + "APELLIDOS: "+getApellidos()+"\n"
                 + "TELEFONO: "+getTelefono()+"\n"

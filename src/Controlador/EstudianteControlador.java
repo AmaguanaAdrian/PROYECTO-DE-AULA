@@ -1,14 +1,11 @@
 package Controlador;
-
-import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
-//import static java.awt.Event.INSERT;
-import java.sql.ResultSet;
+import java.sql.SQLException;
 import modelo.Estudiante;
 
 /**
  *
- * @author david
+ * @author
  */
 public class EstudianteControlador {
     //CONEXION 
@@ -31,7 +28,7 @@ public class EstudianteControlador {
                 System.out.println("Por favor ingrese correctamente los datos solicitados");
                 ejecutar.close();
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             //captura el error y permite que la consola se siga ejecuntando
             System.out.println("Error" + e);
         }
