@@ -17,11 +17,13 @@ public class Bibliotecario extends Usuario{
     public Bibliotecario() {
     }
 
-    public Bibliotecario(int idBibliotecario, String tituloRegistrado, int idUsuario, String nombres, String apellidos, String clave, String cedula, String direccion, Double telefono, String correoInstitucional, int rol) {
+    public Bibliotecario(int idBibliotecario, String tituloRegistrado, int idUsuario, String nombres, String apellidos, String clave, String cedula, String direccion, String telefono, String correoInstitucional, int rol) {
         super(idUsuario, nombres, apellidos, clave, cedula, direccion, telefono, correoInstitucional, rol);
         this.idBibliotecario = idBibliotecario;
         this.tituloRegistrado = tituloRegistrado;
     }
+
+    
     
 
     public int getIdBibliotecario() {

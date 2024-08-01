@@ -17,9 +17,9 @@ public class EstudianteControlador {
     java.sql.PreparedStatement ejecutar;
 
     // INSERTAR FILAS EN UNA TABLA
-    public void crearPersona(Estudiante est) {
+    public void crearUsuario(Estudiante est) {
         try {// EXCEPCION QUE LANZA LA CONSULATA
-            String consultaSQL = "INSERT INTO estudiantes (numeroMatricula,jornada,idpersona) VALUES ('"+est.getNumMatricula()+"','matutina',"+est.getIdUsuario()+");";
+            String consultaSQL = "INSERT INTO estudiantes (est_carreraCursando,est_numMatricula,est_nivelCursando,usu_id) VALUES ('"+est.getCarreraCursando()+"','"+est.getNumMatricula()+"',"+est.getNivelCursando()+","+est.getIdUsuario()+");";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             // DAR CLIC EN EL PLAY (ejecutar la consulta)
             int res = ejecutar.executeUpdate();

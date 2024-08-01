@@ -20,7 +20,7 @@ public class Estudiante extends Usuario{
     public Estudiante() {
     }
 
-    public Estudiante(int idEstudiante, String carreraCursando, String numMatricula, int nivelCursando, int idUsuario, String nombres, String apellidos, String clave, String cedula, String direccion, Double telefono, String correoInstitucional, int rol) {
+    public Estudiante(int idEstudiante, String carreraCursando, String numMatricula, int nivelCursando, int idUsuario, String nombres, String apellidos, String clave, String cedula, String direccion, String telefono, String correoInstitucional, int rol) {
         super(idUsuario, nombres, apellidos, clave, cedula, direccion, telefono, correoInstitucional, rol);
         this.idEstudiante = idEstudiante;
         this.carreraCursando = carreraCursando;

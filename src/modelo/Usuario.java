@@ -12,7 +12,7 @@ public class Usuario {
     private String clave;
     private String cedula;
     private String direccion;
-    private Double telefono;
+    private String telefono;
     private String correoInstitucional;
     private int rol;
 
@@ -23,7 +23,7 @@ public class Usuario {
         this.apellidos=apellidos;
     }
 
-    public Usuario(int idUsuario, String nombres, String apellidos, String clave, String cedula, String direccion, Double telefono, String correoInstitucional, int rol) {
+    public Usuario(int idUsuario, String nombres, String apellidos, String clave, String cedula, String direccion, String telefono, String correoInstitucional, int rol) {
         this.idUsuario = idUsuario;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -34,6 +34,8 @@ public class Usuario {
         this.correoInstitucional = correoInstitucional;
         this.rol = rol;
     }
+
+    
 
     public int getIdUsuario() {
         return idUsuario;
@@ -74,11 +76,11 @@ public class Usuario {
         this.direccion = direccion;
     }
 
-    public Double getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Double telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

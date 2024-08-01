@@ -1,23 +1,29 @@
-
 package vista;
+
 import Controlador.BibliotecarioControlador;
+import Controlador.ConexionBDD;
 import Controlador.EstudianteControlador;
 
 import Controlador.ReservaControlador;
+import controlador.UsuarioControlador;
 import java.util.Scanner;
 import modelo.Bibliotecario;
 import modelo.Estudiante;
 import modelo.Reserva;
 import modelo.Usuario;
 
-
 public class main {
+
     public static void main(String[] args) {
+        //        CONEXION A BASE DE DATOS
+//        ConexionBDD cb = new ConexionBDD();
+//        cb.conectar();
+
         Scanner es = new Scanner(System.in);
         int i = 1;
 
-        
-        do {System.out.println("""
+        do {
+            System.out.println("""
                               |   BIENVENIDO AL SISTEMA DE RESERVA DE LIBROS   |
                               |------------------------------------------------|
                               |  OPCIONES:                                     |
@@ -27,9 +33,10 @@ public class main {
                               |   0. Salir                                     |
                                
                                """);
+
             int op1 = es.nextInt();
             es.nextLine(); // salto de línea pendiente
-            
+
             if (op1 == 1) {
                 System.out.println("-----DATOS DE PERSONA-----");
                 Bibliotecario b = new Bibliotecario();
@@ -40,13 +47,11 @@ public class main {
                 System.out.println("Ingrese los apellidos:");
                 b.setApellidos(es.nextLine());
 
-
                 System.out.println("Ingrese la clave:");
                 b.setClave(es.nextLine());
 
                 System.out.println("Ingrese la cédula:");
                 b.setCedula(es.nextLine());
-
 
                 System.out.println("Ingrese la dirección:");
                 b.setDireccion(es.nextLine());
@@ -56,12 +61,12 @@ public class main {
                     System.out.println("Por favor, ingrese un número válido para el teléfono:");
                     es.next(); // Dtecta entrada incorrecta
                 }
-                b.setTelefono(es.nextDouble());
+                b.setTelefono(es.next());
                 es.nextLine(); // salto de línea pendiente
 
                 System.out.println("Ingrese el correo institucional:");
                 b.setCorreoInstitucional(es.nextLine());
-                
+
                 System.out.println("-----DATOS DEL BIBLIOTECARIO-----");
                 System.out.println("Ingrese el titulo registrado en Senecyt:");
                 b.setTituloRegistrado(es.nextLine());
@@ -69,12 +74,11 @@ public class main {
                 BibliotecarioControlador bc = new BibliotecarioControlador();
                 bc.crearPersona(b);
 
-                
             } else if (op1 == 2) {
                 Reserva r = new Reserva();
                 System.out.println("Ingrese la fecha de retiro (yyyy-MM-dd):");
                 r.setFechaRetiro(es.nextLine());
-                
+
                 System.out.println("Ingrese la fecha de reserva (yyyy-MM-dd):");
                 r.setFechaReserva(es.nextLine());
 
@@ -102,31 +106,46 @@ public class main {
                 System.out.println("Ingrese una Dirección:");
                 p.setDireccion(es.next());
 
-                System.out.println("Ingrese su Correo Electrónico:");
+                System.out.println("Ingrese su Correo Electrónico Institucional:");
                 p.setCorreoInstitucional(es.next());
 
-                System.out.println("Ingrese un número Telefónico:");
-                p.setTelefono(es.nextDouble());
+                System.out.println("Ingrese su número Telefónico:");
+                p.setTelefono(es.next());
+                es.nextLine(); // Consumir el salto de línea pendiente
+                
+                System.out.println("Ingrese el rol:");
+                p.setRol(es.nextInt());
                 es.nextLine(); // Consumir el salto de línea pendiente
 
+                UsuarioControlador usuC = new UsuarioControlador();
+                usuC.crearUsuario(p);
 
-               
+                
+                
+                System.out.println("Ingrese los siguentes datos de estudiante\n");
+                //OBTENER ID DE LA SUPER CLASE
+                int idUsuario = usuC.buscarIdUsuario(p.getCedula());
+                System.out.println("-------------------" + idUsuario);
+
+                
+                
                 Estudiante est = new Estudiante();
+                System.out.println("Ingrese la carrera que esta cursando:");
+                est.setCarreraCursando(es.next());
+
                 System.out.println("Ingrese número de matrícula:");
                 est.setNumMatricula(es.next());
-
-                System.out.println("Ingrese la jornada de estudio:");
-                est.setNumMatricula(es.next());
-
-              
                 EstudianteControlador estC = new EstudianteControlador();
-                estC.crearPersona(est);
+                estC.crearUsuario(est);
+
+//                System.out.println("Ingrese la jornada de estudio:");
+//                est.setNumMatricula(es.next());
+                
             } else if (op1 == 0) {
                 i = 0;
             }
         } while (i == 1);
-        
+
         es.close(); // Cerrar el scanner al final
     }
 }
-
