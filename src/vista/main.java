@@ -149,7 +149,7 @@ public class main {
             }
         } while (i == 1);
         
-        es.close(); // Cerrar el scanner al final
+        es.close();
     }
 }
 
