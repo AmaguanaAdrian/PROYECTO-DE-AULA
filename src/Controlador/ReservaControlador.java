@@ -25,7 +25,7 @@ public class ReservaControlador {
         try {
             // String estático con componentes dinámicos (gets)
             String consultaSQL = "INSERT INTO Reserva (res_fechaRetiro, res_fechaReserva, res_fechaDevolucion) VALUES ('" + r.getFechaRetiro() + "', '" + r.getFechaReserva() + "', '" + r.getFechaDevolucion() + "');";
-            PreparedStatement ejecutar = connection.prepareCall(consultaSQL);
+            ejecutar=(com.mysql.jdbc.PreparedStatement)connection.prepareCall(consultaSQL);
             int resultado = ejecutar.executeUpdate();
             // Ejecuta
             if (resultado > 0) {

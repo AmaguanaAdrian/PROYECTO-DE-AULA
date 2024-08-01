@@ -62,7 +62,7 @@ public class Estudiante extends Usuario{
     
     @Override
     public String imprimir(){
-        return"--------DATOS PERSONA--------\n"
+        return"--------DATOS ESTUDIANTE--------\n"
                 + "NOMBRE: "+getNombres()+"\n"
                 + "APELLIDOS: "+getApellidos()+"\n"
                 + "TELEFONO: "+getTelefono()+"\n"

@@ -5,11 +5,11 @@
  */
 package vista;
 import Controlador.BibliotecarioControlador;
-
-
+import Controlador.EstudianteControlador;
 import Controlador.BibliotecarioControlador;
 import Controlador.ConexionBDD;
 import Controlador.ReservaControlador;
+import controlador.UsuarioControlador;
 import java.util.Scanner;
 import modelo.Bibliotecario;
 import modelo.Estudiante;
@@ -116,22 +116,15 @@ public class main {
                 System.out.println("Ingrese su número Telefónico:");
                 p.setTelefono(es.next());
                 es.nextLine(); // Consumir el salto de línea pendiente
-                
-                System.out.println("Ingrese el rol:");
-                p.setRol(es.nextInt());
-                es.nextLine(); // Consumir el salto de línea pendiente
 
-//                UsuarioControlador usuC = new UsuarioControlador();
-//                usuC.crearUsuario(p);
+                UsuarioControlador usuC = new UsuarioControlador();
+                usuC.crearUsuario(p);
 
-                
                 
                 System.out.println("Ingrese los siguentes datos de estudiante\n");
                 //OBTENER ID DE LA SUPER CLASE
-//                int idUsuario = usuC.buscarIdUsuario(p.getCedula());
-//                System.out.println("-------------------" + idUsuario);
-
-                
+                int idUsuario = usuC.buscarIdUsuario(p.getCedula());
+                System.out.println("-------------------" + idUsuario);
                 
                 Estudiante est = new Estudiante();
                 System.out.println("Ingrese la carrera que esta cursando:");
@@ -139,11 +132,11 @@ public class main {
 
                 System.out.println("Ingrese número de matrícula:");
                 est.setNumMatricula(es.next());
-//                EstudianteControlador estC = new EstudianteControlador();
-//                estC.crearUsuario(est);
+                EstudianteControlador estC = new EstudianteControlador();
+                estC.crearUsuario(est);
 
-//                System.out.println("Ingrese la jornada de estudio:");
-//                est.setNumMatricula(es.next());
+                System.out.println("Ingrese la jornada de estudio:");
+                est.setNumMatricula(es.next());
                 
             } else if (op1 == 0) {
                 i = 0;

@@ -107,10 +107,7 @@ public class Usuario {
 
     public void setRol(int rol) {
         this.rol = rol;
-    }
-    
-    
-    
+    }  
     public String imprimir(){
         return"--------DATOS PERSONA--------\n"
                 + "NOMBRE: "+getNombres()+"\n"
