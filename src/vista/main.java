@@ -15,9 +15,7 @@ import modelo.Bibliotecario;
 import modelo.Estudiante;
 import modelo.Reserva;
 import modelo.Usuario;
-
 public class main {
-
     public static void main(String[] args) {
         //        CONEXION A BASE DE DATOS
 //        ConexionBDD cb = new ConexionBDD();
@@ -34,6 +32,7 @@ public class main {
                               |   1. Crear Bibliotecario                       |
                               |   2. Hacer Reserva                             |
                               |   3. Crear Estudiante                          |
+                              |   4. Gestión de Libros                         | 
                               |   0. Salir                                     |
                                
                                """);
@@ -121,13 +120,13 @@ public class main {
                 usuC.crearUsuario(p);
 
                 
-                System.out.println("Ingrese los siguentes datos de estudiante\n");
-                //OBTENER ID DE LA SUPER CLASE
+                System.out.println("Ingrese los siguientes datos de estudiante\n");
+                // OBTENER ID DE LA SUPER CLASE
                 int idUsuario = usuC.buscarIdUsuario(p.getCedula());
                 System.out.println("-------------------" + idUsuario);
                 
                 Estudiante est = new Estudiante();
-                System.out.println("Ingrese la carrera que esta cursando:");
+                System.out.println("Ingrese la carrera que está cursando:");
                 est.setCarreraCursando(es.next());
 
                 System.out.println("Ingrese número de matrícula:");
@@ -138,6 +137,9 @@ public class main {
                 System.out.println("Ingrese la jornada de estudio:");
                 est.setNumMatricula(es.next());
                 
+            } else if (op1 == 4) {
+                // Llama al main de la clase mainLibros
+                mainLibros.main(null);
             } else if (op1 == 0) {
                 i = 0;
             }

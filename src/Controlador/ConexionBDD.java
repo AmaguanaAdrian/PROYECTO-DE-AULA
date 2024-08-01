@@ -21,7 +21,7 @@ public class ConexionBDD {
             //Parámetros de conexión url/usuario/clave en mysql
 //            Adrian_branch
             conexion=DriverManager.getConnection("jdbc:mysql://localhost/proyecto2?autoReconnect=true&useSSL=false","root","1005336308KA");
-            System.out.println("CONECTADO"); 
+//            System.out.println("CONECTADO"); 
 //            David_branch
 //            conexion=DriverManager.getConnection("jdbc:mysql://localhost/proyecto2?autoReconnect=true&useSSL=false","root","1002010");
 ////            System.out.println("CONECTADO"); 

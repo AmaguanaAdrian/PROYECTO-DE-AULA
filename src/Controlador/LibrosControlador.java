@@ -6,20 +6,20 @@ package Controlador;
 import com.mysql.jdbc.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import modelo.Libro;
+import modelo.Libros;
 import com.mysql.jdbc.PreparedStatement;
 /**
  *
  * @author USER
  */
-public class LibroControlador {
+public class LibrosControlador {
     ConexionBDD conexion=new ConexionBDD();
     Connection connection=(Connection)conexion.conectar();
     PreparedStatement ejecutar;
     ResultSet resultado; 
-    public void crearLibro(Libro l) {
+    public void crearLibro(Libros l) {
     try {
-        String consultaSQL = "INSERT INTO libro(titulo, fechaPublicado, isbn) VALUES (?, ?, ?);";
+        String consultaSQL = "INSERT INTO libros (titulo, fechaPublicado, isbn) VALUES (?, ?, ?);";
         ejecutar=(PreparedStatement)connection.prepareCall(consultaSQL);
         ejecutar.setString(1, l.getTitulo());
         ejecutar.setString(2, l.getFechaPublicado());
@@ -39,7 +39,7 @@ public class LibroControlador {
        // BUSCAR LIBRO POR ISBN
     public int buscarIdLibro(String isbn) {
         try {
-            String consultaSQL = "SELECT idLibro FROM libro WHERE isbn = ?;";
+            String consultaSQL = "SELECT idLibro FROM libros WHERE isbn = ?;";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             ejecutar.setString(1, isbn);
             resultado = ejecutar.executeQuery();
@@ -57,14 +57,14 @@ public class LibroControlador {
     }
 
     // LISTAR TODOS LOS LIBROS
-    public ArrayList<Libro> listarLibros() {
-        ArrayList<Libro> listaLibros = new ArrayList<>();
+    public ArrayList<Libros> listarLibros() {
+        ArrayList<Libros> listaLibros = new ArrayList<>();
         try {
-            String consultaSQL = "SELECT idLibro, titulo, fechaPublicado, isbn FROM libro;";
+            String consultaSQL = "SELECT idLibro, titulo, fechaPublicado, isbn FROM libros;";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             resultado = ejecutar.executeQuery();
             while (resultado.next()) {
-                Libro l = new Libro();
+                Libros l = new Libros();
                 l.setIdLibro(resultado.getInt("idLibro"));
                 l.setTitulo(resultado.getString("titulo"));
                 l.setFechaPublicado(resultado.getString("fechaPublicado"));
@@ -79,9 +79,9 @@ public class LibroControlador {
     }
 
     // ACTUALIZAR INFORMACIÓN DE UN LIBRO
-    public void actualizarLibro(Libro l, String isbn) {
+    public void actualizarLibro(Libros l, String isbn) {
         try {
-            String consultaSQL = "UPDATE libro SET titulo = ?, fechaPublicado = ? WHERE isbn = ?;";
+            String consultaSQL = "UPDATE libros SET titulo = ?, fechaPublicado = ? WHERE isbn = ?;";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             ejecutar.setString(1, l.getTitulo());
             ejecutar.setString(2, l.getFechaPublicado());
@@ -99,10 +99,10 @@ public class LibroControlador {
     }
 
     // BUSCAR DATOS DE UN LIBRO POR ISBN
-    public Libro buscarDatosLibro(String isbn) {
-        Libro l = new Libro();
+    public Libros buscarDatosLibro(String isbn) {
+        Libros l = new Libros();
         try {
-            String consultaSQL = "SELECT idLibro, titulo, fechaPublicado, isbn FROM libro WHERE isbn = ?;";
+            String consultaSQL = "SELECT idLibro, titulo, fechaPublicado, isbn FROM libros WHERE isbn = ?;";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             ejecutar.setString(1, isbn);
             resultado = ejecutar.executeQuery();
@@ -126,7 +126,7 @@ public class LibroControlador {
     // ELIMINAR LIBRO POR ISBN
     public void eliminarLibro(String isbn) {
         try {
-            String consultaSQL = "DELETE FROM libro WHERE isbn = ?;";
+            String consultaSQL = "DELETE FROM libros WHERE isbn = ?;";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             ejecutar.setString(1, isbn);
             int res = ejecutar.executeUpdate();

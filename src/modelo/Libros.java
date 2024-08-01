@@ -7,17 +7,17 @@ package modelo;
  *
  * @author USER
  */
-public class Libro {
+public class Libros {
     private int idLibro;
     private String titulo;
     private String fechaPublicado;
     private String isbn;
-    private String idAutor;
+    
 
-    public Libro() {
+    public Libros() {
     }
 
-    public Libro(int idLibro, String titulo, String fechaPublicado, String isbn) {
+    public Libros(int idLibro, String titulo, String fechaPublicado, String isbn) {
         this.idLibro = idLibro;
         this.titulo = titulo;
         this.fechaPublicado = fechaPublicado;
@@ -57,7 +57,8 @@ public class Libro {
     }
         public String imprimir() {
         return "-------DATOS DEL LIBRO-----------\n"
-                + "ISBN:"+getIsbn()  + "\n"
+                + "idLibro:"+getIdLibro()+ "\n"
+                + "ISBN:"+getIsbn() + "\n"
                 + "Título:" + getTitulo()+ "\n"
                 + "Fecha Publicado:" + getFechaPublicado();
     }
