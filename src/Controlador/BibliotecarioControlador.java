@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controlador;
 /**
  *
- * @author USER
+ * @author
  */
-import controlador.ConexionBDD;
+
 import modelo.Bibliotecario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,7 +23,7 @@ public class BibliotecarioControlador {
     public void crearPersona(Bibliotecario b) {
         try {
             // String estático con componentes dinámicos (gets)
-            String consultaSQL = "INSERT INTO Bibliotecario (bib_idPersona, bib_nombres, bib_apellidos, bib_usuario, bib_contraseña, bib_cedula, bib_fechaNace, bib_direccion, bib_telefono, bib_correoInstitucional, bib_sexo, bib_puesto, bib_horario) VALUES ('" + b.getNombres() + "', '" + b.getApellidos() + "', '" + b.getUsuario() + "', '" + b.getClave() + "', '" + b.getCedula() + "', '" + b.getFechaNace() + "', '" + b.getDireccion() + "', " + b.getTelefono() + ", '" + b.getCorreoInstitucional() + "', '" + b.getSexo() + "', '" + b.getPuesto() + "', " + b.getHorario() + ");";
+            String consultaSQL = "INSERT INTO bibliotecarios (bib_tituloRegistrado,usu_id)VALUES('"+b.getTituloRegistrado()+"',"+b.getIdUsuario()+");";
             PreparedStatement ejecutar=(PreparedStatement)connection.prepareCall(consultaSQL);
             int resultado = ejecutar.executeUpdate();
             // Ejecuta

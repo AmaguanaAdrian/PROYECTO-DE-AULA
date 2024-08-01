@@ -6,7 +6,7 @@ package Controlador;
 import com.mysql.jdbc.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import modelo.libro;
+import modelo.Libro;
 import com.mysql.jdbc.PreparedStatement;
 /**
  *
@@ -17,7 +17,7 @@ public class LibroControlador {
     Connection connection=(Connection)conexion.conectar();
     PreparedStatement ejecutar;
     ResultSet resultado; 
-    public void crearLibro(libro l) {
+    public void crearLibro(Libro l) {
     try {
         String consultaSQL = "INSERT INTO libro(titulo, fechaPublicado, isbn) VALUES (?, ?, ?);";
         ejecutar=(PreparedStatement)connection.prepareCall(consultaSQL);
@@ -57,14 +57,14 @@ public class LibroControlador {
     }
 
     // LISTAR TODOS LOS LIBROS
-    public ArrayList<libro> listarLibros() {
-        ArrayList<libro> listaLibros = new ArrayList<>();
+    public ArrayList<Libro> listarLibros() {
+        ArrayList<Libro> listaLibros = new ArrayList<>();
         try {
             String consultaSQL = "SELECT idLibro, titulo, fechaPublicado, isbn FROM libro;";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             resultado = ejecutar.executeQuery();
             while (resultado.next()) {
-                libro l = new libro();
+                Libro l = new Libro();
                 l.setIdLibro(resultado.getInt("idLibro"));
                 l.setTitulo(resultado.getString("titulo"));
                 l.setFechaPublicado(resultado.getString("fechaPublicado"));
@@ -79,7 +79,7 @@ public class LibroControlador {
     }
 
     // ACTUALIZAR INFORMACIÓN DE UN LIBRO
-    public void actualizarLibro(libro l, String isbn) {
+    public void actualizarLibro(Libro l, String isbn) {
         try {
             String consultaSQL = "UPDATE libro SET titulo = ?, fechaPublicado = ? WHERE isbn = ?;";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
@@ -99,8 +99,8 @@ public class LibroControlador {
     }
 
     // BUSCAR DATOS DE UN LIBRO POR ISBN
-    public libro buscarDatosLibro(String isbn) {
-        libro l = new libro();
+    public Libro buscarDatosLibro(String isbn) {
+        Libro l = new Libro();
         try {
             String consultaSQL = "SELECT idLibro, titulo, fechaPublicado, isbn FROM libro WHERE isbn = ?;";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
