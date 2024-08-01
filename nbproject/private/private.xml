@@ -6,9 +6,17 @@
             <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/mainLibros.java</file>
             <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/main.java</file>
             <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/UsuarioControlador.java</file>
-            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/ReservaControlador.java</file>
-            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/mainPresentacion.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/modelo/DetalleReserva.java</file>
             <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/BibliotecarioControlador.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/ConexionBDD.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/modelo/Autor.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/modelo/Usuario.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/menus.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/modelo/Genero.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/mainPresentacion.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/ReservaControlador.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/modelo/Ejemplar.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/modelo/Libros.java</file>
         </group>
     </open-files>
 </project-private>

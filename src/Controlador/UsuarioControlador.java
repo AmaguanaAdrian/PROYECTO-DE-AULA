@@ -3,7 +3,6 @@ import Controlador.ConexionBDD;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.ResultSet;
 import modelo.Usuario;
-
 /**
  *
  * @author

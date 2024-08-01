@@ -20,7 +20,7 @@ public class mainLibros {
                               |   1. Insertar libros    |
                               |   2. Listar de libros   |
                               |   3. Actualizar libros  |
-                              |  ´4. Eliminar libros    |
+                              |   4. Eliminar libros    |
                               |   0. Salir              |
                               
                                """);

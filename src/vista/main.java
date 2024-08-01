@@ -20,17 +20,7 @@ public class main {
         int i = 1;
 
         do {
-            System.out.println("""
-                              |          SISTEMA DE RESERVA DE LIBROS          |
-                              |------------------------------------------------|
-                              |  OPCIONES:                                     |
-                              |   1. Crear Bibliotecario                       |
-                              |   2. Hacer Reserva                             |
-                              |   3. Crear Estudiante                          |
-                              |   4. Gestión de Libros                         | 
-                              |   0. Salir                                     |
-                               
-                               """);
+            menus.menu1();
 
             int op1 = es.nextInt();
             es.nextLine(); // salto de línea pendiente
@@ -55,9 +45,9 @@ public class main {
                 b.setDireccion(es.nextLine());
 
                 System.out.println("Ingrese el teléfono:");
-                while (!es.hasNextDouble()) {
+                while (!es.hasNext()) {
                     System.out.println("Por favor, ingrese un número válido para el teléfono:");
-                    es.next(); // Dtecta entrada incorrecta
+                    es.next(); // Detecta entrada incorrecta
                 }
                 b.setTelefono(es.next());
                 es.nextLine(); // salto de línea pendiente

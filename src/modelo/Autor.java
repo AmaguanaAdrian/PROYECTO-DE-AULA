@@ -5,6 +5,7 @@ package modelo;
  * @author
  */
 public class Autor extends Usuario {
+
     private String fechaNace;
 
     public Autor() {
@@ -23,10 +24,4 @@ public class Autor extends Usuario {
         this.fechaNace = fechaNace;
     }
 
-    
-    
-    
-    
-    
-    
 }
