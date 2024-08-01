@@ -114,25 +114,26 @@ public class main {
                 p.setRol(es.nextInt());
 
                 UsuarioControlador usuC = new UsuarioControlador();
+                System.out.println(p.imprimir());
                 usuC.crearUsuario(p);
 
                 
-                System.out.println("Ingrese los siguientes datos de estudiante\n");
-                // OBTENER ID DE LA SUPER CLASE
-                int idUsuario = usuC.buscarIdUsuario(p.getCedula());
-                System.out.println("-------------------" + idUsuario);
-                
-                Estudiante est = new Estudiante();
-                System.out.println("Ingrese la carrera que está cursando:");
-                est.setCarreraCursando(es.next());
-
-                System.out.println("Ingrese número de matrícula:");
-                est.setNumMatricula(es.next());
-                EstudianteControlador estC = new EstudianteControlador();
-                estC.crearUsuario(est);
-
-               
-                est.setIdUsuario(es.nextInt());
+//                System.out.println("Ingrese los siguientes datos de estudiante\n");
+//                // OBTENER ID DE LA SUPER CLASE
+//                int idUsuario = usuC.buscarIdUsuario(p.getCedula());
+//                System.out.println("-------------------" + idUsuario);
+//                
+//                Estudiante est = new Estudiante();
+//                System.out.println("Ingrese la carrera que está cursando:");
+//                est.setCarreraCursando(es.next());
+//
+//                System.out.println("Ingrese número de matrícula:");
+//                est.setNumMatricula(es.next());
+//                
+//                EstudianteControlador estC = new EstudianteControlador();
+//                
+//                est.setIdUsuario(idUsuario);
+//                estC.crearUsuario(est);
                 
             } else if (op1 == 4) {
                 // Llama al main de la clase mainLibros
