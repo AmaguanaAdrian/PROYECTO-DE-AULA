@@ -8,7 +8,7 @@ CREATE TABLE Usuario (
   usu_contraseña VARCHAR(30) NOT NULL,
   usu_cedula VARCHAR(15) NOT NULL UNIQUE,
   usu_direccion VARCHAR(100) NOT NULL,
-  usu_telefono DOUBLE NOT NULL,
+  usu_telefono VARCHAR(12) NOT NULL,
   usu_correolnstitucional VARCHAR(100) NOT NULL UNIQUE
 );
 
