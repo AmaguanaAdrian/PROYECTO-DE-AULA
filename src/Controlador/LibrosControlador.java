@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controlador;
 import com.mysql.jdbc.Connection;
 import java.sql.ResultSet;
@@ -10,7 +6,7 @@ import modelo.Libros;
 import com.mysql.jdbc.PreparedStatement;
 /**
  *
- * @author USER
+ * @author
  */
 public class LibrosControlador {
     ConexionBDD conexion=new ConexionBDD();

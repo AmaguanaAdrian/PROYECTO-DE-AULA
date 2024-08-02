@@ -1,8 +1,3 @@
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package vista;
 import Controlador.BibliotecarioControlador;
 import Controlador.EstudianteControlador;
@@ -18,30 +13,20 @@ import modelo.Usuario;
 public class main {
     public static void main(String[] args) {
         //        CONEXION A BASE DE DATOS
-//        ConexionBDD cb = new ConexionBDD();
-//        cb.conectar();
+        ConexionBDD cb = new ConexionBDD();
+        cb.conectar();
 
         Scanner es = new Scanner(System.in);
         int i = 1;
 
         do {
-            System.out.println("""
-                              |   BIENVENIDO AL SISTEMA DE RESERVA DE LIBROS   |
-                              |------------------------------------------------|
-                              |  OPCIONES:                                     |
-                              |   1. Crear Bibliotecario                       |
-                              |   2. Hacer Reserva                             |
-                              |   3. Crear Estudiante                          |
-                              |   4. Gestión de Libros                         | 
-                              |   0. Salir                                     |
-                               
-                               """);
+            menus.menu1();
 
             int op1 = es.nextInt();
             es.nextLine(); // salto de línea pendiente
 
             if (op1 == 1) {
-                System.out.println("-----DATOS DE PERSONA-----");
+                System.out.println("-----DATOS DE PERSONALES-----");
                 Bibliotecario b = new Bibliotecario();
 
                 System.out.println("Ingrese los nombres:");
@@ -60,9 +45,9 @@ public class main {
                 b.setDireccion(es.nextLine());
 
                 System.out.println("Ingrese el teléfono:");
-                while (!es.hasNextDouble()) {
+                while (!es.hasNext()) {
                     System.out.println("Por favor, ingrese un número válido para el teléfono:");
-                    es.next(); // Dtecta entrada incorrecta
+                    es.next(); // Detecta entrada incorrecta
                 }
                 b.setTelefono(es.next());
                 es.nextLine(); // salto de línea pendiente
@@ -115,8 +100,11 @@ public class main {
                 System.out.println("Ingrese su número Telefónico:");
                 p.setTelefono(es.next());
                 es.nextLine(); // Consumir el salto de línea pendiente
+                System.out.println("Ingrese el rol:");
+                p.setRol(es.nextInt());
 
                 UsuarioControlador usuC = new UsuarioControlador();
+                System.out.println(p.imprimir());
                 usuC.crearUsuario(p);
 
                 
@@ -131,15 +119,18 @@ public class main {
 
                 System.out.println("Ingrese número de matrícula:");
                 est.setNumMatricula(es.next());
+                
                 EstudianteControlador estC = new EstudianteControlador();
+                
+                est.setIdUsuario(idUsuario);
                 estC.crearUsuario(est);
-
-                System.out.println("Ingrese la jornada de estudio:");
-                est.setNumMatricula(es.next());
                 
             } else if (op1 == 4) {
                 // Llama al main de la clase mainLibros
                 mainLibros.main(null);
+            } else if (op1 == 5) {
+                // Llama al main de la clase mainGenero
+                mainGenero.main(null);
             } else if (op1 == 0) {
                 i = 0;
             }

@@ -114,6 +114,8 @@ public class Usuario {
                 + "APELLIDOS: "+getApellidos()+"\n"
                 + "TELEFONO: "+getTelefono()+"\n"
                 + "DIRECCIÓN: "+getDireccion()+"\n"
+                + "TELEFONO: "+getCedula()+"\n"
+                + "DIRECCIÓN: "+getClave()+"\n"
                 + "CORREO INSTITUCIONAL: "+getCorreoInstitucional()+"\n";
     }
     

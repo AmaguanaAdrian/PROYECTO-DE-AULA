@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controlador;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.SQLException;
@@ -9,7 +5,7 @@ import modelo.Estudiante;
 
 /**
  *
- * @author USER
+ * @author
  */
 public class EstudianteControlador {
     //CONEXION 

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package vista;
 import Controlador.LibrosControlador;
 import java.util.ArrayList;
@@ -9,7 +5,7 @@ import java.util.Scanner;
 import modelo.Libros;
 /**
  *
- * @author USER
+ * @author
  */
 public class mainLibros {
     public static void main(String[] args) {
@@ -24,7 +20,7 @@ public class mainLibros {
                               |   1. Insertar libros    |
                               |   2. Listar de libros   |
                               |   3. Actualizar libros  |
-                              |  ´4. Eliminar libros    |
+                              |   4. Eliminar libros    |
                               |   0. Salir              |
                               
                                """);
