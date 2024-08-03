@@ -3,12 +3,11 @@ package modelo;
  *
  * @author
  */
-public class Libros {
+public class Libros{
     private int idLibro;
     private String titulo;
     private String fechaPublicado;
     private String isbn;
-    
 
     public Libros() {
     }

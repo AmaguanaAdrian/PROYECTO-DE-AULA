@@ -22,7 +22,4 @@ public class Genero {
         this.nombreGenero = nombreGenero;
     }
     
-    
-    
-    
 }

@@ -4,7 +4,7 @@ package modelo;
  *
  * @author
  */
-public class DetalleReserva {
+public class DetalleReserva  {
     private Libros[] listaLibros = new Libros[4];
     private int idDetReserva;
 
