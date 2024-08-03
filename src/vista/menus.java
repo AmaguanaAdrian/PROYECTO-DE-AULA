@@ -41,7 +41,7 @@ public class menus {
 
     }
 
-    public static void menu2() {
+    public static void menuLibros() {
         System.out.println("""
                               |   GESTIÓN DE LIBROS     |
                               |-------------------------|

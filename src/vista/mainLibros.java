@@ -10,20 +10,11 @@ import modelo.Libros;
 public class mainLibros {
     public static void main(String[] args) {
         Scanner es = new Scanner(System.in);
-        LibrosControlador libroControlador = new LibrosControlador();
+        
         int op1; 
         do {
-              System.out.println("""
-                              |   GESTIÓN DE LIBROS     |
-                              |-------------------------|
-                              |   OPCIONES:             |
-                              |   1. Insertar libros    |
-                              |   2. Listar de libros   |
-                              |   3. Actualizar libros  |
-                              |   4. Eliminar libros    |
-                              |   0. Salir              |
-                              
-                               """);
+            LibrosControlador libroControlador = new LibrosControlador();
+              menus.menuLibros();
 
             op1 = es.nextInt();
             es.nextLine();

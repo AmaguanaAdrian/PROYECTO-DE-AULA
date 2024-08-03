@@ -16,7 +16,7 @@ public class UsuarioControlador {
     ResultSet resultado;
 
     public void crearUsuario(Usuario A) {
-//        Usuario usuC = new Usuario();
+        Usuario usuC = new Usuario();
         try {// EXCEPCION QUE LANZA LA CONSULATA
             String consultaSQL = "INSERT INTO usuarios( usu_nombres, usu_apellidos)VALUES ('"+ A.getNombres() + "','"+ A.getApellidos() + "');";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
