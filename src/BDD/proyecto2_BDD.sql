@@ -30,9 +30,9 @@ CREATE TABLE Estudiantes (
 );
 CREATE TABLE Autores(
   aut_id INT AUTO_INCREMENT PRIMARY KEY,
-  aut_fechaNace DATE NOT NULL,
-  usu_id INT NOT NULL,
-  FOREIGN KEY (usu_id) REFERENCES Usuarios(usu_id)
+  aut_nombres VARCHAR(60) NOT NULL,
+  aut_apellidos VARCHAR(60) NOT NULL,
+  aut_fechaNace DATE NOT NULL
 ); 
 
 CREATE TABLE Reservas (

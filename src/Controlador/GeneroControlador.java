@@ -1,18 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Controlador;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
-import java.sql.ResultSet;
 import modelo.Genero;
-import modelo.Libros;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 /**
  *
- * @author USER
+ * @author 
  */
 
 

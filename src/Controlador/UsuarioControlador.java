@@ -9,15 +9,34 @@ import modelo.Usuario;
  */
 public class UsuarioControlador {
 
-    Usuario usuC = new Usuario();
-
     //CONEXION 
     ConexionBDD conexion = new ConexionBDD();
     java.sql.Connection connection = conexion.conectar();
     java.sql.PreparedStatement ejecutar;
     ResultSet resultado;
 
-    public void crearUsuario(Usuario p) {
+    public void crearUsuario(Usuario A) {
+//        Usuario usuC = new Usuario();
+        try {// EXCEPCION QUE LANZA LA CONSULATA
+            String consultaSQL = "INSERT INTO usuarios( usu_nombres, usu_apellidos)VALUES ('"+ A.getNombres() + "','"+ A.getApellidos() + "');";
+            ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
+            int res = ejecutar.executeUpdate();// utilizo un int cuando ingreso datos en la bdd
+            if (res > 0) {
+                System.out.println("La persona ha sido creada con exito");
+                // CERRAR CONSULTA
+                ejecutar.close();
+            } else {
+                System.out.println("Por favor ingrese correctamente los datos solicitados");
+                ejecutar.close();
+            }
+        } catch (Exception e) {
+            //captura el error y permite que la consola se siga ejecuntando
+            System.out.println("Error1" + e);
+        }
+    }
+    
+     public void crearUsuarioA(Usuario p) {
+//        Usuario usuC = new Usuario();
         try {// EXCEPCION QUE LANZA LA CONSULATA
             String consultaSQL = "INSERT INTO usuarios( usu_nombres,"
                     + "usu_apellidos,"
