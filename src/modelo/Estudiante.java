@@ -5,8 +5,6 @@ package modelo;
  * @author
  */
 public class Estudiante extends Usuario{
-
-
     private int idEstudiante;
     private String carreraCursando;
     private String numMatricula;

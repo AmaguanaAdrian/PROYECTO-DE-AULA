@@ -15,28 +15,9 @@ public class UsuarioControlador {
     java.sql.PreparedStatement ejecutar;
     ResultSet resultado;
 
-    public void crearUsuario(Usuario A) {
-        Usuario usuC = new Usuario();
-        try {// EXCEPCION QUE LANZA LA CONSULATA
-            String consultaSQL = "INSERT INTO usuarios( usu_nombres, usu_apellidos)VALUES ('"+ A.getNombres() + "','"+ A.getApellidos() + "');";
-            ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
-            int res = ejecutar.executeUpdate();// utilizo un int cuando ingreso datos en la bdd
-            if (res > 0) {
-                System.out.println("La persona ha sido creada con exito");
-                // CERRAR CONSULTA
-                ejecutar.close();
-            } else {
-                System.out.println("Por favor ingrese correctamente los datos solicitados");
-                ejecutar.close();
-            }
-        } catch (Exception e) {
-            //captura el error y permite que la consola se siga ejecuntando
-            System.out.println("Error1" + e);
-        }
-    }
     
-     public void crearUsuarioA(Usuario p) {
-//        Usuario usuC = new Usuario();
+     public void crearUsuario(Usuario u) {
+        Usuario usuC = new Usuario();
         try {// EXCEPCION QUE LANZA LA CONSULATA
             String consultaSQL = "INSERT INTO usuarios( usu_nombres,"
                     + "usu_apellidos,"
@@ -47,14 +28,14 @@ public class UsuarioControlador {
                     + "usu_correolnstitucional,"
                     + "usu_rol) "
                     + " VALUES ('" 
-                    + p.getNombres() + "','" 
-                    + p.getApellidos() + "','" 
-                    + p.getClave() + "','" 
-                    + p.getCedula() + "','" 
-                    + p.getDireccion() + "','" 
-                    + p.getTelefono() + "','" 
-                    + p.getCorreoInstitucional() + "'," 
-                    + p.getRol() + ");";
+                    + u.getNombres() + "','" 
+                    + u.getApellidos() + "','" 
+                    + u.getClave() + "','" 
+                    + u.getCedula() + "','" 
+                    + u.getDireccion() + "','" 
+                    + u.getTelefono() + "','" 
+                    + u.getCorreoInstitucional() + "'," 
+                    + u.getRol() + ");";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             int res = ejecutar.executeUpdate();// utilizo un int cuando ingreso datos en la bdd
             if (res > 0) {

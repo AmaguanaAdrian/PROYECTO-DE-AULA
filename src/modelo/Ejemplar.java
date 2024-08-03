@@ -5,27 +5,45 @@ package modelo;
  * @author
  */
 public class Ejemplar extends Libros {
-
-    private int ejemId;
+    private int idEjemplar;
     private String codigoEjemplar;
-    private Boolean estadoEjempalr;
+    private boolean estado;
+    private int idLibro;
 
     public Ejemplar() {
+        super();
     }
 
-    public Ejemplar(int ejemId, String codigoEjemplar, Boolean estadoEjempalr, int idLibro, String titulo, String fechaPublicado, String isbn) {
-        super(idLibro, titulo, fechaPublicado, isbn);
-        this.ejemId = ejemId;
+    // Constructor para crear un Ejemplar sin idEjemplar (cuando se está insertando)
+    public Ejemplar(String codigoEjemplar, boolean estado, int idLibro) {
         this.codigoEjemplar = codigoEjemplar;
-        this.estadoEjempalr = estadoEjempalr;
+        this.estado = estado;
+        this.idLibro = idLibro;
     }
 
-    public int getEjemId() {
-        return ejemId;
+    // Constructor completo para crear un Ejemplar con todos los datos
+    public Ejemplar(int idEjemplar, String codigoEjemplar, boolean estado, int idLibro) {
+        this.idEjemplar = idEjemplar;
+        this.codigoEjemplar = codigoEjemplar;
+        this.estado = estado;
+        this.idLibro = idLibro;
     }
 
-    public void setEjemId(int ejemId) {
-        this.ejemId = ejemId;
+    // Constructor para crear un Ejemplar con información de libro
+    public Ejemplar(int idEjemplar, String codigoEjemplar, boolean estado, int idLibro, String titulo, String fechaPublicado, String isbn) {
+        super(idLibro, titulo, fechaPublicado, isbn);
+        this.idEjemplar = idEjemplar;
+        this.codigoEjemplar = codigoEjemplar;
+        this.estado = estado;
+        this.idLibro = idLibro;
+    }
+
+    public int getIdEjemplar() {
+        return idEjemplar;
+    }
+
+    public void setIdEjemplar(int idEjemplar) {
+        this.idEjemplar = idEjemplar;
     }
 
     public String getCodigoEjemplar() {
@@ -36,12 +54,28 @@ public class Ejemplar extends Libros {
         this.codigoEjemplar = codigoEjemplar;
     }
 
-    public Boolean getEstadoEjempalr() {
-        return estadoEjempalr;
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setEstadoEjempalr(Boolean estadoEjempalr) {
-        this.estadoEjempalr = estadoEjempalr;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
+    public int getIdLibro() {
+        return idLibro;
+    }
+
+    public void setIdLibro(int idLibro) {
+        this.idLibro = idLibro;
+    }
+
+    @Override
+    public String imprimir() {
+        return super.imprimir() + "\n"
+                + "ID Ejemplar: " + getIdEjemplar() + "\n"
+                + "Código Ejemplar: " + getCodigoEjemplar() + "\n"
+                + "ID Libro: " + getIdLibro() + "\n"
+                + "Estado: " + (isEstado() ? "Disponible" : "No Disponible");
+    }
 }

@@ -6,6 +6,7 @@ package modelo;
  */
 public class Autor extends Usuario  {
     private String fechaNace;
+    
 
     public Autor() {
     }

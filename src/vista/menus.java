@@ -1,4 +1,5 @@
 package vista;
+import java.io.IOException;
 
 /**
  *
@@ -20,11 +21,12 @@ public class menus {
                            ║                                                         ║
                            ╚═══════════════════════════════════════════════════════════════════╝
                            
-                           """);
+                           """.indent(30));
+        
 
     }
 
-    public static void menu1() {
+    public static void menuBiblio() {
         System.out.println("""
                               |              PERFIL BIBLIOTECARIO              |
                               |------------------------------------------------|
@@ -35,51 +37,64 @@ public class menus {
                               |   4. Gestión de Libros                         |
                               |   5. Gestion Genero                            |
                               |   6. Gestion de Autores                        |
+                              |   7. Gestionar Ejemplares                      |
                               |   0. Salir                                     |
                                
-                               """);
+                               """.indent(30));
 
     }
 
     public static void menuLibros() {
         System.out.println("""
-                              |   GESTIÓN DE LIBROS     |
-                              |-------------------------|
-                              |   OPCIONES:             |
-                              |   1. Insertar libros    |
-                              |   2. Listar libros      |
-                              |   3. Actualizar libros  |
-                              |   4. Eliminar libros    |
-                              |   0. Salir              |
-                              
-                               """);
+                                    |   GESTIÓN DE LIBROS     |
+                                    |-------------------------|
+                                    |   OPCIONES:             |
+                                    |   1. Insertar libros    |
+                                    |   2. Listar de libros   |
+                                    |   3. Actualizar libros  |
+                                    |   4. Eliminar libros    |
+                                    |   0. Volver al menú     |
+                                    """.indent(30));
     }
     
     public static void menuGenero() {
         System.out.println("""
-                            |   GESTIÓN DE GÉNEROS    |
-                            |-------------------------|
-                            |   OPCIONES:             |
-                            |   1. Insertar género    |
-                            |   2. Listar géneros     |
-                            |   3. Actualizar géner   |
-                            |   4. Eliminar género    |
-                            |   0. Salir              |
-                            
-                            """);
+                                    |   GESTIÓN DE GÉNEROS    |
+                                    |-------------------------|
+                                    |   OPCIONES:             |
+                                    |   1. Insertar género    |
+                                    |   2. Listar géneros     |
+                                    |   3. Actualizar géner   |
+                                    |   4. Eliminar género    |
+                                    |   0. Volver al menu     |
+
+                                    """.indent(30));
     }
     public static void menuAutores() {
         System.out.println("""
                                
-                           |----------------------MENU AUTORES-----------------------|
+                           |                      MENU AUTORES                       |
                            |---------------------------------------------------------|
-                           |   Elija la opción que Usted requiera ejecutar:          |
+                           |   OPCIONES:                                             |
                            |   1. Insertar autor                                     |
                            |   2. Mostrar lista de autores registrados               |
                            |   3. Actualizar información de un autor (por nombre)    |
                            |   4. Eliminar autor (por nombre)                        |
-                           |   0. Salir                                              |
-                           """);
+                           |   0. Volver al menu                                     |
+                           """.indent(30));
     }
+    public static void menuEjemplares() {
+        System.out.println("""
+                                        |   GESTIÓN DE EJEMPLARES     |
+                                        |-----------------------------|
+                                        |   OPCIONES:                 |
+                                        |   1. Insertar ejemplares    |
+                                        |   2. Listar ejemplares      |
+                                        |   3. Actualizar ejemplares  |
+                                        |   4. Eliminar ejemplares    |
+                                        |   0. Volver al menú         |
+                """.indent(30));
+    }
+    
     
 }

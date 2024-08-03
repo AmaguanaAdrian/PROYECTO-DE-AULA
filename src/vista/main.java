@@ -1,4 +1,5 @@
 package vista;
+
 import Controlador.EstudianteControlador;
 import Controlador.BibliotecarioControlador;
 import Controlador.ConexionBDD;
@@ -12,58 +13,89 @@ import modelo.Bibliotecario;
 import modelo.Estudiante;
 import modelo.Reserva;
 import modelo.Usuario;
+import java.io.IOException;
+
 public class main {
+    
+
+    
     public static void main(String[] args) {
         //        CONEXION A BASE DE DATOS
         ConexionBDD cb = new ConexionBDD();
-        cb.conectar();
+        cb.conectar ();
+        
+         // Imprime un mensaje de bienvenida con un marco perfectamente alineado
+        menus.introduccion();
+        
+
+        // Espera a que el usuario presione Enter
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();  
+
+        // Llama al siguiente main
+//        main.main(null);
 
         Scanner es = new Scanner(System.in);
         int i = 1;
 
         do {
-            menus.menu1();
+            menus.menuBiblio();
 
             int op1 = es.nextInt();
             es.nextLine(); // salto de línea pendiente
 
             if (op1 == 1) {
                 System.out.println("-----DATOS DE PERSONALES-----");
-                Bibliotecario b = new Bibliotecario();
+                Usuario u = new Usuario();
 
                 System.out.println("Ingrese los nombres:");
-                b.setNombres(es.nextLine());
+                u.setNombres(es.nextLine());
 
                 System.out.println("Ingrese los apellidos:");
-                b.setApellidos(es.nextLine());
+                u.setApellidos(es.nextLine());
 
                 System.out.println("Ingrese la clave:");
-                b.setClave(es.nextLine());
+                u.setClave(es.nextLine());
 
                 System.out.println("Ingrese la cédula:");
-                b.setCedula(es.nextLine());
+                u.setCedula(es.nextLine());
 
                 System.out.println("Ingrese la dirección:");
-                b.setDireccion(es.nextLine());
+                u.setDireccion(es.nextLine());
 
                 System.out.println("Ingrese el teléfono:");
                 while (!es.hasNext()) {
                     System.out.println("Por favor, ingrese un número válido para el teléfono:");
                     es.next(); // Detecta entrada incorrecta
                 }
-                b.setTelefono(es.next());
+                u.setTelefono(es.next());
                 es.nextLine(); // salto de línea pendiente
 
                 System.out.println("Ingrese el correo institucional:");
-                b.setCorreoInstitucional(es.nextLine());
+                u.setCorreoInstitucional(es.nextLine());
+                UsuarioControlador usuC = new UsuarioControlador();
+                usuC.crearUsuario(u);
+                
+                
+                
+                // OBTENER ID DE LA SUPER CLASE
+                int idUsuario = usuC.buscarIdUsuario(u.getCedula());
+                System.out.println("-------------------" + idUsuario);
+
+                
 
                 System.out.println("-----DATOS DEL BIBLIOTECARIO-----");
+                Bibliotecario b=new Bibliotecario();
+                        
                 System.out.println("Ingrese el titulo registrado en Senecyt:");
                 b.setTituloRegistrado(es.nextLine());
 
                 BibliotecarioControlador bc = new BibliotecarioControlador();
-                bc.crearPersona(b);
+                b.setIdUsuario(idUsuario);
+                bc.crearBibliotecario(b);
 
+                
+                
             } else if (op1 == 2) {
                 Reserva r = new Reserva();
                 System.out.println("Ingrese la fecha de retiro (yyyy-MM-dd):");
@@ -80,125 +112,129 @@ public class main {
 
             } else if (op1 == 3) {
                 System.out.println("Ingrese los datos personales del estudiante:");
-                Usuario p = new Usuario();
+                Usuario u = new Usuario();
                 System.out.println("Ingrese sus Nombres:");
-                p.setNombres(es.nextLine());
+                u.setNombres(es.nextLine());
 
                 System.out.println("Ingrese sus Apellidos:");
-                p.setApellidos(es.nextLine());
+                u.setApellidos(es.nextLine());
 
                 System.out.println("Ingrese su número de cédula:");
-                p.setCedula(es.next());
+                u.setCedula(es.next());
 
                 System.out.println("Ingrese una Clave:");
-                p.setClave(es.next());
+                u.setClave(es.next());
 
                 System.out.println("Ingrese una Dirección:");
-                p.setDireccion(es.next());
+                u.setDireccion(es.next());
 
                 System.out.println("Ingrese su Correo Electrónico Institucional:");
-                p.setCorreoInstitucional(es.next());
+                u.setCorreoInstitucional(es.next());
 
                 System.out.println("Ingrese su número Telefónico:");
-                p.setTelefono(es.next());
+                u.setTelefono(es.next());
                 es.nextLine(); // Consumir el salto de línea pendiente
                 System.out.println("Ingrese el rol:");
-                p.setRol(es.nextInt());
+                u.setRol(es.nextInt());
 
                 UsuarioControlador usuC = new UsuarioControlador();
-                System.out.println(p.imprimir());
-                usuC.crearUsuario(p);
+//                System.out.println(p.imprimir());
+                usuC.crearUsuario(u);
 
                 
-//                System.out.println("Ingrese los siguientes datos de estudiante\n");
-//                // OBTENER ID DE LA SUPER CLASE
-//                int idUsuario = usuC.buscarIdUsuario(p.getCedula());
-//                System.out.println("-------------------" + idUsuario);
-//                
-//                Estudiante est = new Estudiante();
-//                System.out.println("Ingrese la carrera que está cursando:");
-//                est.setCarreraCursando(es.next());
-//
-//                System.out.println("Ingrese número de matrícula:");
-//                est.setNumMatricula(es.next());
-//                
-//                EstudianteControlador estC = new EstudianteControlador();
-//                
-//                est.setIdUsuario(idUsuario);
-//                estC.crearUsuario(est);
+                // OBTENER ID DE LA SUPER CLASE
+                int idUsuario = usuC.buscarIdUsuario(u.getCedula());
+                System.out.println("-------------------" + idUsuario);
                 
+                
+                System.out.println("Ingrese los siguientes datos de estudiante");
+                Estudiante est = new Estudiante();
+                System.out.println("Ingrese la carrera que está cursando:");
+                est.setCarreraCursando(es.next());
+
+                System.out.println("Ingrese número de matrícula:");
+                est.setNumMatricula(es.next());
+
+                System.out.println("Ingrese el nivel que esta cursando actualmente:");
+                est.setNivelCursando(es.nextInt());
+
+                EstudianteControlador estC = new EstudianteControlador();
+
+                est.setIdUsuario(idUsuario);
+                estC.crearUsuario(est);
+
             } else if (op1 == 4) {
                 // Llama al main de la clase mainLibros
                 mainLibros.main(null);
             } else if (op1 == 5) {
                 // Llama al main de la clase mainGenero
                 mainGenero.main(null);
-            }else if (op1==6){
-            do{
-            AutorControlador AutorControlador = new AutorControlador();
-            menus.menuAutores();
+            } else if (op1 == 6) {
+                do {
+                    AutorControlador AutorControlador = new AutorControlador();
+                    menus.menuAutores();
 
-            op1 = es.nextInt();
-            es.nextLine();
-            if (op1 == 1) {
-                // Insertar Autor
-                System.out.println("Ingrese el nombre del autor");
-                String nombre = es.nextLine();
+                    op1 = es.nextInt();
+                    es.nextLine();
+                    if (op1 == 1) {
+                        // Insertar Autor
+                        System.out.println("Ingrese el nombre del autor");
+                        String nombre = es.nextLine();
 
-                System.out.println("Ingrese el apellido del autor:");
-                String apellido = es.nextLine();
+                        System.out.println("Ingrese el apellido del autor:");
+                        String apellido = es.nextLine();
 
-                System.out.println("Ingrese la fecha de naciemiento (YYYY-MM-DD :");
-                String fechaNace = es.nextLine();
+                        System.out.println("Ingrese la fecha de naciemiento (YYYY-MM-DD :");
+                        String fechaNace = es.nextLine();
 
-                Autor A = new Autor(fechaNace, nombre, apellido);
-                AutorControlador.crearAutor(A);
+                        Autor A = new Autor(fechaNace, nombre, apellido);
+                        AutorControlador.crearAutor(A);
 
-            } else if (op1 == 2) {
-                // Mostrar lista de autores
-                ArrayList<Autor> listarAutores = AutorControlador.listarAutores();
-                for (Autor A : listarAutores) {
-                    System.out.println(A.imprimir());
-                }
+                    } else if (op1 == 2) {
+                        // Mostrar lista de autores
+                        ArrayList<Autor> listarAutores = AutorControlador.listarAutores();
+                        for (Autor A : listarAutores) {
+                            System.out.println(A.imprimir());
+                        }
 
-            } else if (op1 == 3) {
-                // Actualizar información de un Autor
-                System.out.println("Ingrese el nombre del autor que desea actualizar:");
-                String nombre = es.nextLine();
+                    } else if (op1 == 3) {
+                        // Actualizar información de un Autor
+                        System.out.println("Ingrese el nombre del autor que desea actualizar:");
+                        String nombre = es.nextLine();
 
-                String AutorExistente = AutorControlador.buscarAutor(nombre);
-                if (AutorExistente == null) {
-                    System.out.println("Autor no encontrado.");
-                } else {
-                    System.out.println("Ingrese el nombre del autor a actualizar:");
-                    String nuevoNombre = es.nextLine();
-                    
-                    System.out.println("Ingrese el apellido del autor a actualizar:");
-                    String nuevoApellido = es.nextLine();
+                        String AutorExistente = AutorControlador.buscarAutor(nombre);
+                        if (AutorExistente == null) {
+                            System.out.println("Autor no encontrado.");
+                        } else {
+                            System.out.println("Ingrese el nombre del autor a actualizar:");
+                            String nuevoNombre = es.nextLine();
 
-                    System.out.println("Ingrese la nueva fecha de nacimiento (YYYY-MM-DD):");
-                    String nuevaFechaNace = es.nextLine();
+                            System.out.println("Ingrese el apellido del autor a actualizar:");
+                            String nuevoApellido = es.nextLine();
 
-                    Autor AutActualizado = new Autor(nuevaFechaNace, nuevoNombre, nuevoApellido);
-                    AutorControlador.actualizarAutor(AutActualizado, AutorExistente);
-                }
-            } else if (op1 == 4) {
-                // Eliminar Autor
-                System.out.println("Ingrese el nombre del autor que desea eliminar:");
-                String nombre = es.nextLine();
-                AutorControlador.eliminarAutor(nombre);
+                            System.out.println("Ingrese la nueva fecha de nacimiento (YYYY-MM-DD):");
+                            String nuevaFechaNace = es.nextLine();
 
-            } else if (op1 == 0) {
-                System.out.println("Saliendo...");
+                            Autor AutActualizado = new Autor(nuevaFechaNace, nuevoNombre, nuevoApellido);
+                            AutorControlador.actualizarAutor(AutActualizado, AutorExistente);
+                        }
+                    } else if (op1 == 4) {
+                        // Eliminar Autor
+                        System.out.println("Ingrese el nombre del autor que desea eliminar:");
+                        String nombre = es.nextLine();
+                        AutorControlador.eliminarAutor(nombre);
 
-            } else {
-                System.out.println("Opción no válida, por favor elija una opción entre 0 y 4.");
-            }
-        } while (op1 != 0);
-                
-                
-            }else if (op1 == 0) {
-                i = 0;
+                    } else if (op1 == 0) {
+                        System.out.println("Saliendo...");
+
+                    } else {
+                        System.out.println("Opción no válida, por favor elija una opción entre 0 y 4.");
+                    }
+                } while (op1 != 0);
+
+            } else if (op1 == 7) {
+                // Llama al main de la clase mainGenero
+                mainEjemplar.main(null);
             }
         } while (i == 1);
         es.close();
