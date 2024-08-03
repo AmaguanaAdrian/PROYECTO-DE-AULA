@@ -15,7 +15,7 @@ public class LibrosControlador {
     ResultSet resultado; 
     public void crearLibro(Libros l) {
     try {
-        String consultaSQL = "INSERT INTO libros (titulo, fechaPublicado, isbn) VALUES (?, ?, ?);";
+        String consultaSQL = "INSERT INTO libros (li_titulo, lib_fechaPublicado, lib_isbn) VALUES (?, ?, ?);";
         ejecutar=(PreparedStatement)connection.prepareCall(consultaSQL);
         ejecutar.setString(1, l.getTitulo());
         ejecutar.setString(2, l.getFechaPublicado());

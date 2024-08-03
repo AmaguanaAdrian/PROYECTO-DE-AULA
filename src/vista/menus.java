@@ -44,7 +44,7 @@ public class menus {
                               |-------------------------|
                               |   OPCIONES:             |
                               |   1. Insertar libros    |
-                              |   2. Listar de libros   |
+                              |   2. Listar libros      |
                               |   3. Actualizar libros  |
                               |   4. Eliminar libros    |
                               |   0. Salir              |
