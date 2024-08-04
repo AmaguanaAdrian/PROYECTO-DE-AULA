@@ -2,7 +2,6 @@ package vista;
 
 import Controlador.EstudianteControlador;
 import Controlador.BibliotecarioControlador;
-import Controlador.ConexionBDD;
 import Controlador.ReservaControlador;
 import controlador.AutorControlador;
 import controlador.UsuarioControlador;
@@ -15,25 +14,10 @@ import modelo.Reserva;
 import modelo.Usuario;
 import java.io.IOException;
 
-public class main {
-    
+public class MainBibliotecario {
 
-    
-    public static void main(String[] args) {
-        //        CONEXION A BASE DE DATOS
-        ConexionBDD cb = new ConexionBDD();
-        cb.conectar ();
+    public static void perfilBliotecario(String[] args) {
         
-         // Imprime un mensaje de bienvenida con un marco perfectamente alineado
-        menus.introduccion();
-        
-
-        // Espera a que el usuario presione Enter
-        Scanner scanner = new Scanner(System.in);
-        scanner.nextLine();  
-
-        // Llama al siguiente main
-//        main.main(null);
 
         Scanner es = new Scanner(System.in);
         int i = 1;
@@ -73,20 +57,20 @@ public class main {
 
                 System.out.println("Ingrese el correo institucional:");
                 u.setCorreoInstitucional(es.nextLine());
+                u.setRol(2);
+                
                 UsuarioControlador usuC = new UsuarioControlador();
                 usuC.crearUsuario(u);
                 
                 
-                
+
                 // OBTENER ID DE LA SUPER CLASE
                 int idUsuario = usuC.buscarIdUsuario(u.getCedula());
                 System.out.println("-------------------" + idUsuario);
 
-                
-
                 System.out.println("-----DATOS DEL BIBLIOTECARIO-----");
-                Bibliotecario b=new Bibliotecario();
-                        
+                Bibliotecario b = new Bibliotecario();
+
                 System.out.println("Ingrese el titulo registrado en Senecyt:");
                 b.setTituloRegistrado(es.nextLine());
 
@@ -94,8 +78,6 @@ public class main {
                 b.setIdUsuario(idUsuario);
                 bc.crearBibliotecario(b);
 
-                
-                
             } else if (op1 == 2) {
                 Reserva r = new Reserva();
                 System.out.println("Ingrese la fecha de retiro (yyyy-MM-dd):");
@@ -134,19 +116,16 @@ public class main {
                 System.out.println("Ingrese su número Telefónico:");
                 u.setTelefono(es.next());
                 es.nextLine(); // Consumir el salto de línea pendiente
-                System.out.println("Ingrese el rol:");
-                u.setRol(es.nextInt());
+                u.setRol(1);
 
                 UsuarioControlador usuC = new UsuarioControlador();
 //                System.out.println(p.imprimir());
                 usuC.crearUsuario(u);
 
-                
                 // OBTENER ID DE LA SUPER CLASE
                 int idUsuario = usuC.buscarIdUsuario(u.getCedula());
                 System.out.println("-------------------" + idUsuario);
-                
-                
+
                 System.out.println("Ingrese los siguientes datos de estudiante");
                 Estudiante est = new Estudiante();
                 System.out.println("Ingrese la carrera que está cursando:");
@@ -157,17 +136,19 @@ public class main {
 
                 System.out.println("Ingrese el nivel que esta cursando actualmente:");
                 est.setNivelCursando(es.nextInt());
-
+                
+                est.setIdUsuario(idUsuario);
+                
                 EstudianteControlador estC = new EstudianteControlador();
 
-                est.setIdUsuario(idUsuario);
-                estC.crearUsuario(est);
+                
+                estC.crearEstudiante(est);
 
             } else if (op1 == 4) {
-                // Llama al main de la clase mainLibros
+                // Llama al MainBibliotecario de la clase mainLibros
                 mainLibros.main(null);
             } else if (op1 == 5) {
-                // Llama al main de la clase mainGenero
+                // Llama al MainBibliotecario de la clase mainGenero
                 mainGenero.main(null);
             } else if (op1 == 6) {
                 do {
@@ -233,7 +214,7 @@ public class main {
                 } while (op1 != 0);
 
             } else if (op1 == 7) {
-                // Llama al main de la clase mainGenero
+                // Llama al MainBibliotecario de la clase mainGenero
                 mainEjemplar.main(null);
             }
         } while (i == 1);

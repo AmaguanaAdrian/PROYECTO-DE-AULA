@@ -113,7 +113,7 @@ public class mainEjemplar {
 
             } else if (op1 == 0) {
                 System.out.println("Regresando al menú principal...");
-                main.main(null);
+                MainBibliotecario.perfilBliotecario(null);
                 break; 
             }
         } while (op1 != 0);
@@ -123,7 +123,7 @@ public class mainEjemplar {
  }
 
 //public class mainEjemplar {
-//    public static void main(String[] args) {
+//    public static void MainBibliotecario(String[] args) {
 //        Scanner es = new Scanner(System.in);
 //        EjemplarControlador ejemplarControlador = new EjemplarControlador();
 //        int op1;
@@ -297,7 +297,7 @@ public class mainEjemplar {
 //
 //            } else if (op1 == 0) {
 //                System.out.println("Regresando al menú principal...\n");
-//                main.main(null); // Asumiendo que el menú principal está en la clase 'main'
+//                MainBibliotecario.MainBibliotecario(null); // Asumiendo que el menú principal está en la clase 'MainBibliotecario'
 //                return; // Salir de este método y regresar al menú principal
 //            }
 //        }

@@ -1,8 +1,10 @@
 package controlador;
+
 import Controlador.ConexionBDD;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.ResultSet;
 import modelo.Usuario;
+
 /**
  *
  * @author
@@ -15,8 +17,7 @@ public class UsuarioControlador {
     java.sql.PreparedStatement ejecutar;
     ResultSet resultado;
 
-    
-     public void crearUsuario(Usuario u) {
+    public void crearUsuario(Usuario u) {
         Usuario usuC = new Usuario();
         try {// EXCEPCION QUE LANZA LA CONSULATA
             String consultaSQL = "INSERT INTO usuarios( usu_nombres,"
@@ -27,14 +28,14 @@ public class UsuarioControlador {
                     + "usu_telefono,"
                     + "usu_correolnstitucional,"
                     + "usu_rol) "
-                    + " VALUES ('" 
-                    + u.getNombres() + "','" 
-                    + u.getApellidos() + "','" 
-                    + u.getClave() + "','" 
-                    + u.getCedula() + "','" 
-                    + u.getDireccion() + "','" 
-                    + u.getTelefono() + "','" 
-                    + u.getCorreoInstitucional() + "'," 
+                    + " VALUES ('"
+                    + u.getNombres() + "','"
+                    + u.getApellidos() + "','"
+                    + u.getClave() + "','"
+                    + u.getCedula() + "','"
+                    + u.getDireccion() + "','"
+                    + u.getTelefono() + "','"
+                    + u.getCorreoInstitucional() + "',"
                     + u.getRol() + ");";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             int res = ejecutar.executeUpdate();// utilizo un int cuando ingreso datos en la bdd
@@ -71,6 +72,27 @@ public class UsuarioControlador {
             System.out.println("Error2, comuniquese con el administrador" + e);
         }
         return 0;
+    }
+    public boolean existeCuenta(String cedula){
+        try {
+            String consulta = "SELECT * FROM usuarios "
+                    + "WHERE usu_cedula = '" + cedula + "';";
+            ejecutar = (PreparedStatement) connection.prepareCall(consulta);
+            
+            resultado = ejecutar.executeQuery(consulta);
+            
+            if(resultado.next()){
+                ejecutar.close();
+                return true;
+            }else{
+                ejecutar.close();
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println("¡ERROR EN EL SISTEMA! COMUNIQUESE CON EL ADMINISTRADOR\n"
+                     + "PARA SOLUCIONAR SU PROBLEMA: " + e);
+        }
+        return false;
     }
 
 }
