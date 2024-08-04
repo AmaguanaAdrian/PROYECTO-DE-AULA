@@ -1,4 +1,3 @@
-
 package modelo;
 
 /**
@@ -6,6 +5,7 @@ package modelo;
  * @author
  */
 public class Usuario {
+
     private int idUsuario;
     private String nombres;
     private String apellidos;
@@ -18,9 +18,10 @@ public class Usuario {
 
     public Usuario() {
     }
-    public Usuario(String nombres,String apellidos ){
-        this.nombres=nombres;
-        this.apellidos=apellidos;
+
+    public Usuario(String nombres, String apellidos) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
     }
 
     public Usuario(int idUsuario, String nombres, String apellidos, String clave, String cedula, String direccion, String telefono, String correoInstitucional, int rol) {
@@ -34,8 +35,6 @@ public class Usuario {
         this.correoInstitucional = correoInstitucional;
         this.rol = rol;
     }
-
-    
 
     public int getIdUsuario() {
         return idUsuario;
@@ -60,6 +59,7 @@ public class Usuario {
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
+
     public String getClave() {
         return clave;
     }
@@ -100,24 +100,23 @@ public class Usuario {
         this.cedula = cedula;
     }
 
-   
     public int getRol() {
         return rol;
     }
 
     public void setRol(int rol) {
         this.rol = rol;
-    }  
-    public String imprimir(){
-        return"--------DATOS PERSONA--------\n"
-                + "NOMBRE: "+getNombres()+"\n"
-                + "APELLIDOS: "+getApellidos()+"\n"
-                + "TELEFONO: "+getTelefono()+"\n"
-                + "DIRECCIÓN: "+getDireccion()+"\n"
-                + "TELEFONO: "+getCedula()+"\n"
-                + "DIRECCIÓN: "+getClave()+"\n"
-                + "CORREO INSTITUCIONAL: "+getCorreoInstitucional()+"\n";
     }
-    
-     
+
+    public String imprimir() {
+        return "--------DATOS PERSONA--------\n"
+                + "NOMBRE: " + getNombres() + "\n"
+                + "APELLIDOS: " + getApellidos() + "\n"
+                + "TELEFONO: " + getTelefono() + "\n"
+                + "DIRECCIÓN: " + getDireccion() + "\n"
+                + "TELEFONO: " + getCedula() + "\n"
+                + "DIRECCIÓN: " + getClave() + "\n"
+                + "CORREO INSTITUCIONAL: " + getCorreoInstitucional() + "\n";
+    }
+
 }
