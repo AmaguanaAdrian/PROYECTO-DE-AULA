@@ -20,7 +20,7 @@ public class ConexionBDD {
 //            Adrian_branch
           conexion=DriverManager.getConnection("jdbc:mysql://localhost/proyecto2?autoReconnect=true&useSSL=false","root","1005336308KA");
 //            System.out.println("CONECTADO"); 
-//            David_branch
+//            DavidF_branch
 //            conexion = DriverManager.getConnection("jdbc:mysql://localhost/proyecto2?autoReconnect=true&useSSL=false", "root", "1002010");
 ////            System.out.println("CONECTADO"); 
         } catch (ClassNotFoundException | SQLException e)//CAPTURAR ERRORES 

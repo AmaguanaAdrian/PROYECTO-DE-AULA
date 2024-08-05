@@ -1,8 +1,10 @@
 package controlador;
+
 import Controlador.ConexionBDD;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.ResultSet;
 import modelo.Usuario;
+
 /**
  *
  * @author
@@ -15,28 +17,8 @@ public class UsuarioControlador {
     java.sql.PreparedStatement ejecutar;
     ResultSet resultado;
 
-    public void crearUsuario(Usuario A) {
-//        Usuario usuC = new Usuario();
-        try {// EXCEPCION QUE LANZA LA CONSULATA
-            String consultaSQL = "INSERT INTO usuarios( usu_nombres, usu_apellidos)VALUES ('"+ A.getNombres() + "','"+ A.getApellidos() + "');";
-            ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
-            int res = ejecutar.executeUpdate();// utilizo un int cuando ingreso datos en la bdd
-            if (res > 0) {
-                System.out.println("La persona ha sido creada con exito");
-                // CERRAR CONSULTA
-                ejecutar.close();
-            } else {
-                System.out.println("Por favor ingrese correctamente los datos solicitados");
-                ejecutar.close();
-            }
-        } catch (Exception e) {
-            //captura el error y permite que la consola se siga ejecuntando
-            System.out.println("Error1" + e);
-        }
-    }
-    
-     public void crearUsuarioA(Usuario p) {
-//        Usuario usuC = new Usuario();
+    public void crearUsuario(Usuario u) {
+        Usuario usuC = new Usuario();
         try {// EXCEPCION QUE LANZA LA CONSULATA
             String consultaSQL = "INSERT INTO usuarios( usu_nombres,"
                     + "usu_apellidos,"
@@ -46,15 +28,15 @@ public class UsuarioControlador {
                     + "usu_telefono,"
                     + "usu_correolnstitucional,"
                     + "usu_rol) "
-                    + " VALUES ('" 
-                    + p.getNombres() + "','" 
-                    + p.getApellidos() + "','" 
-                    + p.getClave() + "','" 
-                    + p.getCedula() + "','" 
-                    + p.getDireccion() + "','" 
-                    + p.getTelefono() + "','" 
-                    + p.getCorreoInstitucional() + "'," 
-                    + p.getRol() + ");";
+                    + " VALUES ('"
+                    + u.getNombres() + "','"
+                    + u.getApellidos() + "','"
+                    + u.getClave() + "','"
+                    + u.getCedula() + "','"
+                    + u.getDireccion() + "','"
+                    + u.getTelefono() + "','"
+                    + u.getCorreoInstitucional() + "',"
+                    + u.getRol() + ");";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             int res = ejecutar.executeUpdate();// utilizo un int cuando ingreso datos en la bdd
             if (res > 0) {
@@ -90,6 +72,27 @@ public class UsuarioControlador {
             System.out.println("Error2, comuniquese con el administrador" + e);
         }
         return 0;
+    }
+    public boolean existeCuenta(String cedula){
+        try {
+            String consulta = "SELECT * FROM usuarios "
+                    + "WHERE usu_cedula = '" + cedula + "';";
+            ejecutar = (PreparedStatement) connection.prepareCall(consulta);
+            
+            resultado = ejecutar.executeQuery(consulta);
+            
+            if(resultado.next()){
+                ejecutar.close();
+                return true;
+            }else{
+                ejecutar.close();
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println("¡ERROR EN EL SISTEMA! COMUNIQUESE CON EL ADMINISTRADOR\n"
+                     + "PARA SOLUCIONAR SU PROBLEMA: " + e);
+        }
+        return false;
     }
 
 }

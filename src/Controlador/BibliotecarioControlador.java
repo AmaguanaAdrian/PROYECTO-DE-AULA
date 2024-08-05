@@ -20,7 +20,7 @@ public class BibliotecarioControlador {
     ResultSet resultado;
 
     // INSERTAR FILAS EN TABLA
-    public void crearPersona(Bibliotecario b) {
+    public void crearBibliotecario(Bibliotecario b) {
         try {
             // String estático con componentes dinámicos (gets)
             String consultaSQL = "INSERT INTO bibliotecarios (bib_tituloRegistrado,usu_id)VALUES('"+b.getTituloRegistrado()+"',"+b.getIdUsuario()+");";

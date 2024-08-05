@@ -1,5 +1,5 @@
 CREATE database proyecto2;
-
+USE proyecto2;
 
 CREATE TABLE Usuarios (
   usu_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -63,6 +63,7 @@ CREATE TABLE Ejemplares(
   eje_id INT AUTO_INCREMENT PRIMARY KEY,
   eje_codigoEjem VARCHAR(25) NOT NULL UNIQUE,
   eje_estado BOOLEAN NOT NULL DEFAULT TRUE,
+  eje_numEjemplares int NOT NULL,
   lib_id INT NOT NULL,
   FOREIGN KEY (lib_id) REFERENCES Libros(lib_id)
 );

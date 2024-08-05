@@ -64,11 +64,7 @@ public class Estudiante extends Usuario{
                 + "NÚMERO DE MATRICULA: "+getNumMatricula()+"\n"
                 + "CARRERA CURSANDO: "+getCarreraCursando()+"\n"
                 + "NIVEL ACTUAL: "+getNivelCursando()+"\n";
-    }
-
-
-  
-    
+    }   
 }
 
    

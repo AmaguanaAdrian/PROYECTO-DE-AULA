@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package vista;
 
 /**
  *
- * @author USER
+ * @author
  */
 import Controlador.EjemplarControlador;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Scanner;
 import modelo.Ejemplar;
@@ -22,16 +16,7 @@ public class mainEjemplar {
         int op1;
 
         do {
-            System.out.println("""
-                                        |   GESTIÓN DE EJEMPLARES     |
-                                        |-----------------------------|
-                                        |   OPCIONES:                 |
-                                        |   1. Insertar ejemplares    |
-                                        |   2. Listar ejemplares      |
-                                        |   3. Actualizar ejemplares  |
-                                        |   4. Eliminar ejemplares    |
-                                        |   0. Volver al menú         |
-                """);
+            menus.menuEjemplares();
 
            EjemplarControlador ejemplarControlador = new EjemplarControlador();
 
@@ -68,7 +53,7 @@ public class mainEjemplar {
                 System.out.println("Ingrese el ID del libro:");
                 int idLibro = Integer.parseInt(es.nextLine());
 
-                Ejemplar nuevoEjemplar = new Ejemplar(codigoEjemplar, estado, idLibro);
+                Ejemplar nuevoEjemplar = new Ejemplar(idLibro, codigoEjemplar, estado, idLibro);
                 ejemplarControlador.crearEjemplar(nuevoEjemplar);
 
             } else if (op1 == 2) {
@@ -107,7 +92,7 @@ public class mainEjemplar {
                     System.out.println("Ingrese el nuevo ID del libro:");
                     int nuevoIdLibro = Integer.parseInt(es.nextLine());
 
-                    Ejemplar ejemplarActualizado = new Ejemplar(nuevoCodigoEjemplar, nuevoEstado, nuevoIdLibro);
+                    Ejemplar ejemplarActualizado = new Ejemplar(codigoEjemplar, nuevoEstado, nuevoIdLibro, nuevoIdLibro, codigoEjemplar, codigoEjemplar, codigoEjemplar);
                     ejemplarActualizado.setIdEjemplar(ejemplar.getIdEjemplar());
                     ejemplarControlador.actualizarEjemplar(ejemplarActualizado);
                 } else {
@@ -128,17 +113,16 @@ public class mainEjemplar {
 
             } else if (op1 == 0) {
                 System.out.println("Regresando al menú principal...");
-                main.main(null);
+                MainBibliotecario.perfilBliotecario(null);
                 break; 
             }
         } while (op1 != 0);
 
-        es.close();
     }
  }
 
 //public class mainEjemplar {
-//    public static void main(String[] args) {
+//    public static void MainBibliotecario(String[] args) {
 //        Scanner es = new Scanner(System.in);
 //        EjemplarControlador ejemplarControlador = new EjemplarControlador();
 //        int op1;
@@ -312,7 +296,7 @@ public class mainEjemplar {
 //
 //            } else if (op1 == 0) {
 //                System.out.println("Regresando al menú principal...\n");
-//                main.main(null); // Asumiendo que el menú principal está en la clase 'main'
+//                MainBibliotecario.MainBibliotecario(null); // Asumiendo que el menú principal está en la clase 'MainBibliotecario'
 //                return; // Salir de este método y regresar al menú principal
 //            }
 //        }

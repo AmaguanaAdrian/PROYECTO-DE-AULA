@@ -1,15 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package vista;
+
 import Controlador.GeneroControlador;
 import java.util.ArrayList;
 import java.util.Scanner;
 import modelo.Genero;
+
 /**
  *
- * @author USER
+ * @author
  */
 
 public class mainGenero {
@@ -25,8 +23,11 @@ public class mainGenero {
             while (true) {
                 try {
                     op1 = Integer.parseInt(es.nextLine());
-                    if (op1 >= 0 && op1 <= 4) break;
-                    else System.out.println("Opción no válida, por favor elija una opción entre 0 y 4.");
+                    if (op1 >= 0 && op1 <= 4) {
+                        break;
+                    } else {
+                        System.out.println("Opción no válida, por favor elija una opción entre 0 y 4.");
+                    }
                 } catch (NumberFormatException e) {
                     System.out.println("Entrada no válida. Por favor, ingrese un número.");
                 }
@@ -39,8 +40,9 @@ public class mainGenero {
                 while (true) {
                     System.out.println("Ingrese el nombre del género:");
                     nombreGenero = es.nextLine();
-                    if (!nombreGenero.isEmpty() && !nombreGenero.matches(".*\\d.*")) break;
-                    else {
+                    if (!nombreGenero.isEmpty() && !nombreGenero.matches(".*\\d.*")) {
+                        break;
+                    } else {
                         System.out.println("Nombre del género incorrecto. ¿Volver a intentarlo? (si/no):");
                         if (!es.nextLine().equalsIgnoreCase("si")) {
                             datosCorrectos = false;
@@ -49,7 +51,9 @@ public class mainGenero {
                     }
                 }
 
-                if (!datosCorrectos) continue;
+                if (!datosCorrectos) {
+                    continue;
+                }
 
                 Genero nuevoGenero = new Genero(nombreGenero);
                 generoControlador.crearGenero(nuevoGenero);
@@ -69,8 +73,9 @@ public class mainGenero {
                 while (true) {
                     System.out.println("Ingrese el nombre actual del género que desea actualizar:");
                     nombreActual = es.nextLine();
-                    if (!nombreActual.isEmpty() && !nombreActual.matches(".*\\d.*")) break;
-                    else {
+                    if (!nombreActual.isEmpty() && !nombreActual.matches(".*\\d.*")) {
+                        break;
+                    } else {
                         System.out.println("Nombre del género no encontrado. ¿Volver a intentarlo? (si/no):");
                         if (!es.nextLine().equalsIgnoreCase("si")) {
                             datosCorrectos = false;
@@ -79,15 +84,18 @@ public class mainGenero {
                     }
                 }
 
-                if (!datosCorrectos) continue;
+                if (!datosCorrectos) {
+                    continue;
+                }
 
                 int idGenero = generoControlador.buscarIdGenero(nombreActual);
                 if (idGenero > 0) {
                     while (true) {
                         System.out.println("Ingrese el nuevo nombre del género:");
                         nuevoNombre = es.nextLine();
-                        if (!nuevoNombre.isEmpty() && !nuevoNombre.matches(".*\\d.*")) break;
-                        else {
+                        if (!nuevoNombre.isEmpty() && !nuevoNombre.matches(".*\\d.*")) {
+                            break;
+                        } else {
                             System.out.println("Nombre del género no puede estar vacío ni contener números. ¿Volver a intentarlo? (si/no):");
                             if (!es.nextLine().equalsIgnoreCase("si")) {
                                 datosCorrectos = false;
@@ -96,7 +104,9 @@ public class mainGenero {
                         }
                     }
 
-                    if (!datosCorrectos) continue;
+                    if (!datosCorrectos) {
+                        continue;
+                    }
 
                     Genero generoActualizado = new Genero(nuevoNombre);
                     generoControlador.actualizarGenero(generoActualizado, idGenero);
@@ -111,8 +121,9 @@ public class mainGenero {
                 while (true) {
                     System.out.println("Ingrese el nombre del género que desea eliminar:");
                     nombreEliminar = es.nextLine();
-                    if (!nombreEliminar.isEmpty() && !nombreEliminar.matches(".*\\d.*")) break;
-                    else {
+                    if (!nombreEliminar.isEmpty() && !nombreEliminar.matches(".*\\d.*")) {
+                        break;
+                    } else {
                         System.out.println("Nombre del género no encontrado. ¿Volver a intentarlo? (si/no):");
                         if (!es.nextLine().equalsIgnoreCase("si")) {
                             datosCorrectos = false;
@@ -121,13 +132,15 @@ public class mainGenero {
                     }
                 }
 
-                if (!datosCorrectos) continue;
+                if (!datosCorrectos) {
+                    continue;
+                }
 
                 generoControlador.eliminarGenero(nombreEliminar);
 
             } else if (op1 == 0) {
                 System.out.println("Regresando al menú principal...\n");
-                main.main(null);
+                MainBibliotecario.perfilBliotecario(null);
                 return; // Salir de este método y regresar al menú principal
             }
         } while (op1 != 0);

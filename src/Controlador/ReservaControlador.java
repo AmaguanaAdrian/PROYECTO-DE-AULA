@@ -11,16 +11,15 @@ import java.sql.SQLException;
  * @author
  */
 public class ReservaControlador {
-    // Conexión
+// Conexión
     ConexionBDD conexion = new ConexionBDD();
     Connection connection = conexion.conectar();
     PreparedStatement ejecutar;
-    ResultSet resultado;
     // Método para crear una reserva
     public void crearReserva(Reserva r) {
         try {
             // String estático con componentes dinámicos (gets)
-            String consultaSQL = "INSERT INTO Reserva (res_fechaRetiro, res_fechaReserva, res_fechaDevolucion) VALUES ('" + r.getFechaRetiro() + "', '" + r.getFechaReserva() + "', '" + r.getFechaDevolucion() + "');";
+            String consultaSQL = "INSERT INTO Reservas (res_fechaRetiro, res_fechaReserva, res_fechaDevolucion) VALUES ('" + r.getFechaRetiro() + "', '" + r.getFechaReserva() + "', '" + r.getFechaDevolucion() + "');";
             ejecutar=(com.mysql.jdbc.PreparedStatement)connection.prepareCall(consultaSQL);
             int resultado = ejecutar.executeUpdate();
             // Ejecuta
