@@ -5,20 +5,24 @@ package vista;
  * @author
  */
 import Controlador.EjemplarControlador;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import modelo.Ejemplar;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import modelo.Libros;
 
 public class mainEjemplar {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner es = new Scanner(System.in);
+        EjemplarControlador ejemplarControlador = new EjemplarControlador();
         int op1;
 
         do {
             menus.menuEjemplares();
-
-           EjemplarControlador ejemplarControlador = new EjemplarControlador();
 
             while (true) {
                 try {
@@ -32,10 +36,14 @@ public class mainEjemplar {
 
             if (op1 == 1) {
                 // Insertar ejemplar
-                System.out.println("Ingrese el código del ejemplar:");
-                String codigoEjemplar = es.nextLine();
-
+                String codigoEjemplar;
                 boolean estado;
+                int idLibro;
+                int numEjemplares;
+
+                System.out.println("Ingrese el código del ejemplar:");
+                codigoEjemplar = es.nextLine();
+
                 while (true) {
                     System.out.println("¿El ejemplar está disponible? (1 para sí, 0 para no):");
                     String estadoStr = es.nextLine();
@@ -50,31 +58,63 @@ public class mainEjemplar {
                     }
                 }
 
+                // Mostrar IDs de libros disponibles
+                ArrayList<Libros> listaLibros = ejemplarControlador.listarLibros();
+                System.out.println("IDs de libros disponibles:");
+                for (Libros libro : listaLibros) {
+                    System.out.println("ID Libro: " + libro.getIdLibro());
+                }
+
                 System.out.println("Ingrese el ID del libro:");
-                int idLibro = Integer.parseInt(es.nextLine());
+                while (true) {
+                    try {
+                        idLibro = Integer.parseInt(es.nextLine());
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println("ID no válido. Por favor, ingrese un número entero.");
+                    }
+                }
 
-                Ejemplar nuevoEjemplar = new Ejemplar(idLibro, codigoEjemplar, estado, idLibro);
+                System.out.println("Ingrese el número de ejemplares:");
+                while (true) {
+                    try {
+                        numEjemplares = Integer.parseInt(es.nextLine());
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Número de ejemplares no válido. Por favor, ingrese un número entero.");
+                    }
+                }
+                // Código relevante para la inserción
+                Ejemplar nuevoEjemplar = new Ejemplar(idLibro, codigoEjemplar, estado, numEjemplares);
                 ejemplarControlador.crearEjemplar(nuevoEjemplar);
-
+                
             } else if (op1 == 2) {
                 // Mostrar lista de ejemplares
                 ArrayList<Ejemplar> listaEjemplares = ejemplarControlador.listarEjemplares();
                 System.out.println("Lista de ejemplares:");
                 for (Ejemplar ej : listaEjemplares) {
-                    System.out.println("Código: " + ej.getCodigoEjemplar() + ", Estado: " + (ej.isEstado() ? "Disponible" : "No disponible") + ", ID Libro: " + ej.getIdLibro());
+                    System.out.println("Código: " + ej.getCodigoEjemplar() +
+                            ", Estado: " + (ej.isEstado() ? "Disponible" : "No disponible") +
+                            ", ID Libro: " + ej.getIdLibro() +
+                            ", Número de ejemplares: " + ej.getNumEjemplares());
                 }
 
             } else if (op1 == 3) {
                 // Actualizar información de un ejemplar
+                String codigoEjemplar;
+                String nuevoCodigoEjemplar;
+                boolean nuevoEstado;
+                int nuevoIdLibro;
+                int nuevoNumEjemplares;
+
                 System.out.println("Ingrese el código del ejemplar a actualizar:");
-                String codigoEjemplar = es.nextLine();
+                codigoEjemplar = es.nextLine();
 
                 Ejemplar ejemplar = ejemplarControlador.buscarEjemplarPorCodigo(codigoEjemplar);
                 if (ejemplar.getIdEjemplar() != 0) {
                     System.out.println("Ingrese el nuevo código del ejemplar:");
-                    String nuevoCodigoEjemplar = es.nextLine();
+                    nuevoCodigoEjemplar = es.nextLine();
 
-                    boolean nuevoEstado;
                     while (true) {
                         System.out.println("¿El ejemplar está disponible? (1 para sí, 0 para no):");
                         String estadoStr = es.nextLine();
@@ -89,10 +129,34 @@ public class mainEjemplar {
                         }
                     }
 
-                    System.out.println("Ingrese el nuevo ID del libro:");
-                    int nuevoIdLibro = Integer.parseInt(es.nextLine());
+                    // Mostrar IDs de libros disponibles
+                    ArrayList<Libros> listaLibros = ejemplarControlador.listarLibros();
+                    System.out.println("IDs de libros disponibles:");
+                    for (Libros libro : listaLibros) {
+                        System.out.println("ID Libro: " + libro.getIdLibro());
+                    }
 
-                    Ejemplar ejemplarActualizado = new Ejemplar(codigoEjemplar, nuevoEstado, nuevoIdLibro, nuevoIdLibro, codigoEjemplar, codigoEjemplar, codigoEjemplar);
+                    System.out.println("Ingrese el nuevo ID del libro:");
+                    while (true) {
+                        try {
+                            nuevoIdLibro = Integer.parseInt(es.nextLine());
+                            break;
+                        } catch (NumberFormatException e) {
+                            System.out.println("ID no válido. Por favor, ingrese un número entero.");
+                        }
+                    }
+
+                    System.out.println("Ingrese el nuevo número de ejemplares:");
+                    while (true) {
+                        try {
+                            nuevoNumEjemplares = Integer.parseInt(es.nextLine());
+                            break;
+                        } catch (NumberFormatException e) {
+                            System.out.println("Número de ejemplares no válido. Por favor, ingrese un número entero.");
+                        }
+                    }
+
+                    Ejemplar ejemplarActualizado = new Ejemplar(nuevoIdLibro, nuevoCodigoEjemplar, nuevoEstado, nuevoNumEjemplares);
                     ejemplarActualizado.setIdEjemplar(ejemplar.getIdEjemplar());
                     ejemplarControlador.actualizarEjemplar(ejemplarActualizado);
                 } else {
@@ -101,8 +165,10 @@ public class mainEjemplar {
 
             } else if (op1 == 4) {
                 // Eliminar ejemplar
+                String codigoEjemplar;
+
                 System.out.println("Ingrese el código del ejemplar a eliminar:");
-                String codigoEjemplar = es.nextLine();
+                codigoEjemplar = es.nextLine();
 
                 Ejemplar ejemplar = ejemplarControlador.buscarEjemplarPorCodigo(codigoEjemplar);
                 if (ejemplar.getIdEjemplar() != 0) {
@@ -112,14 +178,18 @@ public class mainEjemplar {
                 }
 
             } else if (op1 == 0) {
+                // Regresar al menú principal
                 System.out.println("Regresando al menú principal...");
-                MainBibliotecario.perfilBliotecario(null);
-                break; 
+                MainBibliotecario.perfilBliotecario(args); // Asegúrate de que el método perfilBliotecario acepta args
+                break;
             }
         } while (op1 != 0);
 
+        es.close();
     }
- }
+}
+
+
 
 //public class mainEjemplar {
 //    public static void MainBibliotecario(String[] args) {

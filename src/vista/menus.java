@@ -68,7 +68,7 @@ public class menus {
     |   4. Eliminar libros    |
     |   0. Volver al menú     |
     """.indent(30));
-        System.out.print("Opcion: ");
+        System.out.print("Opción: ");
     }
 
     public static void menuGenero() {
@@ -82,7 +82,7 @@ public class menus {
     |   4. Eliminar género    |
     |   0. Volver al menu     |
     """.indent(30));
-        System.out.print("Opcion: ");
+        System.out.print("Opción: ");
     }
 
     public static void menuAutores() {
@@ -124,7 +124,7 @@ public class menus {
     |   0. Regresar                                  | 
       """.indent(30));
 
-        System.out.print("Opcion: ");
+        System.out.print("Opción: ");
 
     }
     public static void menu1() {
@@ -133,11 +133,11 @@ public class menus {
     |-------------------------------------------------|
     |  OPCIONES:                                      |
     |   1. Iniciar sesión                             |
-    |   2. Registrarse                                |
+    |   2. Registrarse como Estudiante                   |
     |   0. Salir del sistema                          |
       """.indent(30));
 
-        System.out.print("Opcion: ");
+        System.out.print("Opción: ");
 
     }
     

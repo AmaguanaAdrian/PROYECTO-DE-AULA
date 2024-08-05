@@ -114,8 +114,8 @@ public class Usuario {
                 + "APELLIDOS: " + getApellidos() + "\n"
                 + "TELEFONO: " + getTelefono() + "\n"
                 + "DIRECCIÓN: " + getDireccion() + "\n"
-                + "TELEFONO: " + getCedula() + "\n"
-                + "DIRECCIÓN: " + getClave() + "\n"
+                + "CEDULA: " + getCedula() + "\n"
+                + "CLAVE: " + getClave() + "\n"
                 + "CORREO INSTITUCIONAL: " + getCorreoInstitucional() + "\n";
     }
     public boolean validarCedula(String c){

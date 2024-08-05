@@ -1,6 +1,7 @@
 package vista;
 
 import Controlador.GeneroControlador;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import modelo.Genero;
@@ -12,7 +13,7 @@ import modelo.Genero;
 
 public class mainGenero {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner es = new Scanner(System.in);
         int op1;
 

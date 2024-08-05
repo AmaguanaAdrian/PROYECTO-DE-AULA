@@ -58,7 +58,7 @@ public class Funciones {
     }
     
 
-    public static void login(String[] args) {
+    public static void login(String[] args) throws IOException {
         int b = 0;
 
         do {

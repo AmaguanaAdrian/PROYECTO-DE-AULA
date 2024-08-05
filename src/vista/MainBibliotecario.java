@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class MainBibliotecario {
 
-    public static void perfilBliotecario(String[] args) {
+    public static void perfilBliotecario(String[] args) throws IOException {
 
         Scanner es = new Scanner(System.in);
         int i = 1;

@@ -1,5 +1,5 @@
 CREATE database proyecto2;
-
+USE proyecto2;
 
 CREATE TABLE Usuarios (
   usu_id INT AUTO_INCREMENT PRIMARY KEY,
