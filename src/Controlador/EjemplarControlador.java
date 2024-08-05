@@ -8,6 +8,7 @@ import com.mysql.jdbc.PreparedStatement;
 import java.util.ArrayList;
 import modelo.Ejemplar;
 import java.sql.ResultSet;
+import modelo.Libros;
 /**
  *
  * @author USER
@@ -18,25 +19,25 @@ public class EjemplarControlador {
     PreparedStatement ejecutar;
     ResultSet resultado;
 
-    // Crear un nuevo ejemplar
-    public void crearEjemplar(Ejemplar ej) {
-        try {
-            String consultaSQL = "INSERT INTO Ejemplares (eje_codigoEjem, eje_estado, lib_id) VALUES (?, ?, ?);";
-            ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
-            ejecutar.setString(1, ej.getCodigoEjemplar());
-            ejecutar.setBoolean(2, ej.isEstado());
-            ejecutar.setInt(3, ej.getIdLibro());
-            int res = ejecutar.executeUpdate();
-            if (res > 0) {
-                System.out.println("El ejemplar ha sido creado con éxito");
-            } else {
-                System.out.println("Favor ingresar correctamente los datos solicitados");
-            }
-            ejecutar.close();
-        } catch (Exception e) {
-            System.out.println("ERROR: " + e);
+public void crearEjemplar(Ejemplar ej) {
+    try {
+        String consultaSQL = "INSERT INTO Ejemplares (eje_codigoEjem, eje_estado, lib_id, eje_numEjemplares) VALUES (?, ?, ?, ?);";
+        ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);  // Usa `prepareStatement` en lugar de `prepareCall`
+        ejecutar.setString(1, ej.getCodigoEjemplar());
+        ejecutar.setBoolean(2, ej.isEstado());
+        ejecutar.setInt(3, ej.getIdLibro());
+        ejecutar.setInt(4, ej.getNumEjemplares());  // Asegúrate de que este campo existe en la tabla `ejemplares`
+        int res = ejecutar.executeUpdate();
+        if (res > 0) {
+            System.out.println("El ejemplar ha sido creado con éxito");
+        } else {
+            System.out.println("Favor ingresar correctamente los datos solicitados");
         }
+        ejecutar.close();
+    } catch (Exception e) {
+        System.out.println("ERROR: " + e);
     }
+}
 
     // Buscar ejemplar por código
     public Ejemplar buscarEjemplarPorCodigo(String codigoEjemplar) {
@@ -123,4 +124,23 @@ public class EjemplarControlador {
             System.out.println("ERROR: " + e);
         }
     }
+   public ArrayList<Libros> listarLibros() {
+    ArrayList<Libros> listaLibros = new ArrayList<>();
+    try {
+        String consultaSQL = "SELECT lib_id, lib_titulo FROM Libros;";
+        ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
+        resultado = ejecutar.executeQuery();
+        while (resultado.next()) {
+            Libros libro = new Libros();
+            libro.setIdLibro(resultado.getInt("lib_id"));
+            libro.setTitulo(resultado.getString("lib_titulo"));
+            listaLibros.add(libro);
+        }
+        resultado.close();
+    } catch (Exception e) {
+        System.out.println("ERROR: " + e.getMessage());
+    }
+    return listaLibros;
+}
+
 }
