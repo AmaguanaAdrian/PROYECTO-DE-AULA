@@ -25,7 +25,6 @@ public class MainP {
             if (op == 0) {
                 System.out.println("Saliendo del programa....");
                 b = 0;
-//                break;
             } else if (op == 1) {
                 Funciones.login(args);
                 b = 1;

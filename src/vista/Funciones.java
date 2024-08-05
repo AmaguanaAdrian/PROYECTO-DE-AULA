@@ -9,20 +9,21 @@ import com.mysql.jdbc.Connection;
 import controlador.LoginControlador;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  *
  * @author david
  */
 public class Funciones {
-    
+
     public static void cls2() {
         for (int i = 0; i < 30; i++) {
             System.out.println("");
         }
     }
-    
-    public static void cls(){
+
+    public static void cls() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
                 // Comando para limpiar pantalla en Windows
@@ -36,6 +37,27 @@ public class Funciones {
             System.out.println("Error al intentar limpiar la pantalla: " + ex.getMessage());
         }
     }
+
+    public static boolean isValidDate(String fecha) {
+        String regex = "^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$";
+        return Pattern.matches(regex, fecha);
+    }
+
+    public static boolean isValidText(String texto) {
+        String regex = "^[a-zA-Z]+( [a-zA-Z]+)*$";
+        return texto.matches(regex);
+    }
+    
+    public static boolean isValidTitle(String texto) {
+        String regex = "^[a-zA-Z0-9]+( [a-zA-Z0-9-]+)*$";
+        return Pattern.matches(regex, texto);
+    }
+    public static boolean isValidISBN(String texto) {
+        String regex = "^[a-zA-Z0-9-]+$";
+        return texto.matches(regex);
+    }
+    
+
     public static void login(String[] args) {
         int b = 0;
 
