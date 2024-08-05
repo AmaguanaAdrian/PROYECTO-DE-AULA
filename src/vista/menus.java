@@ -115,7 +115,7 @@ public class menus {
 
     public static void menuBusquedaLibros() {
         System.out.print("""
-    |      ELIJA UNA OPCION PARA BUSCAR EL LIBRO     |
+    |      ELIJA UNA OPCIÓN PARA BUSCAR EL LIBRO     |
     |------------------------------------------------|
     |  OPCIONES:                                     |
     |   1. Titulo                                    |
