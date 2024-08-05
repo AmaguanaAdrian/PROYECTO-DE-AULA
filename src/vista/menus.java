@@ -78,16 +78,16 @@ public class menus {
     |   OPCIONES:             |
     |   1. Insertar género    |
     |   2. Listar géneros     |
-    |   3. Actualizar géner   |
+    |   3. Actualizar género  |
     |   4. Eliminar género    |
-    |   0. Volver al menu     |
+    |   0. Volver al menú     |
     """.indent(30));
         System.out.print("Opción: ");
     }
 
     public static void menuAutores() {
         System.out.println("""
-    |                      MENU AUTORES                       |
+    |                      MENÚ AUTORES                       |
     |---------------------------------------------------------|
     |   OPCIONES:                                             |
     |   1. Insertar autor                                     |
