@@ -4,7 +4,11 @@
  */
 package vista;
 
+import Controlador.ConexionBDD;
+import com.mysql.jdbc.Connection;
+import controlador.LoginControlador;
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  *
@@ -31,5 +35,60 @@ public class Funciones {
         } catch (IOException | InterruptedException ex) {
             System.out.println("Error al intentar limpiar la pantalla: " + ex.getMessage());
         }
+    }
+    public static void login(String[] args) {
+        int b = 0;
+
+        do {
+            // CONEXION 
+            ConexionBDD conexion = new ConexionBDD();
+            Connection connection = (Connection) conexion.conectar();
+
+            Scanner es = new Scanner(System.in);
+            boolean loginCorrecto = false;
+
+            while (!loginCorrecto) {
+                System.out.println("------------------Inicio de sesión------------------");
+                System.out.print("    Ingrese su usuario: ");
+                String usuario = es.nextLine();
+                System.out.print("    Ingrese su contraseña: ");
+                String clave = es.nextLine();
+
+                int usu_rol = LoginControlador.login(usuario, clave, connection);
+                if (usu_rol > 0) {
+                    System.out.println("----Bienvenido!----");
+                    loginCorrecto = true;
+                    if (usu_rol == 1) {
+                        // Acciones para usuarios con rol 1
+                        System.out.println("----Acceso como Estudiante----");
+                        MainEstudiante.perfilEstudiante(args);
+                        b = 1;
+
+                    } else if (usu_rol == 2) {
+                        // Acciones para usuarios con rol 2
+                        System.out.println("----Acceso como Bibliotecario----");
+                        MainBibliotecario.perfilBliotecario(args);
+                        b = 1;
+
+                    }
+                } else {
+                    System.out.println("Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.");
+                    System.out.print("¿Desea intentar otra vez? (Si/No): ");
+                    String respuesta = es.nextLine();
+                    if (respuesta.equalsIgnoreCase("si")) {
+                        // No hace falta hacer nada, el bucle while seguirá ejecutándose
+                    } else if (respuesta.equalsIgnoreCase("no")) {
+                        // Vuelve al menú principal
+                        menus.menu1();
+                        b = 1;
+                        break;// Cambia el valor de b para salir del bucle do-while
+                    } else {
+                        System.out.println("Respuesta inválida. Por favor, ingrese Si o No.");
+                    }
+                }
+            }
+
+        } while (b == 0);
+
     }
 }

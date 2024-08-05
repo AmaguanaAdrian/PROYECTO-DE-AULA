@@ -17,7 +17,6 @@ import java.io.IOException;
 public class MainBibliotecario {
 
     public static void perfilBliotecario(String[] args) {
-        
 
         Scanner es = new Scanner(System.in);
         int i = 1;
@@ -58,11 +57,9 @@ public class MainBibliotecario {
                 System.out.println("Ingrese el correo institucional:");
                 u.setCorreoInstitucional(es.nextLine());
                 u.setRol(2);
-                
+
                 UsuarioControlador usuC = new UsuarioControlador();
                 usuC.crearUsuario(u);
-                
-                
 
                 // OBTENER ID DE LA SUPER CLASE
                 int idUsuario = usuC.buscarIdUsuario(u.getCedula());
@@ -136,12 +133,11 @@ public class MainBibliotecario {
 
                 System.out.println("Ingrese el nivel que esta cursando actualmente:");
                 est.setNivelCursando(es.nextInt());
-                
+
                 est.setIdUsuario(idUsuario);
-                
+
                 EstudianteControlador estC = new EstudianteControlador();
 
-                
                 estC.crearEstudiante(est);
 
             } else if (op1 == 4) {
@@ -177,7 +173,6 @@ public class MainBibliotecario {
                         for (Autor A : listarAutores) {
                             System.out.println(A.imprimir());
                         }
-
                     } else if (op1 == 3) {
                         // Actualizar información de un Autor
                         System.out.println("Ingrese el nombre del autor que desea actualizar:");
@@ -218,6 +213,6 @@ public class MainBibliotecario {
                 mainEjemplar.main(null);
             }
         } while (i == 1);
-        es.close();
+//        es.close();
     }
 }

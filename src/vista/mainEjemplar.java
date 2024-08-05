@@ -53,7 +53,7 @@ public class mainEjemplar {
                 System.out.println("Ingrese el ID del libro:");
                 int idLibro = Integer.parseInt(es.nextLine());
 
-                Ejemplar nuevoEjemplar = new Ejemplar(codigoEjemplar, estado, idLibro);
+                Ejemplar nuevoEjemplar = new Ejemplar(idLibro, codigoEjemplar, estado, idLibro);
                 ejemplarControlador.crearEjemplar(nuevoEjemplar);
 
             } else if (op1 == 2) {
@@ -92,7 +92,7 @@ public class mainEjemplar {
                     System.out.println("Ingrese el nuevo ID del libro:");
                     int nuevoIdLibro = Integer.parseInt(es.nextLine());
 
-                    Ejemplar ejemplarActualizado = new Ejemplar(nuevoCodigoEjemplar, nuevoEstado, nuevoIdLibro);
+                    Ejemplar ejemplarActualizado = new Ejemplar(codigoEjemplar, nuevoEstado, nuevoIdLibro, nuevoIdLibro, codigoEjemplar, codigoEjemplar, codigoEjemplar);
                     ejemplarActualizado.setIdEjemplar(ejemplar.getIdEjemplar());
                     ejemplarControlador.actualizarEjemplar(ejemplarActualizado);
                 } else {
@@ -118,7 +118,6 @@ public class mainEjemplar {
             }
         } while (op1 != 0);
 
-        es.close();
     }
  }
 
