@@ -8,17 +8,17 @@ public class menus {
 
     public static void introduccion() {
         System.out.println("""
-    ╔═══════════════════════════════════════════════════════════════════╗
-    ║                                                         ║
-    ║      Bienvenido al Sistema de Reserva de Libros para    ║
-    ║      Bibliotecas. Este sistema te permitirá gestionar   ║
-    ║      reservas, préstamos y el genero de libros          ║
-    ║                  Podrás realizar                        ║
-    ║       todas tus gestiones con facilidad y rapidez.      ║
-    ║                                                         ║
-    ║  ¡¡Presiona Enter para comenzar y explorar el sistema.¡ ║
-    ║                                                         ║
-    ╚═══════════════════════════════════════════════════════════════════╝
+    ╔═════════════════════════════════════════════════════════════╗
+    ║                                                             ║
+    ║      Bienvenido al Sistema de Reserva de Libros para        ║
+    ║      Bibliotecas. Este sistema te permitirá gestionar       ║
+    ║      reservas, préstamos y el genero de libros              ║
+    ║                  Podrás realizar                            ║
+    ║       todas tus gestiones con facilidad y rapidez.          ║
+    ║                                                             ║
+    ║  ¡¡Presiona Enter para comenzar y explorar el sistema.¡     ║
+    ║                                                             ║
+    ╚═════════════════════════════════════════════════════════════╝
 
     """.indent(30));
 
@@ -29,9 +29,9 @@ public class menus {
     |              PERFIL BIBLIOTECARIO              |
     |------------------------------------------------|
     |  OPCIONES:                                     |
-    |   1. Crear Bibliotecario                       |
+    |   1. Registrar Bibliotecario                   |
     |   2. Hacer Reserva                             |
-    |   3. Crear Estudiante                          |
+    |   3. Registrar Estudiante                      |
     |   4. Gestión de Libros                         |
     |   5. Gestion Genero                            |
     |   6. Gestion de Autores                        |
@@ -110,7 +110,7 @@ public class menus {
     |   4. Eliminar ejemplares    |
     |   0. Volver al menú         |
     """.indent(30));
-        System.out.print("Opcion: ");
+        System.out.print("Opción: ");
     }
 
     public static void menuBusquedaLibros() {
@@ -118,9 +118,9 @@ public class menus {
     |      ELIJA UNA OPCIÓN PARA BUSCAR EL LIBRO     |
     |------------------------------------------------|
     |  OPCIONES:                                     |
-    |   1. Titulo                                    |
+    |   1. Tíulo                                     |
     |   2. Autor                                     |
-    |   3. Isbn                                      |
+    |   3. ISBN                                      |
     |   0. Regresar                                  | 
       """.indent(30));
 
@@ -139,6 +139,16 @@ public class menus {
 
         System.out.print("Opción: ");
 
+    }
+    public static void menuAdmin() {
+        System.out.println("""
+    |   PERFIL: ADMIN     |
+    |-----------------------------|
+    |   OPCIONES:                 |
+    |  1. Registrar bibliotecario |
+    |  0. Cerrar sesión           |
+    """.indent(30));
+        System.out.print("Opción: ");
     }
     
 

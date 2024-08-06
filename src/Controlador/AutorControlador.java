@@ -11,8 +11,6 @@ import modelo.Autor;
  * @author
  */
 public class AutorControlador {
-
-    private Autor A;
     
     ConexionBDD conexion = new ConexionBDD();
     Connection connection = (Connection) conexion.conectar();

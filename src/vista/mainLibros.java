@@ -102,7 +102,7 @@ public class mainLibros {
                 }
 
                 // Mostrar autores y géneros disponibles
-                libroControlador.mostrarAutores();
+//                libroControlador.mostrarAutores();
                 System.out.println("Seleccione el ID del autor:");
                 autorId = Integer.parseInt(es.nextLine());
 
@@ -213,7 +213,7 @@ public class mainLibros {
 
             } else if (op1 == 0) {
                 // Regresar al menú principal
-                MainBibliotecario.perfilBliotecario(args);// Llama al menú principal del bibliotecario
+                Main1.perfilBliotecario(args);// Llama al menú principal del bibliotecario
             }
         } while (op1 != 0);
 
@@ -403,7 +403,7 @@ public class mainLibros {
 //
 //            } else if (op1 == 0) {
 //                // Regresar al menú principal
-//                MainBibliotecario.perfilBliotecario(args);// Llama al menú principal del bibliotecario
+//                Main1.perfilBliotecario(args);// Llama al menú principal del bibliotecario
 ////                return; // Termina el método actual para regresar al menú principal
 //            }
 //        } while (op1 != 0);

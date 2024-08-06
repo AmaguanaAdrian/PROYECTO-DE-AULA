@@ -3,20 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/mainLibros.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/GeneroControlador.java</file>
             <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/menus.java</file>
-            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/MainBibliotecario.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/LibrosControlador.java</file>
             <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/Funciones.java</file>
-            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/MainEstudiante.java</file>
-            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/Main.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/Main1.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/UsuarioControlador.java</file>
             <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/MainP.java</file>
-=======
-            <file>file:/C:/Users/USER/OneDrive/Documentos/PROYECTO%20AULA/PROYECTO-DE-AULA/src/vista/main.java</file>
-            <file>file:/C:/Users/USER/OneDrive/Documentos/PROYECTO%20AULA/PROYECTO-DE-AULA/src/modelo/Ejemplar.java</file>
-            <file>file:/C:/Users/USER/OneDrive/Documentos/PROYECTO%20AULA/PROYECTO-DE-AULA/src/BDD/proyecto2_BDD.sql</file>
-            <file>file:/C:/Users/USER/OneDrive/Documentos/PROYECTO%20AULA/PROYECTO-DE-AULA/src/Controlador/LoginControlador.java</file>
-            <file>file:/C:/Users/USER/OneDrive/Documentos/PROYECTO%20AULA/PROYECTO-DE-AULA/src/Controlador/ConexionBDD.java</file>
->>>>>>> dbb5afdf67c1e99fb9b3adf17aa0e87795ec94d1
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/ReservaControlador.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/AutorControlador.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/EstudianteControlador.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/BibliotecarioControlador.java</file>
         </group>
     </open-files>
 </project-private>

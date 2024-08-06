@@ -137,22 +137,7 @@ public class LibrosControlador {
         }
     }
          // Método para mostrar autores
-    public void mostrarAutores() {
-        try {
-            String consultaSQL = "SELECT aut_id, aut_nombres FROM autores;";
-            ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
-            resultado = ejecutar.executeQuery();
-            while (resultado.next()) {
-                int idAutor = resultado.getInt("aut_id");
-                String nombreAutor = resultado.getString("aut_nombres");
-                System.out.println("ID Autor: " + idAutor + ", Nombre: " + nombreAutor);
-            }
-
-            resultado.close();
-        } catch (Exception e) {
-            System.out.println("ERROR: " + e);
-        }
-    }
+     
 
     // Método para mostrar géneros
     public void mostrarGeneros() {

@@ -47,16 +47,16 @@ public class Funciones {
         String regex = "^[a-zA-Z]+( [a-zA-Z]+)*$";
         return texto.matches(regex);
     }
-    
+
     public static boolean isValidTitle(String texto) {
         String regex = "^[a-zA-Z0-9]+( [a-zA-Z0-9-]+)*$";
         return Pattern.matches(regex, texto);
     }
+
     public static boolean isValidISBN(String texto) {
         String regex = "^[a-zA-Z0-9-]+$";
         return texto.matches(regex);
     }
-    
 
     public static void login(String[] args) throws IOException {
         int b = 0;
@@ -83,15 +83,20 @@ public class Funciones {
                     if (usu_rol == 1) {
                         // Acciones para usuarios con rol 1
                         System.out.println("----Acceso como Estudiante----");
-                        MainEstudiante.perfilEstudiante(args);
+                        Main1.perfilEstudiante(args);
                         b = 1;
 
                     } else if (usu_rol == 2) {
                         // Acciones para usuarios con rol 2
                         System.out.println("----Acceso como Bibliotecario----");
-                        MainBibliotecario.perfilBliotecario(args);
+                        Main1.perfilBliotecario(args);
                         b = 1;
 
+                    } else if (usu_rol == 3) {
+                        // Acciones para usuarios con rol 3
+                        System.out.println("----Acceso como Admin----");
+                        Main1.perfilAdmin(args);
+                        b = 1;
                     }
                 } else {
                     System.out.println("Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.");
@@ -100,8 +105,6 @@ public class Funciones {
                     if (respuesta.equalsIgnoreCase("si")) {
                         // No hace falta hacer nada, el bucle while seguirá ejecutándose
                     } else if (respuesta.equalsIgnoreCase("no")) {
-                        // Vuelve al menú principal
-                        menus.menu1();
                         b = 1;
                         break;// Cambia el valor de b para salir del bucle do-while
                     } else {
