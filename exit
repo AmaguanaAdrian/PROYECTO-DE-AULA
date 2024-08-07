@@ -1,0 +1,246 @@
+[33mcommit 744508a56f63ac354b8f30fab0892715d7177622[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mDavidF_branch[m[33m, [m[1;31morigin/DavidF_branch[m[33m)[m
+Author: davidprograma122 <david.puetate617@ist17dejulio.edu.ec>
+Date:   Wed Aug 7 15:48:34 2024 -0500
+
+    Corrección de faltas
+
+[33mcommit 7fa709ffd7cd0453ecf9cbe86145bbc026dd8eed[m
+Author: davidprograma122 <david.puetate617@ist17dejulio.edu.ec>
+Date:   Tue Aug 6 13:46:55 2024 -0500
+
+    Cambios en el codigo, y creacion de un usuario como administrador para que el sea el que registre al biliotecario
+
+[33mcommit 2b001dd59ba5648ca327056e5ebdfa12ea954129[m
+Author: davidprograma122 <david.puetate617@ist17dejulio.edu.ec>
+Date:   Mon Aug 5 12:05:23 2024 -0500
+
+    Correción
+
+[33mcommit a9e132e02fb25944af4423ed47cf82470c08d9f4[m
+Author: davidprograma122 <david.puetate617@ist17dejulio.edu.ec>
+Date:   Mon Aug 5 12:04:13 2024 -0500
+
+    Correción
+
+[33mcommit 8a2e29bab3afbf9e11787ae6b9ada3de6c51ed9c[m
+Merge: 4f2cf8f dbb5afd
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Mon Aug 5 11:55:10 2024 -0500
+
+    Correción
+
+[33mcommit 4f2cf8f12c0554161bb3045b2355761bd2338250[m
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Mon Aug 5 11:10:59 2024 -0500
+
+    Testing
+
+[33mcommit dbb5afdf67c1e99fb9b3adf17aa0e87795ec94d1[m
+Author: AmaguanaAdrian <kevin.amaguana308@ist17dejulio.edu.ec>
+Date:   Mon Aug 5 03:45:03 2024 -0500
+
+    RESOLVIENDO CRUD EJEMPLARES AUN EN CONFLICTOS
+
+[33mcommit ba70a7d0538fb6a01181a7ccb871dcbd14eac996[m
+Merge: 9a3fffa 9a73484
+Author: AmaguanaAdrian <kevin.amaguana308@ist17dejulio.edu.ec>
+Date:   Mon Aug 5 01:39:17 2024 -0500
+
+    ARREGLO ERRORES CRUD LIBRO COMPLETADO
+
+[33mcommit 9a3fffaf8dd8da2d7152e3600277c7ba6a88ef39[m
+Author: AmaguanaAdrian <kevin.amaguana308@ist17dejulio.edu.ec>
+Date:   Sun Aug 4 20:45:32 2024 -0500
+
+    Conflictos
+
+[33mcommit 3179b53366f65c940471cd1885da312054dea32f[m
+Author: AmaguanaAdrian <kevin.amaguana308@ist17dejulio.edu.ec>
+Date:   Sun Aug 4 20:32:24 2024 -0500
+
+    BBD
+
+[33mcommit 9a73484eb03dcf3af2d0113f8959a99eb65d5ca2[m
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Sun Aug 4 20:05:02 2024 -0500
+
+    Implementacion del login verificando si es estudainte o biliotecario
+
+[33mcommit 4f34b9d0fa66b05b6c04fa0a0767d8aaef3d0913[m
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Sun Aug 4 13:02:19 2024 -0500
+
+    Aumento del login en el MainP
+
+[33mcommit f9350e42a3cb29598d54debc2d7a13d1793c2595[m
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Sat Aug 3 21:31:38 2024 -0500
+
+    .
+
+[33mcommit 136fc93a1ca06048d37db4630bd2d2e571ed46ef[m
+Merge: cac3a83 1b37bc1
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Sat Aug 3 14:35:39 2024 -0500
+
+    Testear y ver que funcione hasta donde esta el codigo
+
+[33mcommit cac3a83c2dd54c879cad4cde0f152d87b98713cb[m
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Sat Aug 3 09:44:01 2024 -0500
+
+    .
+
+[33mcommit 1b37bc1b7c65e60f05e9d8ae3b355c88989ca063[m
+Merge: 3fbfa18 f976050
+Author: AmaguanaAdrian <kevin.amaguana308@ist17dejulio.edu.ec>
+Date:   Sat Aug 3 01:13:10 2024 -0500
+
+    CRUD EJEMPLAR Y AGREGACION DE BUCLE PARA REGRESAR A EDITAR SU OPCION SI INGRESO MAL Y TAMBIEN OPCION PARA REGRESAR DE MENU EN MENU HASTA EL PRINCIPAL
+
+[33mcommit 3fbfa185b4fb0200dfb737c98d7e3ac3f430dffb[m
+Author: AmaguanaAdrian <kevin.amaguana308@ist17dejulio.edu.ec>
+Date:   Fri Aug 2 21:51:42 2024 -0500
+
+    BDD
+
+[33mcommit f976050be78a0a4336af7190c02dc0c5409f6428[m
+Merge: 0bf449b e66ccc3
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Fri Aug 2 21:44:28 2024 -0500
+
+    Agregacion de AutorControlador y consummir desde el main
+
+[33mcommit 0bf449b27663428f83cab66ad02a4562b8949917[m
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Fri Aug 2 19:44:35 2024 -0500
+
+    Guardar proyecto
+
+[33mcommit e66ccc33bac2406357a8be29aeafa302cae6011a[m
+Merge: 791e916 8e23646
+Author: AmaguanaAdrian <kevin.amaguana308@ist17dejulio.edu.ec>
+Date:   Fri Aug 2 15:20:38 2024 -0500
+
+    IMPLEMENTACION CRUD GENERO
+
+[33mcommit 791e916eb8270be659aab9a8d6bb27eb8c9a3bb1[m
+Author: AmaguanaAdrian <kevin.amaguana308@ist17dejulio.edu.ec>
+Date:   Fri Aug 2 14:03:01 2024 -0500
+
+    ERROR-02/08/2024
+
+[33mcommit 8e23646374c347f56a4ec96c7086d727502bc7c0[m
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Thu Aug 1 17:18:55 2024 -0500
+
+    Adicion de clases Genero,Ejemplar y Detalle de reserva
+
+[33mcommit 79566417c83b884ceff23dc3837d1139ac21e6d1[m
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Thu Aug 1 15:11:14 2024 -0500
+
+    Creacion de usuario con estudiante
+
+[33mcommit 3beb65815bf413a35f94cb79742c2fc983ec55e9[m
+Merge: c30d312 b288dad
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Thu Aug 1 10:43:25 2024 -0500
+
+    Arreglo de la BDD
+
+[33mcommit c30d312e73f3afcc939e6d8c409be941f756b608[m
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Thu Aug 1 08:54:16 2024 -0500
+
+    Preparando para el pull
+
+[33mcommit b288dad29e0818a688e537f339b170abff336df7[m
+Author: AmaguanaAdrian <kevin.amaguana308@ist17dejulio.edu.ec>
+Date:   Thu Aug 1 03:11:02 2024 -0500
+
+    CRUD DE LIBRO, IMPLEMENTACION DE MAINPRESENT
+
+[33mcommit 606ba87d3a33518d5d5fc42c7725954b23d68348[m
+Author: AmaguanaAdrian <kevin.amaguana308@ist17dejulio.edu.ec>
+Date:   Thu Aug 1 01:03:43 2024 -0500
+
+    Verificacion de la conexion BDD
+
+[33mcommit 987e14c5e65292ba8dd35c64053b76b8690cb23e[m
+Merge: a7cc3de 54404eb
+Author: AmaguanaAdrian <kevin.amaguana308@ist17dejulio.edu.ec>
+Date:   Thu Aug 1 00:02:03 2024 -0500
+
+    Resuelto conflictos
+
+[33mcommit a7cc3de316fd41d63b7c74ff67a93e1bdebce607[m
+Merge: 1f3260c ea3a64b
+Author: AmaguanaAdrian <kevin.amaguana308@ist17dejulio.edu.ec>
+Date:   Wed Jul 31 23:44:59 2024 -0500
+
+    Resuelto conflictos2
+
+[33mcommit 1f3260cd2f3cc672b2c0ffbc092ef133fa4d9703[m
+Author: AmaguanaAdrian <kevin.amaguana308@ist17dejulio.edu.ec>
+Date:   Wed Jul 31 23:37:26 2024 -0500
+
+    Arreglo de errores LIBRO
+
+[33mcommit 54404ebf3c09b53b0f8cd1d660af2ad97b1244e0[m
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Wed Jul 31 21:59:36 2024 -0500
+
+    Modificacion en la BDD
+
+[33mcommit 8ea9e3e4d1cb043a1572519ee0aaa4eb30d184c0[m
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Wed Jul 31 21:58:02 2024 -0500
+
+    Implementacion de la asocioacion de las tablas usuarios y estudiantes
+
+[33mcommit 2590cd7dff862bb9f34a91bc4d11b00b38667455[m
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Wed Jul 31 09:28:10 2024 -0500
+
+    Agregar Codigo
+
+[33mcommit efba7e597817a33b3debb07a3ae14f8ccc5884de[m
+Merge: 9d6ca93 cd5cef1
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Wed Jul 31 09:17:17 2024 -0500
+
+    Merge branch 'DavidF_branch' of https://github.com/AmaguanaAdrian/PROYECTO-DE-AULA into DavidF_branch
+
+[33mcommit 9d6ca933c8d7ef979ce0cf0ffa7b9acb90e39ea7[m
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Wed Jul 31 09:14:24 2024 -0500
+
+    Implenentacion de UsuarioControlador y Clase Autor
+
+[33mcommit f4a93728a6cf0514a8f83b1637c411bed204e085[m
+Author: David_Puetate <david.puetate617@ist17dejulio.edu.ec>
+Date:   Wed Jul 31 09:09:46 2024 -0500
+
+    Implenentacion de UsuarioControlador y Clase Autor
+
+[33mcommit cd5cef186275ea5400de7c58447adc6248e86030[m
+Author: David_Puetate <168032211+davidprograma122@users.noreply.github.com>
+Date:   Tue Jul 30 15:11:39 2024 -0500
+
+    Delete src/controlador directory
+
+[33mcommit ea3a64b7003f10e850940d802eb3c60dc077b469[m[33m ([m[1;32mAdrian_branch[m[33m)[m
+Author: David_Puetate <168032211+davidprograma122@users.noreply.github.com>
+Date:   Tue Jul 30 15:11:01 2024 -0500
+
+    Delete src/controlador directory
+
+[33mcommit 8464783d83bf8fb283e19a01b2e41bc7b849cda3[m
+Author: AmaguanaAdrian <kevin.amaguana308@ist17dejulio.edu.ec>
+Date:   Tue Jul 30 14:36:27 2024 -0500
+
+    Arreglar errores
+
+[33mcommit e9015d91f0ff4fecac4c7902db6d23e8b931fbc9[m
+Merge: eeaa07e c78f22

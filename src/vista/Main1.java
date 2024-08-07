@@ -14,7 +14,7 @@ import modelo.Reserva;
 import modelo.Usuario;
 import java.io.IOException;
 
-public class perfiles {
+public class Main1 {
 
     public static void perfilBliotecario(String[] args) throws IOException {
 
@@ -28,7 +28,7 @@ public class perfiles {
             es.nextLine();
             switch (op1) {
                 case 1 -> {
-                    System.out.println("-----Porfavor llene el formulario de registro-----");
+                    System.out.println("-----INGRESE LOS DATOS PARA EL REGISTRO-----");
                     Usuario u = new Usuario();
                     System.out.print("Ingrese los dos nombres: ");
                     u.setNombres(es.nextLine());
@@ -112,9 +112,9 @@ public class perfiles {
                     estC.crearEstudiante(est);
                     break OUTER;
                 }
-                case 4 -> // Llama al perfiles de la clase mainLibros
+                case 4 -> // Llama al Main1 de la clase mainLibros
                     mainLibros.main(null);
-                case 5 -> // Llama al perfiles de la clase mainGenero
+                case 5 -> // Llama al Main1 de la clase mainGenero
                     mainGenero.main(null);
 //<<<<<<< HEAD:src/vista/perfiles.java
                 case 6 -> {
@@ -180,6 +180,7 @@ public class perfiles {
                     } while (op1 != 0);
 
                 }
+<<<<<<< HEAD:src/vista/perfiles.java
                 case 7 -> { // Llama al perfiles de la clase mainGenero
 //=======
 //                case 6 -> {
@@ -247,6 +248,9 @@ public class perfiles {
 ////                }
 //                case 7 -> { // Llama al Main1 de la clase mainGenero
 //>>>>>>> 6e6b4f98520a9e933d1205c30ce3f0126d0449cd:src/vista/Main1.java
+=======
+                case 7 -> { // Llama al Main1 de la clase mainGenero
+>>>>>>> parent of 744508a (Corrección de faltas):src/vista/Main1.java
                     mainEjemplar.main(null);
                 }
                 case 0 -> {
@@ -271,7 +275,7 @@ public class perfiles {
 
             switch (op) {
                 case 1 -> {
-                    System.out.println("-----Porfavor llene el formulario de resgistro-----");
+                    System.out.println("-----INGRESE LOS DATOS PARA EL REGISTRO-----");
                     Usuario u = new Usuario();
 
                     System.out.print("Ingrese los dos nombres: ");
@@ -311,7 +315,7 @@ public class perfiles {
 //                System.out.println("-----DATOS DEL BIBLIOTECARIO-----");
                     Bibliotecario bib = new Bibliotecario();
 
-                    System.out.print("Ingrese el título registrado en Senecyt: ");
+                    System.out.print("Ingrese el titulo registrado en Senecyt: ");
                     bib.setTituloRegistrado(es.nextLine());
 
                     BibliotecarioControlador bc = new BibliotecarioControlador();
@@ -351,7 +355,7 @@ public class perfiles {
                         case 3 -> {
                         }
                         case 0 -> {
-                            perfiles.perfilEstudiante(args);
+                            Main1.perfilEstudiante(args);
                             break OUTER;
                         }
                         default -> {

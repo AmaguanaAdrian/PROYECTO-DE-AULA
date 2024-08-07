@@ -4,16 +4,26 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/mainLibros.java</file>
+<<<<<<< HEAD
             <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/EjemplarControlador.java</file>
+=======
+>>>>>>> parent of 744508a (Corrección de faltas)
             <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/GeneroControlador.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/menus.java</file>
             <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/LibrosControlador.java</file>
+<<<<<<< HEAD
             <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/LoginControlador.java</file>
             <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/perfiles.java</file>
+=======
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/Funciones.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/Main1.java</file>
+>>>>>>> parent of 744508a (Corrección de faltas)
             <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/UsuarioControlador.java</file>
             <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/MainP.java</file>
-            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/AutorControlador.java</file>
             <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/ReservaControlador.java</file>
-            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/vista/mainEjemplar.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/AutorControlador.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/EstudianteControlador.java</file>
+            <file>file:/D:/Clonados/PROYECTO-DE-AULA/src/controlador/BibliotecarioControlador.java</file>
         </group>
     </open-files>
 </project-private>

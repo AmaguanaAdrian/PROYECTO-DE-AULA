@@ -6,7 +6,10 @@ package vista;
  */
 import Controlador.EjemplarControlador;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 import modelo.Ejemplar;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import modelo.Libros;
@@ -177,7 +180,7 @@ public class mainEjemplar {
             } else if (op1 == 0) {
                 // Regresar al menú principal
                 System.out.println("Regresando al menú principal...");
-                perfiles.perfilBliotecario(args); // Asegúrate de que el método perfilBliotecario acepta args
+                Main1.perfilBliotecario(args); // Asegúrate de que el método perfilBliotecario acepta args
                 break;
             }
         } while (op1 != 0);
@@ -189,7 +192,7 @@ public class mainEjemplar {
 
 
 //public class mainEjemplar {
-//    public static void perfiles(String[] args) {
+//    public static void Main1(String[] args) {
 //        Scanner es = new Scanner(System.in);
 //        EjemplarControlador ejemplarControlador = new EjemplarControlador();
 //        int op1;
@@ -363,7 +366,7 @@ public class mainEjemplar {
 //
 //            } else if (op1 == 0) {
 //                System.out.println("Regresando al menú principal...\n");
-//                perfiles.perfiles(null); // Asumiendo que el menú principal está en la clase 'perfiles'
+//                Main1.Main1(null); // Asumiendo que el menú principal está en la clase 'Main1'
 //                return; // Salir de este método y regresar al menú principal
 //            }
 //        }
