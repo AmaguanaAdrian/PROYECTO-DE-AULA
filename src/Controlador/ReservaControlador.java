@@ -24,9 +24,9 @@ public class ReservaControlador {
             int resultado = ejecutar.executeUpdate();
             // Ejecuta
             if (resultado > 0) {
-                System.out.println("La reserva ha sido creada con éxito");
+                System.out.println("Usted a reservado con exito");
             } else {
-                System.out.println("Favor ingresar correctamente los datos solicitados");
+                System.out.println("Favor ingresar correctamente los datos");
             }
             ejecutar.close();
         } catch (SQLException e) {
@@ -40,12 +40,12 @@ public class ReservaControlador {
         Reserva r = new Reserva();
         try {
             String consultaSQL = "SELECT * FROM Reserva WHERE res_id = " + idReserva;
-            PreparedStatement ejecutar = connection.prepareCall(consultaSQL);
-            ResultSet resultado = ejecutar.executeQuery();
-            {
-                System.out.println("No se encontró una reserva con el ID proporcionado");
+            try (PreparedStatement ejecutar = connection.prepareCall(consultaSQL)) {
+                ResultSet resultado = ejecutar.executeQuery();
+                {
+                    System.out.println("No se encontró una reserva con el ID proporcionado");
+                }
             }
-            ejecutar.close();
         } catch (SQLException e) {
             System.out.println("ERROR: " + e.getMessage());
         }

@@ -14,7 +14,7 @@ import modelo.Reserva;
 import modelo.Usuario;
 import java.io.IOException;
 
-public class Main1 {
+public class perfiles {
 
     public static void perfilBliotecario(String[] args) throws IOException {
 
@@ -28,7 +28,7 @@ public class Main1 {
             es.nextLine();
             switch (op1) {
                 case 1 -> {
-                    System.out.println("-----INGRESE LOS DATOS PARA EL REGISTRO-----");
+                    System.out.println("-----Porfavor llene el formulario de registro-----");
                     Usuario u = new Usuario();
                     System.out.print("Ingrese los dos nombres: ");
                     u.setNombres(es.nextLine());
@@ -112,9 +112,9 @@ public class Main1 {
                     estC.crearEstudiante(est);
                     break OUTER;
                 }
-                case 4 -> // Llama al Main1 de la clase mainLibros
+                case 4 -> // Llama al perfiles de la clase mainLibros
                     mainLibros.main(null);
-                case 5 -> // Llama al Main1 de la clase mainGenero
+                case 5 -> // Llama al perfiles de la clase mainGenero
                     mainGenero.main(null);
                 case 6 -> {
                     do {
@@ -179,7 +179,7 @@ public class Main1 {
                     } while (op1 != 0);
 
                 }
-                case 7 -> { // Llama al Main1 de la clase mainGenero
+                case 7 -> { // Llama al perfiles de la clase mainGenero
                     mainEjemplar.main(null);
                 }
                 case 0 -> {
@@ -204,7 +204,7 @@ public class Main1 {
 
             switch (op) {
                 case 1 -> {
-                    System.out.println("-----INGRESE LOS DATOS PARA EL REGISTRO-----");
+                    System.out.println("-----Porfavor llene el formulario de resgistro-----");
                     Usuario u = new Usuario();
 
                     System.out.print("Ingrese los dos nombres: ");
@@ -244,7 +244,7 @@ public class Main1 {
 //                System.out.println("-----DATOS DEL BIBLIOTECARIO-----");
                     Bibliotecario bib = new Bibliotecario();
 
-                    System.out.print("Ingrese el titulo registrado en Senecyt: ");
+                    System.out.print("Ingrese el título registrado en Senecyt: ");
                     bib.setTituloRegistrado(es.nextLine());
 
                     BibliotecarioControlador bc = new BibliotecarioControlador();
@@ -284,7 +284,7 @@ public class Main1 {
                         case 3 -> {
                         }
                         case 0 -> {
-                            Main1.perfilEstudiante(args);
+                            perfiles.perfilEstudiante(args);
                             break OUTER;
                         }
                         default -> {

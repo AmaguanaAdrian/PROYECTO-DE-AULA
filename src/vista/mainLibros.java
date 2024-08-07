@@ -213,7 +213,7 @@ public class mainLibros {
 
             } else if (op1 == 0) {
                 // Regresar al menú principal
-                Main1.perfilBliotecario(args);// Llama al menú principal del bibliotecario
+                perfiles.perfilBliotecario(args);// Llama al menú principal del bibliotecario
             }
         } while (op1 != 0);
 
@@ -403,7 +403,7 @@ public class mainLibros {
 //
 //            } else if (op1 == 0) {
 //                // Regresar al menú principal
-//                Main1.perfilBliotecario(args);// Llama al menú principal del bibliotecario
+//                perfiles.perfilBliotecario(args);// Llama al menú principal del bibliotecario
 ////                return; // Termina el método actual para regresar al menú principal
 //            }
 //        } while (op1 != 0);

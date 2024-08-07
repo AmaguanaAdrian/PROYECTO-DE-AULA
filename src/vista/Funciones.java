@@ -71,7 +71,9 @@ public class Funciones {
 
             while (!loginCorrecto) {
                 System.out.println("------------------Inicio de sesión------------------");
-                System.out.print("    Ingrese su usuario: ");
+                System.out.print("""
+                                   ---Recuerde que el usuario es su número de cedula---
+                                   Ingrese su usuario: """);
                 String usuario = es.nextLine();
                 System.out.print("    Ingrese su contraseña: ");
                 String clave = es.nextLine();
@@ -83,19 +85,19 @@ public class Funciones {
                     if (usu_rol == 1) {
                         // Acciones para usuarios con rol 1
                         System.out.println("----Acceso como Estudiante----");
-                        Main1.perfilEstudiante(args);
+                        perfiles.perfilEstudiante(args);
                         b = 1;
 
                     } else if (usu_rol == 2) {
                         // Acciones para usuarios con rol 2
                         System.out.println("----Acceso como Bibliotecario----");
-                        Main1.perfilBliotecario(args);
+                        perfiles.perfilBliotecario(args);
                         b = 1;
 
                     } else if (usu_rol == 3) {
                         // Acciones para usuarios con rol 3
                         System.out.println("----Acceso como Admin----");
-                        Main1.perfilAdmin(args);
+                        perfiles.perfilAdmin(args);
                         b = 1;
                     }
                 } else {
