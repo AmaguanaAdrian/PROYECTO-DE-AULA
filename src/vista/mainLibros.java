@@ -209,7 +209,7 @@ public class mainLibros {
 
                 Libros nuevoLibro = new Libros(titulo, fechaPublicado, isbn);
                 libroControlador.crearLibro(nuevoLibro, autorId, generoId);
-<<<<<<< HEAD
+//<<<<<<< HEAD
 ////<<<<<<< HEAD
 //
 //            } else if (op1 == 2) {
@@ -315,14 +315,14 @@ public class mainLibros {
 //                perfiles.perfilBliotecario(args);// Llama al menú principal del bibliotecario
 //=======
 //>>>>>>> 6e6b4f98520a9e933d1205c30ce3f0126d0449cd
-=======
+//=======
 
-            } else if (op1 == 2) {
+//            } else if (op1 == 2) {
                 // Mostrar lista de libros
-                ArrayList<Libros> listaLibros = libroControlador.listarLibros();
-                for (Libros l : listaLibros) {
-                    System.out.println(l.imprimir());
-                }
+//                ArrayList<Libros> listaLibros = libroControlador.listarLibros();
+//                for (Libros l : listaLibros) {
+////                    System.out.println(l.imprimir());
+//                }
 
             } else if (op1 == 3) {
                 // Actualizar información de un libro
@@ -385,8 +385,8 @@ public class mainLibros {
                         continue;
                     }
 
-                    Libros actualizadoLibro = new Libros(libroExistente.getIdLibro(), nuevoTitulo, nuevaFechaPublicado, isbn);
-                    libroControlador.actualizarLibro(actualizadoLibro, isbn);
+//                    Libros actualizadoLibro = new Libros(libroExistente.getIdLibro(), nuevoTitulo, nuevaFechaPublicado, isbn);
+//                    libroControlador.actualizarLibro(actualizadoLibro, isbn);
                 } else {
                     System.out.println("Libro no encontrado.");
                 }
@@ -413,12 +413,12 @@ public class mainLibros {
                     continue;
                 }
 
-                libroControlador.eliminarLibro(isbn);
+//                libroControlador.eliminarLibro(isbn);
 
             } else if (op1 == 0) {
                 // Regresar al menú principal
                 Main1.perfilBliotecario(args);// Llama al menú principal del bibliotecario
->>>>>>> parent of 744508a (Corrección de faltas)
+//>>>>>>> parent of 744508a (Corrección de faltas)
             }
 
         } while (op1 != 0);

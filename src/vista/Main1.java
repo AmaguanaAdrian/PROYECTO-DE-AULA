@@ -134,7 +134,7 @@ public class Main1 {
                                 System.out.println("Ingrese la fecha de naciemiento (YYYY-MM-DD :");
                                 String fechaNace = es.nextLine();
                                 Autor A = new Autor(fechaNace, nombre, apellido);
-                                AutorControlador.crearAutor(A);
+//                                AutorControlador.crearAutor(A);
                             }
                             case 2 -> {
                                 // Mostrar lista de autores
@@ -147,28 +147,28 @@ public class Main1 {
                                 // Actualizar información de un Autor
                                 System.out.println("Ingrese el nombre del autor que desea actualizar:");
                                 String nombre = es.nextLine();
-                                String AutorExistente = AutorControlador.buscarAutor(nombre);
-                                if (AutorExistente == null) {
+//                                String AutorExistente = AutorControlador.buscarAutor(nombre);
+//                                if (AutorExistente == null) {
                                     System.out.println("Autor no encontrado.");
-                                } else {
-                                    System.out.println("Ingrese el nombre del autor a actualizar:");
-                                    String nuevoNombre = es.nextLine();
-
-                                    System.out.println("Ingrese el apellido del autor a actualizar:");
-                                    String nuevoApellido = es.nextLine();
-
-                                    System.out.println("Ingrese la nueva fecha de nacimiento (YYYY-MM-DD):");
-                                    String nuevaFechaNace = es.nextLine();
-
-                                    Autor AutActualizado = new Autor(nuevaFechaNace, nuevoNombre, nuevoApellido);
-                                    AutorControlador.actualizarAutor(AutActualizado, AutorExistente);
-                                }
-                            }
-                            case 4 -> {
+//                                } else {
+//                                    System.out.println("Ingrese el nombre del autor a actualizar:");
+//                                    String nuevoNombre = es.nextLine();
+//
+//                                    System.out.println("Ingrese el apellido del autor a actualizar:");
+//                                    String nuevoApellido = es.nextLine();
+//
+//                                    System.out.println("Ingrese la nueva fecha de nacimiento (YYYY-MM-DD):");
+//                                    String nuevaFechaNace = es.nextLine();
+//
+//                                    Autor AutActualizado = new Autor(nuevaFechaNace, nuevoNombre, nuevoApellido);
+////                                    AutorControlador.actualizarAutor(AutActualizado, AutorExistente);
+//                                }
+//                            }
+//                            case 4 -> {
                                 // Eliminar Autor
                                 System.out.println("Ingrese el nombre del autor que desea eliminar:");
-                                String nombre = es.nextLine();
-                                AutorControlador.eliminarAutor(nombre);
+//                                String nombre = es.nextLine();
+//                                AutorControlador.eliminarAutor(nombre);
                             }
                             case 0 -> {
                                 System.out.println("Saliendo...");
@@ -180,7 +180,7 @@ public class Main1 {
                     } while (op1 != 0);
 
                 }
-<<<<<<< HEAD:src/vista/perfiles.java
+//<<<<<<< HEAD:src/vista/perfiles.java
                 case 7 -> { // Llama al perfiles de la clase mainGenero
 //=======
 //                case 6 -> {
@@ -247,10 +247,10 @@ public class Main1 {
 //
 ////                }
 //                case 7 -> { // Llama al Main1 de la clase mainGenero
-//>>>>>>> 6e6b4f98520a9e933d1205c30ce3f0126d0449cd:src/vista/Main1.java
-=======
-                case 7 -> { // Llama al Main1 de la clase mainGenero
->>>>>>> parent of 744508a (Corrección de faltas):src/vista/Main1.java
+////>>>>>>> 6e6b4f98520a9e933d1205c30ce3f0126d0449cd:src/vista/Main1.java
+//=======
+//                case 7 -> { // Llama al Main1 de la clase mainGenero
+//>>>>>>> parent of 744508a (Corrección de faltas):src/vista/Main1.java
                     mainEjemplar.main(null);
                 }
                 case 0 -> {
