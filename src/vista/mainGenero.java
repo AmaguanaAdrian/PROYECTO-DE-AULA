@@ -1,6 +1,7 @@
 package vista;
 
 import Controlador.GeneroControlador;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import modelo.Genero;
@@ -12,7 +13,7 @@ import modelo.Genero;
 
 public class mainGenero {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner es = new Scanner(System.in);
         int op1;
 
@@ -140,7 +141,7 @@ public class mainGenero {
 
             } else if (op1 == 0) {
                 System.out.println("Regresando al menú principal...\n");
-                MainBibliotecario.perfilBliotecario(null);
+                Main1.perfilBliotecario(null);
                 return; // Salir de este método y regresar al menú principal
             }
         } while (op1 != 0);

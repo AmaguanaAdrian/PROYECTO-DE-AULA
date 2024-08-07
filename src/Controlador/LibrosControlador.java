@@ -4,25 +4,28 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import modelo.Libros;
 import com.mysql.jdbc.PreparedStatement;
-import java.util.Date;
-import modelo.Autor;
 /**
  *
  * @author
  */
 public class LibrosControlador {
-    ConexionBDD conexion = new ConexionBDD();
-    Connection connection = (Connection) conexion.conectar();
-    PreparedStatement ejecutar;
-    ResultSet resultado; 
+    private Connection connection;
+    private PreparedStatement ejecutar;
+    private ResultSet resultado;
 
-    public void crearLibro(Libros l, int autorId, int generoId) {
+    public LibrosControlador() {
+        ConexionBDD conexion = new ConexionBDD();
+        connection = (Connection) conexion.conectar();
+    }
+
+    // Crear un nuevo libro
+    public void crearLibro(Libros libro, int autorId, int generoId) {
+        String consultaSQL = "INSERT INTO Libros (lib_titulo, lib_fechaPublicado, lib_isbn, aut_id, gen_id) VALUES (?, ?, ?, ?, ?);";
         try {
-            String consultaSQL = "INSERT INTO Libros (lib_titulo, lib_fechaPublicado, lib_isbn, aut_id, gen_id) VALUES (?, ?, ?, ?, ?);";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
-            ejecutar.setString(1, l.getTitulo());
-            ejecutar.setDate(2, java.sql.Date.valueOf(l.getFechaPublicado())); // Convertir la fecha
-            ejecutar.setString(3, l.getIsbn());
+            ejecutar.setString(1, libro.getTitulo());
+            ejecutar.setString(2, libro.getFechaPublicado());
+            ejecutar.setString(3, libro.getIsbn());
             ejecutar.setInt(4, autorId);
             ejecutar.setInt(5, generoId);
             int res = ejecutar.executeUpdate();
@@ -31,145 +34,92 @@ public class LibrosControlador {
             } else {
                 System.out.println("Favor ingresar correctamente los datos solicitados");
             }
-            ejecutar.close();
         } catch (Exception e) {
-            System.out.println("ERROR: " + e);
+            System.out.println("ERROR al crear libro: " + e);
+        } finally {
+            cerrarRecursos();
         }
     }
 
-    public int buscarIdLibro(String isbn) {
+    // Buscar libro por título
+    public Libros buscarDatosLibro(String titulo) {
+        Libros libro = new Libros();
+        String consultaSQL = "SELECT lib_titulo, lib_fechaPublicado, lib_isbn FROM Libros WHERE lib_titulo = ?;";
         try {
-            String consultaSQL = "SELECT lib_id FROM Libros WHERE lib_isbn = ?;";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
-            ejecutar.setString(1, isbn);
+            ejecutar.setString(1, titulo);
             resultado = ejecutar.executeQuery();
             if (resultado.next()) {
-                int idLibro = resultado.getInt("lib_id");
-                return idLibro;
+                libro.setTitulo(resultado.getString("lib_titulo"));
+                libro.setFechaPublicado(resultado.getString("lib_fechaPublicado"));
+                libro.setIsbn(resultado.getString("lib_isbn"));
             } else {
-                System.out.println("Ingrese un ISBN válido");
+                System.out.println("Ingrese un título válido");
             }
-            resultado.close();
         } catch (Exception e) {
-            System.out.println("Comuníquese con el administrador para el error: " + e);
+            System.out.println("ERROR buscar libro: " + e);
+        } finally {
+            cerrarRecursos();
         }
-        return 0;
+        return libro;
     }
 
+    // Listar todos los libros
     public ArrayList<Libros> listarLibros() {
-        ArrayList<Libros> listaLibros = new ArrayList<>();
+        ArrayList<Libros> listarLibros = new ArrayList<>();
+        String consultaSQL = "SELECT lib_titulo, lib_fechaPublicado, lib_isbn FROM Libros;";
         try {
-            String consultaSQL = "SELECT lib_id, lib_titulo, lib_fechaPublicado, lib_isbn FROM Libros;";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             resultado = ejecutar.executeQuery();
             while (resultado.next()) {
-                Libros l = new Libros();
-                l.setIdLibro(resultado.getInt("lib_id"));
-                l.setTitulo(resultado.getString("lib_titulo"));
-                l.setFechaPublicado(resultado.getString("lib_fechaPublicado"));
-                l.setIsbn(resultado.getString("lib_isbn"));
-                listaLibros.add(l);
+                Libros libro = new Libros();
+                libro.setTitulo(resultado.getString("lib_titulo"));
+                libro.setFechaPublicado(resultado.getString("lib_fechaPublicado"));
+                libro.setIsbn(resultado.getString("lib_isbn"));
+                listarLibros.add(libro);
             }
-            resultado.close();
         } catch (Exception e) {
-            System.out.println("ERROR: " + e);
+            System.out.println("ERROR listar libros: " + e);
+        } finally {
+            cerrarRecursos();
         }
-        return listaLibros;
+        return listarLibros;
     }
 
-    public void actualizarLibro(Libros l, String isbn) {
+    // Listar libros por título
+    public ArrayList<Libros> listarLibrosPorTitulo(String titulo) {
+        ArrayList<Libros> listarLibros = new ArrayList<>();
+        String consultaSQL = "SELECT lib_titulo, lib_fechaPublicado, lib_isbn FROM Libros WHERE lib_titulo = ?;";
         try {
-            String consultaSQL = "UPDATE Libros SET lib_titulo = ?, lib_fechaPublicado = ? WHERE lib_isbn = ?;";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
-            ejecutar.setString(1, l.getTitulo());
-            ejecutar.setDate(2, java.sql.Date.valueOf(l.getFechaPublicado())); // Convertir la fecha
-            ejecutar.setString(3, isbn);
-            int res = ejecutar.executeUpdate();
-            if (res > 0) {
-                System.out.println("Actualización exitosa");
-            } else {
-                System.out.println("Revise datos a actualizar");
+            ejecutar.setString(1, titulo);
+            resultado = ejecutar.executeQuery();
+            while (resultado.next()) {
+                Libros libro = new Libros();
+                libro.setTitulo(resultado.getString("lib_titulo"));
+                libro.setFechaPublicado(resultado.getString("lib_fechaPublicado"));
+                libro.setIsbn(resultado.getString("lib_isbn"));
+                listarLibros.add(libro);
             }
-            ejecutar.close();
         } catch (Exception e) {
-            System.out.println("ERROR: " + e);
+            System.out.println("ERROR listar libros: " + e);
+        } finally {
+            cerrarRecursos();
         }
+        return listarLibros;
     }
 
-    public Libros buscarDatosLibro(String isbn) {
-        Libros l = new Libros();
+    // Cerrar recursos
+    private void cerrarRecursos() {
         try {
-            String consultaSQL = "SELECT lib_id, lib_titulo, lib_fechaPublicado, lib_isbn FROM Libros WHERE lib_isbn = ?;";
-           ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
-            ejecutar.setString(1, isbn);
-            resultado = ejecutar.executeQuery();
-            if (resultado.next()) {
-                l.setIdLibro(resultado.getInt("lib_id"));
-                l.setTitulo(resultado.getString("lib_titulo"));
-                l.setFechaPublicado(resultado.getString("lib_fechaPublicado"));
-                l.setIsbn(resultado.getString("lib_isbn"));
-                resultado.close();
-                return l;
-            } else {
-                System.out.println("Ingrese un ISBN válido");
+            if (resultado != null) {
                 resultado.close();
             }
-        } catch (Exception e) {
-            System.out.println("ERROR: " + e);
-        }
-        return l;
-    }
-
-    public void eliminarLibro(String isbn) {
-        try {
-            String consultaSQL = "DELETE FROM Libros WHERE lib_isbn = ?;";
-            ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
-            ejecutar.setString(1, isbn);
-            int res = ejecutar.executeUpdate();
-            if (res > 0) {
-                System.out.println("Libro eliminado con éxito");
-            } else {
-                System.out.println("No se pudo eliminar el libro. Verifique el ISBN.");
+            if (ejecutar != null) {
+                ejecutar.close();
             }
-            ejecutar.close();
         } catch (Exception e) {
-            System.out.println("ERROR: " + e);
+            System.out.println("ERROR al cerrar recursos: " + e);
         }
     }
-         // Método para mostrar autores
-    public void mostrarAutores() {
-        try {
-            String consultaSQL = "SELECT aut_id, aut_nombres FROM autores;";
-            ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
-            resultado = ejecutar.executeQuery();
-            while (resultado.next()) {
-                int idAutor = resultado.getInt("aut_id");
-                String nombreAutor = resultado.getString("aut_nombres");
-                System.out.println("ID Autor: " + idAutor + ", Nombre: " + nombreAutor);
-            }
-
-            resultado.close();
-        } catch (Exception e) {
-            System.out.println("ERROR: " + e);
-        }
-    }
-
-    // Método para mostrar géneros
-    public void mostrarGeneros() {
-        try {
-            String consultaSQL = "SELECT gen_id, gen_nombreGen FROM generos;";
-            ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
-            resultado = ejecutar.executeQuery();
-            while (resultado.next()) {
-                int idGenero = resultado.getInt("gen_id");
-                String nombreGenero = resultado.getString("gen_nombreGen");
-                System.out.println("ID Género: " + idGenero + ", Nombre: " + nombreGenero);
-            }
-
-            resultado.close();
-        } catch (Exception e) {
-            System.out.println("ERROR: " + e);
-        }
-    }
-
 }

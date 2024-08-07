@@ -5,6 +5,7 @@ package vista;
  * @author
  */
 import Controlador.EjemplarControlador;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import modelo.Ejemplar;
@@ -15,7 +16,7 @@ import modelo.Libros;
 
 public class mainEjemplar {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner es = new Scanner(System.in);
         EjemplarControlador ejemplarControlador = new EjemplarControlador();
         int op1;
@@ -179,7 +180,7 @@ public class mainEjemplar {
             } else if (op1 == 0) {
                 // Regresar al menú principal
                 System.out.println("Regresando al menú principal...");
-                MainBibliotecario.perfilBliotecario(args); // Asegúrate de que el método perfilBliotecario acepta args
+                Main1.perfilBliotecario(args); // Asegúrate de que el método perfilBliotecario acepta args
                 break;
             }
         } while (op1 != 0);
@@ -191,7 +192,7 @@ public class mainEjemplar {
 
 
 //public class mainEjemplar {
-//    public static void MainBibliotecario(String[] args) {
+//    public static void Main1(String[] args) {
 //        Scanner es = new Scanner(System.in);
 //        EjemplarControlador ejemplarControlador = new EjemplarControlador();
 //        int op1;
@@ -365,7 +366,7 @@ public class mainEjemplar {
 //
 //            } else if (op1 == 0) {
 //                System.out.println("Regresando al menú principal...\n");
-//                MainBibliotecario.MainBibliotecario(null); // Asumiendo que el menú principal está en la clase 'MainBibliotecario'
+//                Main1.Main1(null); // Asumiendo que el menú principal está en la clase 'Main1'
 //                return; // Salir de este método y regresar al menú principal
 //            }
 //        }

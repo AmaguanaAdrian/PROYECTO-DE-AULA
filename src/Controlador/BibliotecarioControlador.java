@@ -23,12 +23,17 @@ public class BibliotecarioControlador {
     public void crearBibliotecario(Bibliotecario b) {
         try {
             // String estático con componentes dinámicos (gets)
-            String consultaSQL = "INSERT INTO bibliotecarios (bib_tituloRegistrado,usu_id)VALUES('"+b.getTituloRegistrado()+"',"+b.getIdUsuario()+");";
+            String consultaSQL = "INSERT INTO bibliotecarios "
+                    + "(bib_tituloRegistrado,"
+                    + "usu_id)"
+                    + "VALUES("
+                    + "'"+b.getTituloRegistrado()+"',"
+                    + ""+b.getIdUsuario()+");";
             PreparedStatement ejecutar=(PreparedStatement)connection.prepareCall(consultaSQL);
             int resultado = ejecutar.executeUpdate();
             // Ejecuta
             if (resultado > 0) {
-                System.out.println("El Bibliotecario ha sido creada con éxito");
+//                System.out.println("El Bibliotecario ha sido creada con éxito");
             } else {
                 System.out.println("Favor ingresar correctamente los datos solicitados");
             }

@@ -40,7 +40,7 @@ public class UsuarioControlador {
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             int res = ejecutar.executeUpdate();// utilizo un int cuando ingreso datos en la bdd
             if (res > 0) {
-                System.out.println("La persona ha sido creada con exito");
+//                System.out.println("La persona ha sido creada con exito");
                 // CERRAR CONSULTA
                 ejecutar.close();
             } else {
