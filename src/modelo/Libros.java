@@ -3,7 +3,7 @@ package modelo;
  *
  * @author
  */
-public class Libros{
+public class Libros {
     private int idLibro;
     private String titulo;
     private String fechaPublicado;
@@ -12,8 +12,7 @@ public class Libros{
     public Libros() {
     }
 
-    public Libros(int idLibro, String titulo, String fechaPublicado, String isbn) {
-        this.idLibro = idLibro;
+    public Libros(String titulo, String fechaPublicado, String isbn) {
         this.titulo = titulo;
         this.fechaPublicado = fechaPublicado;
         this.isbn = isbn;
@@ -50,33 +49,14 @@ public class Libros{
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
-        public String imprimir() {
-        return "-------DATOS DEL LIBRO-----------\n"
-                + "idLibro:"+getIdLibro()+ "\n"
-                + "ISBN:"+getIsbn() + "\n"
-                + "Título:" + getTitulo()+ "\n"
-                + "Fecha Publicado:" + getFechaPublicado();
-    }
-  public class ISBNValidador {
 
-    public static boolean isValidISBN(String isbn) {
-        // Verifica si el ISBN tiene 10 o 13 dígitos
-        if (isbn.length() != 10 && isbn.length() != 13) {
-            return false;
-        }
-        // Calcula el dígito de control (International Standard Book Numbers) 
-        // es un dígito adicional que se agrega al final del número ISBN para verificar su validez
-        int sum = 0;
-        for (int i = 0; i < isbn.length() - 1; i++) {
-            int digit = Character.getNumericValue(isbn.charAt(i));
-            sum += (i % 2 == 0) ? digit : digit * 3;
-        }
-        int checkDigit = 10 - (sum % 10);
-
-        // Compara el dígito de control con el último dígito del ISBN
-        // Character.getNumericValue toma un carácter como argumento y devuelve su valor numérico.
-        int lastDigit = Character.getNumericValue(isbn.charAt(isbn.length() - 1));
-        return checkDigit == lastDigit;
+    @Override
+    public String toString() {
+        return "Libros{" +
+                "idLibro=" + idLibro +
+                ", titulo='" + titulo + '\'' +
+                ", fechaPublicado='" + fechaPublicado + '\'' +
+                ", isbn='" + isbn + '\'' +
+                '}';
     }
- }
 }

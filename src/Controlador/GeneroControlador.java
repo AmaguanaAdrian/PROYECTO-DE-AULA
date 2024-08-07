@@ -9,8 +9,6 @@ import java.util.ArrayList;
  *
  * @author 
  */
-
-
 public class GeneroControlador {
 
     ConexionBDD conexion = new ConexionBDD();
@@ -53,7 +51,7 @@ public class GeneroControlador {
         } catch (Exception e) {
             System.out.println("Comuníquese con el administrador para el error: " + e);
         }
-        return 0;
+        return -1; // Retorna -1 si no se encuentra el género
     }
 
     // Listar todos los géneros
@@ -133,6 +131,7 @@ public class GeneroControlador {
             System.out.println("ERROR: " + e);
         }
     }
+   
 }
 
 

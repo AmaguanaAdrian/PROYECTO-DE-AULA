@@ -15,7 +15,7 @@ public class Ejemplar extends Libros {
     }
 
     public Ejemplar(String codigoEjemplar, boolean estado, int numEjemplares, int idLibro, String titulo, String fechaPublicado, String isbn) {
-        super(idLibro, titulo, fechaPublicado, isbn);
+        super(titulo, fechaPublicado, isbn);
         this.codigoEjemplar = codigoEjemplar;
         this.estado = estado;
         this.numEjemplares = numEjemplares;
@@ -32,7 +32,7 @@ public class Ejemplar extends Libros {
 
     // Constructor para crear un Ejemplar con información de libro
     public Ejemplar(int idEjemplar, String codigoEjemplar, boolean estado, int numEjemplares, int idLibro, String titulo, String fechaPublicado, String isbn) {
-        super(idLibro, titulo, fechaPublicado, isbn);
+        super(titulo, fechaPublicado, isbn);
         this.idEjemplar = idEjemplar;
         this.codigoEjemplar = codigoEjemplar;
         this.estado = estado;
@@ -71,13 +71,13 @@ public class Ejemplar extends Libros {
         this.numEjemplares = numEjemplares;
     }
 
-    @Override
-    public String imprimir() {
-        return super.imprimir() + "\n"
-                + "ID Ejemplar: " + getIdEjemplar() + "\n"
-                + "Código Ejemplar: " + getCodigoEjemplar() + "\n"
-                + "ID Libro: " + getIdLibro() + "\n"
-                + "Estado: " + (isEstado() ? "Disponible" : "No Disponible"
-                + "Número de ejemplares disponibles;: "+ getNumEjemplares());
-    }
+//    @Override
+//    public String imprimir() {
+//        return super.imprimir() + "\n"
+//                + "ID Ejemplar: " + getIdEjemplar() + "\n"
+//                + "Código Ejemplar: " + getCodigoEjemplar() + "\n"
+//                + "ID Libro: " + getIdLibro() + "\n"
+//                + "Estado: " + (isEstado() ? "Disponible" : "No Disponible"
+//                + "Número de ejemplares disponibles;: "+ getNumEjemplares());
+//    }
 }
