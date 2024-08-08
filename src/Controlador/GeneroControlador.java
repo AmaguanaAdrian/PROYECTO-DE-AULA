@@ -34,7 +34,7 @@ public class GeneroControlador {
         }
     }
 
-    // Buscar ID de género por nombre
+   // Buscar ID de género por nombre
     public int buscarIdGenero(String nombreGenero) {
         try {
             String consultaSQL = "SELECT gen_id FROM generos WHERE gen_nombreGen = ?;";
@@ -63,6 +63,7 @@ public class GeneroControlador {
             resultado = ejecutar.executeQuery();
             while (resultado.next()) {
                 Genero g = new Genero();
+                g.setId(resultado.getInt("gen_id")); // Añadido
                 g.setNombreGenero(resultado.getString("gen_nombreGen"));
                 listaGeneros.add(g);
             }
@@ -101,6 +102,7 @@ public class GeneroControlador {
             ejecutar.setString(1, nombreGenero);
             resultado = ejecutar.executeQuery();
             if (resultado.next()) {
+                g.setId(resultado.getInt("gen_id"));
                 g.setNombreGenero(resultado.getString("gen_nombreGen"));
                 resultado.close();
                 return g;
@@ -131,8 +133,30 @@ public class GeneroControlador {
             System.out.println("ERROR: " + e);
         }
     }
-   
+    // Buscar género por ID
+    public Genero buscarGeneroPorId(int id) {
+        Genero g = null;
+        try {
+            String consultaSQL = "SELECT gen_id, gen_nombreGen FROM generos WHERE gen_id = ?;";
+            ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
+            ejecutar.setInt(1, id);
+            resultado = ejecutar.executeQuery();
+            if (resultado.next()) {
+                g = new Genero();
+                g.setId(resultado.getInt("gen_id"));
+                g.setNombreGenero(resultado.getString("gen_nombreGen"));
+            } else {
+                System.out.println("ID de género no encontrado.");
+            }
+            resultado.close();
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e);
+        }
+        return g;
+    }
 }
+
+
 
 
 
