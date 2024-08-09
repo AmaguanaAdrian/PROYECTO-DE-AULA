@@ -87,12 +87,13 @@ public class AutorControlador {
     // Listar todos los autores
     public ArrayList<Autor> listarAutores() {
         ArrayList<Autor> listarAutores = new ArrayList<>();
-        String consultaSQL = "SELECT aut_nombres, aut_apellidos, aut_fechaNace FROM Autores;";
+        String consultaSQL = "SELECT aut_id, aut_nombres, aut_apellidos, aut_fechaNace FROM Autores;";
         try {
             ejecutar = connection.prepareStatement(consultaSQL);
             resultado = ejecutar.executeQuery();
             while (resultado.next()) {
                 Autor A = new Autor();
+                A.setIdAutor(resultado.getInt("aut_id"));
                 A.setNombres(resultado.getString("aut_nombres"));
                 A.setApellidos(resultado.getString("aut_apellidos"));
                 A.setFechaNace(resultado.getString("aut_fechaNace"));

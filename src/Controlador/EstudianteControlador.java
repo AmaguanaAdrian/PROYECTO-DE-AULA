@@ -83,5 +83,25 @@ public class EstudianteControlador {
         
         
     }
+    public int buscarIdEstudiante(String cedula) {
+        try {
+            String consultaSQL = "select est_id from usuarios u, estudiantes e where u.usu_id=e.usu_id and usu_cedula='"+cedula+"' and usu_rol=1;";
+            
+            ejecutar = (java.sql.PreparedStatement) connection.prepareCall(consultaSQL);
+            resultado = ejecutar.executeQuery();
+            if (resultado.next()) {
+                int idEstudiante = resultado.getInt("est_id");
+                return idEstudiante;
+            } else {
+                System.out.println("Ingrese una cédula valida");
+                ejecutar.close();
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error2, comuniquese con el administrador" + e);
+        }
+        return 0;
+    }
+    
 
 }

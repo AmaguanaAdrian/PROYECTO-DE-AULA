@@ -54,7 +54,7 @@ CREATE TABLE Libros(
   lib_titulo VARCHAR(80) NOT NULL,
   lib_fechaPublicado DATE NOT NULL,
   lib_isbn VARCHAR(60) NOT NULL UNIQUE,
-  eje_numEjemplares int NOT NULL,
+  lib_numEjemplares INT NOT NULL,
   aut_id INT NOT NULL,
   gen_id INT NOT NULL,
   FOREIGN KEY (aut_id) REFERENCES Autores(aut_id),

@@ -1,4 +1,5 @@
 package vista;
+
 import Controlador.AutorControlador;
 import Controlador.GeneroControlador;
 import Controlador.LibrosControlador;
@@ -9,7 +10,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import modelo.Autor;
 import modelo.Genero;
-import modelo.Libros;
+import modelo.Libro;
 
 /**
  *
@@ -46,173 +47,324 @@ public class mainLibros {
                     System.out.println("Entrada no válida. Por favor, ingrese un número.");
                 }
             }
+            switch (op1) {
+                case 1 -> {
+                    boolean datosCorrectos = true;
+                    int op = 0;
+                    String nombreAutor, apellidosAutor, fechaNaceAutor, titulo, fechaPublicado, isbn;
+                    int autorId, generoId, numeroEjemplares;
 
-            if (op1 == 1) {
-                // Insertar autor
-                boolean datosCorrectos = true;
-                String nombreAutor, apellidosAutor, fechaNaceAutor;
-
-                while (true) {
-                    System.out.println("Ingrese el nombre del autor:");
-                    nombreAutor = br.readLine();
-                    if (Funciones.isValidText(nombreAutor)) {
-                        break;
-                    } else {
-                        System.out.println("Nombre no puede estar vacío ni contener caracteres especiales. ¿Volver a intentarlo? (si/no):");
-                        if (!es.nextLine().equalsIgnoreCase("si")) {
-                            datosCorrectos = false;
-                            break;
-                        }
+                    AutorControlador autC = new AutorControlador();
+                    ArrayList<Autor> listarAutores = autC.listarAutores();
+                    System.out.println("  Lista de Autores");
+                    for (Autor A : listarAutores) {
+                        System.out.println(A.getIdAutor() + " - " + A.getNombres() + " " + A.getApellidos());
                     }
-                }
 
-                if (!datosCorrectos) {
-                    continue;
-                }
+                    System.out.println("0. Registrar otro Autor");
+                    System.out.println("Ingrese el número del Autor:");
+                    op = es.nextInt();
+                    es.nextLine(); // Consume el salto de línea
 
-                while (true) {
-                    System.out.println("Ingrese los apellidos del autor:");
-                    apellidosAutor = br.readLine();
-                    if (Funciones.isValidText(apellidosAutor)) {
-                        break;
-                    } else {
-                        System.out.println("Apellidos no pueden estar vacíos ni contener caracteres especiales. ¿Volver a intentarlo? (si/no):");
-                        if (!es.nextLine().equalsIgnoreCase("si")) {
-                            datosCorrectos = false;
-                            break;
+                    if (op == 0) {
+                        while (true) {
+                            System.out.print("Ingrese el nombre del autor: ");
+                            nombreAutor = br.readLine();
+                            if (Funciones.isValidText(nombreAutor)) {
+                                break;
+                            } else {
+                                System.out.print("Nombre no puede estar vacío ni contener caracteres especiales. ¿Volver a intentarlo? (si/no): ");
+                                if (!es.nextLine().equalsIgnoreCase("si")) {
+                                    datosCorrectos = false;
+                                    break;
+                                }
+                            }
                         }
-                    }
-                }
 
-                if (!datosCorrectos) {
-                    continue;
-                }
-
-                while (true) {
-                    System.out.println("Ingrese la fecha de nacimiento del autor (AAAA-MM-DD):");
-                    fechaNaceAutor = es.nextLine();
-                    if (Funciones.isValidDate(fechaNaceAutor)) {
-                        break;
-                    } else {
-                        System.out.println("Fecha no válida. ¿Volver a intentarlo? (si/no):");
-                        if (!es.nextLine().equalsIgnoreCase("si")) {
-                            datosCorrectos = false;
-                            break;
+                        if (!datosCorrectos) {
+                            continue;
                         }
-                    }
-                }
 
-                if (!datosCorrectos) {
-                    continue;
-                }
-
-                // Crear autor y obtener su ID
-                Autor nuevoAutor = new Autor(fechaNaceAutor, nombreAutor, apellidosAutor);
-                int autorId = autorControlador.crearAutorYObtenerId(nuevoAutor);
-                if (autorId == -1) {
-                    System.out.println("Error al crear el autor. No se puede proceder a ingresar el libro.");
-                    continue;
-                }
-
-                // Insertar libro
-                String titulo, fechaPublicado, isbn;
-                int generoId;
-
-                while (true) {
-                    System.out.println("Ingrese el título del libro:");
-                    titulo = br.readLine();
-                    if (Funciones.isValidText(titulo)) {
-                        break;
-                    } else {
-                        System.out.println("Título no puede estar vacío ni contener caracteres especiales. ¿Volver a intentarlo? (si/no):");
-                        if (!es.nextLine().equalsIgnoreCase("si")) {
-                            datosCorrectos = false;
-                            break;
+                        while (true) {
+                            System.out.print("Ingrese los apellidos del autor: ");
+                            apellidosAutor = br.readLine();
+                            if (Funciones.isValidText(apellidosAutor)) {
+                                break;
+                            } else {
+                                System.out.print("Apellidos no pueden estar vacíos ni contener caracteres especiales. ¿Volver a intentarlo? (si/no): ");
+                                if (!es.nextLine().equalsIgnoreCase("si")) {
+                                    datosCorrectos = false;
+                                    break;
+                                }
+                            }
                         }
-                    }
-                }
 
-                if (!datosCorrectos) {
-                    continue;
-                }
-
-                while (true) {
-                    System.out.println("Ingrese la fecha de publicación del libro (AAAA-MM-DD):");
-                    fechaPublicado = es.nextLine();
-                    if (Funciones.isValidDate(fechaPublicado)) {
-                        break;
-                    } else {
-                        System.out.println("Fecha no válida. ¿Volver a intentarlo? (si/no):");
-                        if (!es.nextLine().equalsIgnoreCase("si")) {
-                            datosCorrectos = false;
-                            break;
+                        if (!datosCorrectos) {
+                            continue;
                         }
-                    }
-                }
 
-                if (!datosCorrectos) {
-                    continue;
-                }
-
-                while (true) {
-                    System.out.println("Ingrese el ISBN del libro:");
-                    isbn = br.readLine();
-                    if (Funciones.isValidISBN(isbn)) {
-                        break;
-                    } else {
-                        System.out.println("ISBN no puede estar vacío y debe tener 10 o 13 dígitos. ¿Volver a intentarlo? (si/no):");
-                        if (!es.nextLine().equalsIgnoreCase("si")) {
-                            datosCorrectos = false;
-                            break;
+                        while (true) {
+                            System.out.print("Ingrese la fecha de nacimiento del autor (AAAA-MM-DD): ");
+                            fechaNaceAutor = es.nextLine();
+                            if (Funciones.isValidDate(fechaNaceAutor)) {
+                                break;
+                            } else {
+                                System.out.print("Fecha no válida. ¿Volver a intentarlo? (si/no): ");
+                                if (!es.nextLine().equalsIgnoreCase("si")) {
+                                    datosCorrectos = false;
+                                    break;
+                                }
+                            }
                         }
+
+                        if (!datosCorrectos) {
+                            continue;
+                        }
+
+                        // Crear autor y obtener su ID
+                        Autor nuevoAutor = new Autor(fechaNaceAutor, nombreAutor, apellidosAutor);
+                        autorId = autorControlador.crearAutorYObtenerId(nuevoAutor);
+                        if (autorId == -1) {
+                            System.out.print("Error al crear el autor. No se puede proceder a ingresar el libro.");
+                            continue;
+                        }
+
+                    } else {
+                        Autor Au = new Autor();
+                        Au.setIdAutor(op);
                     }
-                }
-
-                if (!datosCorrectos) {
-                    continue;
-                }
-
-                // Mostrar lista de géneros
-                ArrayList<Genero> listaGeneros = generoControlador.listarGeneros();
-                System.out.println("  Lista de géneros:");
-                for (Genero g : listaGeneros) {
-                    System.out.println(g.getId() + " - " + g.getNombreGenero());
-                }
-                 while (true) {
-                    System.out.println("Ingrese el ID del género:");
-                    try {
-                        generoId = Integer.parseInt(es.nextLine());
-                        if (generoControlador.buscarGeneroPorId(generoId) != null) {
+//                    String titulo, fechaPublicado, isbn;
+//                    int generoId, numeroEjemplares;
+                    while (true) {
+                        System.out.println("Ingrese el título del libro:");
+                        titulo = br.readLine();
+                        if (Funciones.isValidText(titulo)) {
                             break;
                         } else {
-                            System.out.println("ID de género no válido. ¿Volver a intentarlo? (si/no):");
-                            if (!es.nextLine().equalsIgnoreCase("si")) {
+                            System.out.println("Título no puede estar vacío ni contener caracteres especiales. ¿Volver a intentarlo? (si/no):");
+                            String respuesta = es.nextLine();
+                            if (!respuesta.equalsIgnoreCase("si")) {
                                 datosCorrectos = false;
                                 break;
                             }
                         }
-                    } catch (NumberFormatException e) {
-                        System.out.println("Entrada no válida. Por favor, ingrese un número.");
+                    }
+
+                    if (!datosCorrectos) {
+                        continue;
+                    }
+
+                    while (true) {
+                        System.out.print("Ingrese la fecha de publicación del libro (AAAA-MM-DD): ");
+                        fechaPublicado = es.nextLine();
+                        if (Funciones.isValidDate(fechaPublicado)) {
+                            break;
+                        } else {
+                            System.out.print("Fecha no válida. ¿Volver a intentarlo? (si/no): ");
+                            String respuesta = es.nextLine();
+                            if (!respuesta.equalsIgnoreCase("si")) {
+                                datosCorrectos = false;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!datosCorrectos) {
+                        continue;
+                    }
+
+                    while (true) {
+                        System.out.print("Ingrese el ISBN del libro: ");
+                        isbn = br.readLine();
+                        if (Funciones.isValidISBN(isbn)) {
+                            break;
+                        } else {
+                            System.out.print("ISBN no puede estar vacío y debe tener 10 o 13 dígitos. ¿Volver a intentarlo? (si/no): ");
+                            String respuesta = es.nextLine();
+                            if (!respuesta.equalsIgnoreCase("si")) {
+                                datosCorrectos = false;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!datosCorrectos) {
+                        continue;
+                    }
+
+                    while (true) {
+                        System.out.print("Ingrese el número de ejemplares del libro: ");
+                        try {
+                            numeroEjemplares = Integer.parseInt(br.readLine());
+                            if (numeroEjemplares > 0) {
+                                break;
+                            } else {
+                                System.out.print("Número de ejemplares debe ser mayor que 0. ¿Volver a intentarlo? (si/no): ");
+                                String respuesta = es.nextLine();
+                                if (!respuesta.equalsIgnoreCase("si")) {
+                                    datosCorrectos = false;
+                                    break;
+                                }
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("Entrada no válida. Por favor, ingrese un número.");
+                        }
+                    }
+
+                    if (!datosCorrectos) {
+                        continue;
+                    }
+
+//                  Mostrar lista de géneros
+                    ArrayList<Genero> listaGeneros = generoControlador.listarGeneros();
+                    System.out.println("  Lista de géneros:");
+                    for (Genero g : listaGeneros) {
+                        System.out.println(g.getId() + " - " + g.getNombreGenero());
+                    }
+
+                    while (true) {
+                        System.out.println("0.  Ingresar otro genero");
+                        System.out.print("Ingrese el ID del género:");
+                        try {
+                            generoId = Integer.parseInt(es.nextLine());
+                            if (generoId == 0) {
+                                System.out.print("Ingrese el nombre del génnero: ");
+                                String nombreGenero = es.nextLine();
+
+                                Genero nuevoGenero = new Genero(nombreGenero);
+
+                                generoControlador.crearGenero(nuevoGenero);
+                                System.out.println("Género creado con éxito!");
+                                listaGeneros = generoControlador.listarGeneros();
+                                System.out.println("  Lista de géneros actualizada:");
+                                for (Genero g : listaGeneros) {
+                                    System.out.println(g.getId() + " - " + g.getNombreGenero());
+                                }
+                            } else if (generoControlador.buscarGeneroPorId(generoId) != null) {
+                                break;
+                            } else {
+                                System.out.print("ID de género no válido. ¿Volver a intentarlo? (si/no):");
+                                if (!es.nextLine().equalsIgnoreCase("si")) {
+                                    datosCorrectos = false;
+                                    break;
+                                }
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("Entrada no válida. Por favor, ingrese un número.");
+                        }
+                    }
+                    if (!datosCorrectos) {
+                        continue;
+                    }
+//                    
+
+                    Libro nuevoLibro = new Libro();
+                    libroControlador.crearLibro(nuevoLibro, op, generoId);
+
+                }
+                case 2 -> {
+//            } else if (op1 == 2) {
+//                case
+                    // Mostrar lista de libros
+                    ArrayList<Libro> listaLibros = libroControlador.listarLibros();
+                    for (Libro l : listaLibros) {
+                        System.out.println(l.toString());
                     }
                 }
-
-                if (!datosCorrectos) {
-                    continue;
-                }
-
-                Libros nuevoLibro = new Libros(titulo, fechaPublicado, isbn);
-                libroControlador.crearLibro(nuevoLibro, autorId, generoId);
-//<<<<<<< HEAD
-////<<<<<<< HEAD
+//            } else if (op1 == 3) {
+//                // Actualizar información de un libro
+//                String isbn, nuevoTitulo, nuevaFechaPublicado;
+//                boolean datosCorrectos = true;
 //
-//            } else if (op1 == 2) {
-//                // Mostrar lista de libros
-//                ArrayList<Libros> listaLibros = libroControlador.listarLibros();
-//                for (Libros l : listaLibros) {
-//                    System.out.println(l.imprimir());
+//                while (true) {
+//                    System.out.println("Ingrese el ISBN del libro que desea actualizar:");
+//                    isbn = es.nextLine();
+//                    if (isbn.matches("\\d{13}")) {
+//                        break;
+//                    } else {
+//                        System.out.println("ISBN debe contener exactamente 13 dígitos. ¿Volver a intentarlo? (si/no):");
+//                        if (!es.nextLine().equalsIgnoreCase("si")) {
+//                            datosCorrectos = false;
+//                            break;
+//                        }
+//                    }
 //                }
 //
-//            } else if (op1 == 3) {
+//                if (!datosCorrectos) {
+//                    continue;
+//                }
+//
+//                Libro libroExistente = libroControlador.buscarDatosLibro(isbn);
+//                if (libroExistente.getIdLibro() != 0) {
+//                    while (true) {
+//                        System.out.println("Ingrese el nuevo título del libro:");
+//                        nuevoTitulo = es.nextLine();
+//                        if (!nuevoTitulo.isEmpty() && !nuevoTitulo.matches(".*\\d.*")) {
+//                            break;
+//                        } else {
+//                            System.out.println("Título no puede estar vacío ni contener números. ¿Volver a intentarlo? (si/no):");
+//                            if (!es.nextLine().equalsIgnoreCase("si")) {
+//                                datosCorrectos = false;
+//                                break;
+//                            }
+//                        }
+//                    }
+//
+//                    if (!datosCorrectos) {
+//                        continue;
+//                    }
+//
+//                    while (true) {
+//                        System.out.println("Ingrese la nueva fecha de publicación (YYYY-MM-DD):");
+//                        nuevaFechaPublicado = es.nextLine();
+//                        if (nuevaFechaPublicado.matches("\\d{4}-\\d{2}-\\d{2}")) {
+//                            break;
+//                        } else {
+//                            System.out.println("Fecha no válida. ¿Volver a intentarlo? (si/no):");
+//                            if (!es.nextLine().equalsIgnoreCase("si")) {
+//                                datosCorrectos = false;
+//                                break;
+//                            }
+//                        }
+//                    }
+//
+//                    if (!datosCorrectos) {
+//                        continue;
+//                    }
+//
+//                    Libro actualizadoLibro = new Libro(libroExistente.getIdLibro(), nuevoTitulo, nuevaFechaPublicado, isbn);
+//                    libroControlador.actualizarLibro(actualizadoLibro, isbn);
+//                } else {
+//                    System.out.println("Libro no encontrado.");
+//                }
+//
+//            } else if (op1 == 4) {
+//                // Eliminar libro
+//                String isbn;
+//                boolean datosCorrectos = true;
+//                while (true) {
+//                    System.out.println("Ingrese el ISBN del libro que desea eliminar:");
+//                    isbn = es.nextLine();
+//                    if (isbn.matches("\\d{13}")) {
+//                        break;
+//                    } else {
+//                        System.out.println("ISBN debe contener exactamente 13 dígitos. ¿Volver a intentarlo? (si/no):");
+//                        if (!es.nextLine().equalsIgnoreCase("si")) {
+//                            datosCorrectos = false;
+//                            break;
+//                        }
+//                    }
+//                }
+//
+//                if (!datosCorrectos) {
+//                    continue;
+//                }
+//
+//                libroControlador.eliminarLibro(isbn);
+//
+//            } else if (op1 == 0) {
+//                // Regresar al menú principal
+//                perfiles.perfilBliotecario(args);// Llama al menú principal del bibliotecario//            } else if (op1 == 3) {
 //                // Actualizar información de un libro
 //                String isbn, nuevoTitulo, nuevaFechaPublicado;
 //                boolean datosCorrectos = true;
@@ -306,116 +458,105 @@ public class mainLibros {
 //            } else if (op1 == 0) {
 //                // Regresar al menú principal
 //                perfiles.perfilBliotecario(args);// Llama al menú principal del bibliotecario
-//=======
-//>>>>>>> 6e6b4f98520a9e933d1205c30ce3f0126d0449cd
-//=======
 
-//            } else if (op1 == 2) {
-                // Mostrar lista de libros
-//                ArrayList<Libros> listaLibros = libroControlador.listarLibros();
-//                for (Libros l : listaLibros) {
-////                    System.out.println(l.imprimir());
-//                }
-
-            } else if (op1 == 3) {
-                // Actualizar información de un libro
-                String isbn, nuevoTitulo, nuevaFechaPublicado;
-                boolean datosCorrectos = true;
-
-                while (true) {
-                    System.out.println("Ingrese el ISBN del libro que desea actualizar:");
-                    isbn = es.nextLine();
-                    if (isbn.matches("\\d{13}")) {
-                        break;
-                    } else {
-                        System.out.println("ISBN debe contener exactamente 13 dígitos. ¿Volver a intentarlo? (si/no):");
-                        if (!es.nextLine().equalsIgnoreCase("si")) {
-                            datosCorrectos = false;
-                            break;
-                        }
-                    }
-                }
-
-                if (!datosCorrectos) {
-                    continue;
-                }
-
-                Libros libroExistente = libroControlador.buscarDatosLibro(isbn);
-                if (libroExistente.getIdLibro() != 0) {
+                case 3 -> {
+                    String isbn, nuevoTitulo, nuevaFechaPublicado;
+                    boolean datosCorrectos = true;
                     while (true) {
-                        System.out.println("Ingrese el nuevo título del libro:");
-                        nuevoTitulo = es.nextLine();
-                        if (!nuevoTitulo.isEmpty() && !nuevoTitulo.matches(".*\\d.*")) {
+                        System.out.println("Ingrese el ISBN del libro que desea actualizar:");
+                        isbn = es.nextLine();
+                        if (isbn.matches("\\d{13}")) {
                             break;
                         } else {
-                            System.out.println("Título no puede estar vacío ni contener números. ¿Volver a intentarlo? (si/no):");
+                            System.out.println("ISBN debe contener exactamente 13 dígitos. ¿Volver a intentarlo? (si/no):");
                             if (!es.nextLine().equalsIgnoreCase("si")) {
                                 datosCorrectos = false;
                                 break;
                             }
                         }
                     }
-
                     if (!datosCorrectos) {
                         continue;
                     }
-
-                    while (true) {
-                        System.out.println("Ingrese la nueva fecha de publicación (YYYY-MM-DD):");
-                        nuevaFechaPublicado = es.nextLine();
-                        if (nuevaFechaPublicado.matches("\\d{4}-\\d{2}-\\d{2}")) {
-                            break;
-                        } else {
-                            System.out.println("Fecha no válida. ¿Volver a intentarlo? (si/no):");
-                            if (!es.nextLine().equalsIgnoreCase("si")) {
-                                datosCorrectos = false;
+                    Libro libroExistente = libroControlador.buscarDatosLibro(isbn);
+                    if (libroExistente.getIdLibro() != 0) {
+                        while (true) {
+                            System.out.println("Ingrese el nuevo título del libro:");
+                            nuevoTitulo = es.nextLine();
+                            if (!nuevoTitulo.isEmpty() && !nuevoTitulo.matches(".*\\d.*")) {
                                 break;
+                            } else {
+                                System.out.println("Título no puede estar vacío ni contener números. ¿Volver a intentarlo? (si/no):");
+                                if (!es.nextLine().equalsIgnoreCase("si")) {
+                                    datosCorrectos = false;
+                                    break;
+                                }
                             }
                         }
-                    }
 
-                    if (!datosCorrectos) {
-                        continue;
-                    }
+                        if (!datosCorrectos) {
+                            continue;
+                        }
 
-//                    Libros actualizadoLibro = new Libros(libroExistente.getIdLibro(), nuevoTitulo, nuevaFechaPublicado, isbn);
+                        while (true) {
+                            System.out.println("Ingrese la nueva fecha de publicación (YYYY-MM-DD):");
+                            nuevaFechaPublicado = es.nextLine();
+                            if (nuevaFechaPublicado.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                                break;
+                            } else {
+                                System.out.println("Fecha no válida. ¿Volver a intentarlo? (si/no):");
+                                if (!es.nextLine().equalsIgnoreCase("si")) {
+                                    datosCorrectos = false;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (!datosCorrectos) {
+                            continue;
+                        }
+
+//                    Libro actualizadoLibro = new Libro(libroExistente.getIdLibro(), nuevoTitulo, nuevaFechaPublicado, isbn);
 //                    libroControlador.actualizarLibro(actualizadoLibro, isbn);
-                } else {
-                    System.out.println("Libro no encontrado.");
-                }
-
-            } else if (op1 == 4) {
-                // Eliminar libro
-                String isbn;
-                boolean datosCorrectos = true;
-                while (true) {
-                    System.out.println("Ingrese el ISBN del libro que desea eliminar:");
-                    isbn = es.nextLine();
-                    if (isbn.matches("\\d{13}")) {
-                        break;
                     } else {
-                        System.out.println("ISBN debe contener exactamente 13 dígitos. ¿Volver a intentarlo? (si/no):");
-                        if (!es.nextLine().equalsIgnoreCase("si")) {
-                            datosCorrectos = false;
-                            break;
-                        }
+                        System.out.println("Libro no encontrado.");
                     }
                 }
-
-                if (!datosCorrectos) {
-                    continue;
-                }
-
+                case 4 -> {
+                    // Eliminar libro
+                    String isbn;
+                    boolean datosCorrectos = true;
+                    while (true) {
+                        System.out.println("Ingrese el ISBN del libro que desea eliminar:");
+                        isbn = es.nextLine();
+                        if (isbn.matches("\\d{13}")) {
+                            break;
+                        } else {
+                            System.out.println("ISBN debe contener exactamente 13 dígitos. ¿Volver a intentarlo? (si/no):");
+                            if (!es.nextLine().equalsIgnoreCase("si")) {
+                                datosCorrectos = false;
+                                break;
+                            }
+                        }
+                    }
+                    if (!datosCorrectos) {
+                        continue;
+                    }
 //                libroControlador.eliminarLibro(isbn);
 
-            } else if (op1 == 0) {
-                // Regresar al menú principal
-                Main1.perfilBliotecario(args);// Llama al menú principal del bibliotecario
-//>>>>>>> parent of 744508a (Corrección de faltas)
+                }
+                case 0 -> // Regresar al menú principal
+                    Perfiles.perfilBliotecario(args);
+                // Llama al menú principal del bibliotecario
+                default -> {
+                }
             }
 
-        } while (op1 != 0);
+        } while (op1
+                != 0);
         menus.menuBiblio();
-        System.out.println("Saliendo al perfil ...");
+
+        System.out.println(
+                "Saliendo al perfil ...");
     }
 }

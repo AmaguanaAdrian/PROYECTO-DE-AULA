@@ -2,7 +2,7 @@ package Controlador;
 import com.mysql.jdbc.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import modelo.Libros;
+import modelo.Libro;
 import com.mysql.jdbc.PreparedStatement;
 /**
  *
@@ -19,15 +19,17 @@ public class LibrosControlador {
     }
 
     // Crear un nuevo libro
-    public void crearLibro(Libros libro, int autorId, int generoId) {
-        String consultaSQL = "INSERT INTO Libros (lib_titulo, lib_fechaPublicado, lib_isbn, aut_id, gen_id) VALUES (?, ?, ?, ?, ?);";
+    public void crearLibro(Libro libro, int op, int generoId) {
+        
+        String consultaSQL = "INSERT INTO Libros (lib_titulo, lib_fechaPublicado, lib_isbn,lib_numEjemplares, aut_id, gen_id) VALUES (?, ?, ?, ?, ?,?);";
         try {
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             ejecutar.setString(1, libro.getTitulo());
             ejecutar.setString(2, libro.getFechaPublicado());
             ejecutar.setString(3, libro.getIsbn());
-            ejecutar.setInt(4, autorId);
-            ejecutar.setInt(5, generoId);
+            ejecutar.setInt(4, libro.getNumEjemplares());
+            ejecutar.setInt(5, op);
+            ejecutar.setInt(6, generoId);
             int res = ejecutar.executeUpdate();
             if (res > 0) {
                 System.out.println("El libro ha sido creado con éxito");
@@ -37,13 +39,13 @@ public class LibrosControlador {
         } catch (Exception e) {
             System.out.println("ERROR al crear libro: " + e);
         } finally {
-            cerrarRecursos();
+//            cerrarRecursos();
         }
     }
 
     // Buscar libro por título
-    public Libros buscarDatosLibro(String titulo) {
-        Libros libro = new Libros();
+    public Libro buscarDatosLibro(String titulo) {
+        Libro libro = new Libro();
         String consultaSQL = "SELECT lib_titulo, lib_fechaPublicado, lib_isbn FROM Libros WHERE lib_titulo = ?;";
         try {
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
@@ -59,20 +61,20 @@ public class LibrosControlador {
         } catch (Exception e) {
             System.out.println("ERROR buscar libro: " + e);
         } finally {
-            cerrarRecursos();
+//            cerrarRecursos();
         }
         return libro;
     }
 
     // Listar todos los libros
-    public ArrayList<Libros> listarLibros() {
-        ArrayList<Libros> listarLibros = new ArrayList<>();
+    public ArrayList<Libro> listarLibros() {
+        ArrayList<Libro> listarLibros = new ArrayList<>();
         String consultaSQL = "SELECT lib_titulo, lib_fechaPublicado, lib_isbn FROM Libros;";
         try {
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             resultado = ejecutar.executeQuery();
             while (resultado.next()) {
-                Libros libro = new Libros();
+                Libro libro = new Libro();
                 libro.setTitulo(resultado.getString("lib_titulo"));
                 libro.setFechaPublicado(resultado.getString("lib_fechaPublicado"));
                 libro.setIsbn(resultado.getString("lib_isbn"));
@@ -81,21 +83,21 @@ public class LibrosControlador {
         } catch (Exception e) {
             System.out.println("ERROR listar libros: " + e);
         } finally {
-            cerrarRecursos();
+//            cerrarRecursos();
         }
         return listarLibros;
     }
 
     // Listar libros por título
-    public ArrayList<Libros> listarLibrosPorTitulo(String titulo) {
-        ArrayList<Libros> listarLibros = new ArrayList<>();
+    public ArrayList<Libro> listarLibrosPorTitulo(String titulo) {
+        ArrayList<Libro> listarLibros = new ArrayList<>();
         String consultaSQL = "SELECT lib_titulo, lib_fechaPublicado, lib_isbn FROM Libros WHERE lib_titulo = ?;";
         try {
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             ejecutar.setString(1, titulo);
             resultado = ejecutar.executeQuery();
             while (resultado.next()) {
-                Libros libro = new Libros();
+                Libro libro = new Libro();
                 libro.setTitulo(resultado.getString("lib_titulo"));
                 libro.setFechaPublicado(resultado.getString("lib_fechaPublicado"));
                 libro.setIsbn(resultado.getString("lib_isbn"));
@@ -104,22 +106,22 @@ public class LibrosControlador {
         } catch (Exception e) {
             System.out.println("ERROR listar libros: " + e);
         } finally {
-            cerrarRecursos();
+//            cerrarRecursos();
         }
         return listarLibros;
     }
 
     // Cerrar recursos
-    private void cerrarRecursos() {
-        try {
-            if (resultado != null) {
-                resultado.close();
-            }
-            if (ejecutar != null) {
-                ejecutar.close();
-            }
-        } catch (Exception e) {
-            System.out.println("ERROR al cerrar recursos: " + e);
-        }
-    }
+//    private void cerrarRecursos() {
+//        try {
+//            if (resultado != null) {
+//                resultado.close();
+//            }
+//            if (ejecutar != null) {
+//                ejecutar.close();
+//            }
+//        } catch (Exception e) {
+//            System.out.println("ERROR al cerrar recursos: " + e);
+//        }
+//    }
 }

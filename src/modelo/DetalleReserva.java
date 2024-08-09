@@ -5,7 +5,7 @@ package modelo;
  * @author
  */
 public class DetalleReserva  {
-    private Libros[] listaLibros = new Libros[4];
+    private Libro[] listaLibros = new Libro[4];
     private int idDetReserva;
 
     public DetalleReserva() {
@@ -15,11 +15,11 @@ public class DetalleReserva  {
         this.idDetReserva = idDetReserva;
     }
 
-    public Libros[] getListaLibros() {
+    public Libro[] getListaLibros() {
         return listaLibros;
     }
 
-    public void setListaLibros(Libros[] listaLibros) {
+    public void setListaLibros(Libro[] listaLibros) {
         this.listaLibros = listaLibros;
     }
     

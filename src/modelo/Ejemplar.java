@@ -4,39 +4,20 @@ package modelo;
  *
  * @author
  */
-public class Ejemplar extends Libros {
+public class Ejemplar extends Libro {
 
     private int idEjemplar;
     private String codigoEjemplar;
     private boolean estado;
-    private int numEjemplares;
 
     public Ejemplar() {
     }
 
-    public Ejemplar(String codigoEjemplar, boolean estado, int numEjemplares, int idLibro, String titulo, String fechaPublicado, String isbn) {
-        super(titulo, fechaPublicado, isbn);
+    // Constructor para crear un Ejemplar con información de libro   
+    public Ejemplar(String codigoEjemplar, boolean estado, int idLibro, String titulo, String fechaPublicado, String isbn, int numEjemplares) {
+        super(titulo, fechaPublicado, isbn, idLibro);
         this.codigoEjemplar = codigoEjemplar;
         this.estado = estado;
-        this.numEjemplares = numEjemplares;
-    }
-    
-
-    // Constructor completo para crear un Ejemplar con todos los datos
-    public Ejemplar(int idEjemplar, String codigoEjemplar, boolean estado, int numEjemplares) {
-        this.idEjemplar = idEjemplar;
-        this.codigoEjemplar = codigoEjemplar;
-        this.estado = estado;
-        this.numEjemplares = numEjemplares;
-    }
-
-    // Constructor para crear un Ejemplar con información de libro
-    public Ejemplar(int idEjemplar, String codigoEjemplar, boolean estado, int numEjemplares, int idLibro, String titulo, String fechaPublicado, String isbn) {
-        super(titulo, fechaPublicado, isbn);
-        this.idEjemplar = idEjemplar;
-        this.codigoEjemplar = codigoEjemplar;
-        this.estado = estado;
-        this.numEjemplares = numEjemplares;
     }
 
     public int getIdEjemplar() {
@@ -63,21 +44,11 @@ public class Ejemplar extends Libros {
         this.estado = estado;
     }
 
-    public int getNumEjemplares() {
-        return numEjemplares;
+    public String imprimir() {
+        return imprimir() + "\n"
+                + "ID Ejemplar: " + getIdEjemplar() + "\n"
+                + "Código Ejemplar: " + getCodigoEjemplar() + "\n"
+                + "ID Libro: " + getIdLibro() + "\n"
+                + "Estado: " + (isEstado() ? "Disponible" : "No Disponible");
     }
-
-    public void setNumEjemplares(int numEjemplares) {
-        this.numEjemplares = numEjemplares;
-    }
-
-//    @Override
-//    public String imprimir() {
-//        return super.imprimir() + "\n"
-//                + "ID Ejemplar: " + getIdEjemplar() + "\n"
-//                + "Código Ejemplar: " + getCodigoEjemplar() + "\n"
-//                + "ID Libro: " + getIdLibro() + "\n"
-//                + "Estado: " + (isEstado() ? "Disponible" : "No Disponible"
-//                + "Número de ejemplares disponibles;: "+ getNumEjemplares());
-//    }
 }

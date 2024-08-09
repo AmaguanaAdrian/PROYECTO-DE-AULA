@@ -14,14 +14,13 @@ import modelo.Reserva;
 import modelo.Usuario;
 import java.io.IOException;
 
-public class Main1 {
+public class Perfiles {
 
     public static void perfilBliotecario(String[] args) throws IOException {
 
         Scanner es = new Scanner(System.in);
         int i = 1;
 
-        OUTER:
         do {
             menus.menuBiblio();
             int op1 = es.nextInt();
@@ -64,32 +63,24 @@ public class Main1 {
                     bc.crearBibliotecario(b);
                 }
                 case 2 -> {
-                    Reserva r = new Reserva();
-                    System.out.println("Ingrese la fecha de retiro (yyyy-MM-dd):");
-                    r.setFechaRetiro(es.nextLine());
-                    System.out.println("Ingrese la fecha de reserva (yyyy-MM-dd):");
-                    r.setFechaReserva(es.nextLine());
-                    System.out.println("Ingrese la fecha de devolución (yyyy-MM-dd):");
-                    r.setFechaDevolucion(es.nextLine());
-                    ReservaControlador rc = new ReservaControlador();
-                    rc.crearReserva(r);
+                    //ver si se elimina esta opcion o se le cambia po buscar reservas que esten pendientes
                 }
                 case 3 -> {
-                    System.out.println("Ingrese los datos personales del estudiante:");
+                    System.out.println("Ingrese los datos personales del estudiante");
                     Usuario u = new Usuario();
-                    System.out.println("Ingrese sus Nombres:");
+                    System.out.print("Ingrese sus Nombres: ");
                     u.setNombres(es.nextLine());
-                    System.out.println("Ingrese sus Apellidos:");
+                    System.out.print("Ingrese sus Apellidos: ");
                     u.setApellidos(es.nextLine());
-                    System.out.println("Ingrese su número de cédula:");
+                    System.out.print("Ingrese su número de cédula: ");
                     u.setCedula(es.next());
-                    System.out.println("Ingrese una Clave:");
+                    System.out.print("Ingrese una Clave: ");
                     u.setClave(es.next());
-                    System.out.println("Ingrese una Dirección:");
+                    System.out.print("Ingrese una Dirección: ");
                     u.setDireccion(es.next());
-                    System.out.println("Ingrese su Correo Electrónico Institucional:");
+                    System.out.print("Ingrese su Correo Electrónico Institucional: ");
                     u.setCorreoInstitucional(es.next());
-                    System.out.println("Ingrese su número Telefónico:");
+                    System.out.print("Ingrese su número Telefónico: ");
                     u.setTelefono(es.next());
                     es.nextLine(); // Consumir el salto de línea pendiente
                     u.setRol(1);
@@ -98,25 +89,24 @@ public class Main1 {
                     usuC.crearUsuario(u);
                     // OBTENER ID DE LA SUPER CLASE
                     int idUsuario = usuC.buscarIdUsuario(u.getCedula());
-                    System.out.println("-------------------" + idUsuario);
-                    System.out.println("Ingrese los siguientes datos de estudiante");
+//                    System.out.println("-------------------" + idUsuario);
+//                    System.out.println("Ingrese los siguientes datos de estudiante");
                     Estudiante est = new Estudiante();
-                    System.out.println("Ingrese la carrera que está cursando:");
+                    System.out.print("Ingrese la carrera que está cursando: ");
                     est.setCarreraCursando(es.next());
-                    System.out.println("Ingrese número de matrícula:");
+                    System.out.print("Ingrese número de matrícula: ");
                     est.setNumMatricula(es.next());
-                    System.out.println("Ingrese el nivel que esta cursando actualmente:");
+                    System.out.print("Ingrese el nivel que esta cursando actualmente: ");
                     est.setNivelCursando(es.nextInt());
                     est.setIdUsuario(idUsuario);
                     EstudianteControlador estC = new EstudianteControlador();
                     estC.crearEstudiante(est);
-                    break OUTER;
+                    break;
                 }
-                case 4 -> // Llama al Main1 de la clase mainLibros
+                case 4 -> // Llama al Perfiles de la clase mainLibros
                     mainLibros.main(null);
-                case 5 -> // Llama al Main1 de la clase mainGenero
+                case 5 -> // Llama al Perfiles de la clase mainGenero
                     mainGenero.main(null);
-//<<<<<<< HEAD:src/vista/perfiles.java
                 case 6 -> {
                     do {
                         AutorControlador AutorControlador = new AutorControlador();
@@ -147,24 +137,24 @@ public class Main1 {
                                 // Actualizar información de un Autor
                                 System.out.println("Ingrese el nombre del autor que desea actualizar:");
                                 String nombre = es.nextLine();
-//                                String AutorExistente = AutorControlador.buscarAutor(nombre);
-//                                if (AutorExistente == null) {
+                                Autor AutorExistente = AutorControlador.buscarDatosAutor(nombre);
+                                if (AutorExistente == null) {
                                     System.out.println("Autor no encontrado.");
-//                                } else {
-//                                    System.out.println("Ingrese el nombre del autor a actualizar:");
-//                                    String nuevoNombre = es.nextLine();
-//
-//                                    System.out.println("Ingrese el apellido del autor a actualizar:");
-//                                    String nuevoApellido = es.nextLine();
-//
-//                                    System.out.println("Ingrese la nueva fecha de nacimiento (YYYY-MM-DD):");
-//                                    String nuevaFechaNace = es.nextLine();
-//
-//                                    Autor AutActualizado = new Autor(nuevaFechaNace, nuevoNombre, nuevoApellido);
-////                                    AutorControlador.actualizarAutor(AutActualizado, AutorExistente);
-//                                }
-//                            }
-//                            case 4 -> {
+                                } else {
+                                    System.out.println("Ingrese el nombre del autor a actualizar:");
+                                    String nuevoNombre = es.nextLine();
+
+                                    System.out.println("Ingrese el apellido del autor a actualizar:");
+                                    String nuevoApellido = es.nextLine();
+
+                                    System.out.println("Ingrese la nueva fecha de nacimiento (YYYY-MM-DD):");
+                                    String nuevaFechaNace = es.nextLine();
+
+                                    Autor AutActualizado = new Autor(nuevaFechaNace, nuevoNombre, nuevoApellido);
+//                                    AutorControlador.actualizarAutor(AutActualizado, AutorExistente);
+                                }
+                            }
+                            case 4 -> {
                                 // Eliminar Autor
                                 System.out.println("Ingrese el nombre del autor que desea eliminar:");
 //                                String nombre = es.nextLine();
@@ -180,78 +170,9 @@ public class Main1 {
                     } while (op1 != 0);
 
                 }
-//<<<<<<< HEAD:src/vista/perfiles.java
                 case 7 -> { // Llama al perfiles de la clase mainGenero
-//=======
-//                case 6 -> {
-//                    do {
-//                        AutorControlador AutorControlador = new AutorControlador();
-//                        menus.menuAutores();
-//
-//                        op1 = es.nextInt();
-//                        es.nextLine();
-//                        switch (op1) {
-//                            case 1 -> {
-//                                // Insertar Autor
-//                                System.out.println("Ingrese el nombre del autor");
-//                                String nombre = es.nextLine();
-//                                System.out.println("Ingrese el apellido del autor:");
-//                                String apellido = es.nextLine();
-//                                System.out.println("Ingrese la fecha de naciemiento (YYYY-MM-DD :");
-//                                String fechaNace = es.nextLine();
-//                                Autor A = new Autor(fechaNace, nombre, apellido);
-//                                AutorControlador.crearAutor(A);
-//                            }
-//                            case 2 -> {
-//                                // Mostrar lista de autores
-//                                ArrayList<Autor> listarAutores = AutorControlador.listarAutores();
-//                                for (Autor A : listarAutores) {
-//                                    System.out.println(A.imprimir());
-//                                }
-//                            }
-//                            case 3 -> {
-//                                // Actualizar información de un Autor
-//                                System.out.println("Ingrese el nombre del autor que desea actualizar:");
-//                                String nombre = es.nextLine();
-//                                String AutorExistente = AutorControlador.buscarDatosAutor(nombre);
-//                                if (AutorExistente == null) {
-//                                    System.out.println("Autor no encontrado.");
-//                                } else {
-//                                    System.out.println("Ingrese el nombre del autor a actualizar:");
-//                                    String nuevoNombre = es.nextLine();
-//
-//                                    System.out.println("Ingrese el apellido del autor a actualizar:");
-//                                    String nuevoApellido = es.nextLine();
-//
-//                                    System.out.println("Ingrese la nueva fecha de nacimiento (YYYY-MM-DD):");
-//                                    String nuevaFechaNace = es.nextLine();
-//
-//                                    Autor AutActualizado = new Autor(nuevaFechaNace, nuevoNombre, nuevoApellido);
-//                                    AutorControlador.actualizarAutor(AutActualizado, AutorExistente);
-//                                }
-//                            }
-//                            case 4 -> {
-//                                // Eliminar Autor
-//                                System.out.println("Ingrese el nombre del autor que desea eliminar:");
-//                                String nombre = es.nextLine();
-//                                AutorControlador.eliminarAutor(nombre);
-//                            }
-//                            case 0 -> {
-//                                System.out.println("Saliendo...");
-//                                return;
-//                            }
-//                            default ->
-//                                System.out.println("Opción no válida, por favor elija una opción entre 0 y 4.");
-//                        }
-//                    } while (op1 != 0);
-//
-////                }
-//                case 7 -> { // Llama al Main1 de la clase mainGenero
-////>>>>>>> 6e6b4f98520a9e933d1205c30ce3f0126d0449cd:src/vista/Main1.java
-//=======
-//                case 7 -> { // Llama al Main1 de la clase mainGenero
-//>>>>>>> parent of 744508a (Corrección de faltas):src/vista/Main1.java
-                    mainEjemplar.main(null);
+//                
+//                    mainEjemplar.main(null);
                 }
                 case 0 -> {
                     return;
@@ -332,16 +253,37 @@ public class Main1 {
         } while (true);
 
     }
+
     public static void perfilEstudiante(String[] args) {
 
         Scanner es = new Scanner(System.in);
 //        int i = 1;
-        OUTER:
+//        OUTER:
         do {
             menus.menuEstudiante();
             int op = es.nextInt();
             switch (op) {
                 case 1 -> {
+
+                    
+                    
+                    EstudianteControlador estC = new EstudianteControlador();
+                    System.out.print("Ingrese la cédula para registrar la reserva: ");
+                    String cedula = es.next();
+                    int idEstudiante = estC.buscarIdEstudiante(cedula);
+                    es.nextLine();
+                    Reserva r = new Reserva();
+                    System.out.print("Ingrese la fecha de retiro (yyyy-MM-dd): ");
+                    r.setFechaRetiro(es.nextLine());
+//                    System.out.println("Ingrese la fecha de reserva (yyyy-MM-dd):");
+//                    r.setFechaReserva(es.nextLine());
+                    System.out.print("Ingrese la fecha de devolución (yyyy-MM-dd):");
+                    r.setFechaDevolucion(es.nextLine());
+
+                    r.setIdEstudiante(idEstudiante);
+                    ReservaControlador rc = new ReservaControlador();
+                    rc.crearReserva(r, idEstudiante);
+   
                     //AQUI VA LO DE LA RESERVA
                 }
                 case 2 -> {
@@ -355,8 +297,8 @@ public class Main1 {
                         case 3 -> {
                         }
                         case 0 -> {
-                            Main1.perfilEstudiante(args);
-                            break OUTER;
+                            Perfiles.perfilEstudiante(args);
+                            break;
                         }
                         default -> {
                             System.out.println("Ingrese una opción valida");

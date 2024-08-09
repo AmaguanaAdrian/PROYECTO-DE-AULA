@@ -1,21 +1,26 @@
 package modelo;
+
 /**
  *
  * @author
  */
-public class Libros {
+public class Libro {
+
     private int idLibro;
     private String titulo;
     private String fechaPublicado;
     private String isbn;
+    private int numEjemplares;
 
-    public Libros() {
+    public Libro() {
     }
 
-    public Libros(String titulo, String fechaPublicado, String isbn) {
+    public Libro(String titulo, String fechaPublicado, String isbn, int idLibro) {
+        this.idLibro = idLibro;
         this.titulo = titulo;
         this.fechaPublicado = fechaPublicado;
         this.isbn = isbn;
+        this.numEjemplares = numEjemplares;
     }
 
     public int getIdLibro() {
@@ -50,13 +55,21 @@ public class Libros {
         this.isbn = isbn;
     }
 
+    public int getNumEjemplares() {
+        return numEjemplares;
+    }
+
+    public void setNumEjemplares(int numEjemplares) {
+        this.numEjemplares = numEjemplares;
+    }
+
     @Override
     public String toString() {
-        return "Libros{" +
-                "idLibro=" + idLibro +
-                ", titulo='" + titulo + '\'' +
-                ", fechaPublicado='" + fechaPublicado + '\'' +
-                ", isbn='" + isbn + '\'' +
-                '}';
+        return 
+                "idLibro= " + getIdLibro() +'\''
+                + ", titulo= '" + getTitulo() + '\''
+                + ", fechaPublicado= '" + getFechaPublicado() + '\''
+                + ", isbn= '" + getIsbn() + '\'';
     }
+
 }

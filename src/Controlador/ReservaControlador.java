@@ -1,4 +1,5 @@
 package Controlador;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,21 +7,31 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Reserva;
 import java.sql.SQLException;
+
 /**
  *
  * @author
  */
 public class ReservaControlador {
 // Conexión
+
     ConexionBDD conexion = new ConexionBDD();
     Connection connection = conexion.conectar();
     PreparedStatement ejecutar;
+    ResultSet resultado;
+    
+    // cualquier consulta a bdd hacia el bakend un resultset
+    
     // Método para crear una reserva
-    public void crearReserva(Reserva r) {
+    public void crearReserva(Reserva r, int idUsuario) {
         try {
+            ReservaControlador resC=new ReservaControlador();
             // String estático con componentes dinámicos (gets)
-            String consultaSQL = "INSERT INTO Reservas (res_fechaRetiro, res_fechaReserva, res_fechaDevolucion) VALUES ('" + r.getFechaRetiro() + "', '" + r.getFechaReserva() + "', '" + r.getFechaDevolucion() + "');";
-            ejecutar=(com.mysql.jdbc.PreparedStatement)connection.prepareCall(consultaSQL);
+            String consultaSQL = "INSERT INTO reservas (res_fechaRetiro, res_fechaReserva,res_fechaDevolucion, est_id) VALUES (?, NOW(), ?,?);";
+            ejecutar = (com.mysql.jdbc.PreparedStatement) connection.prepareCall(consultaSQL);
+            ejecutar.setString(1, r.getFechaRetiro());
+            ejecutar.setString(2, r.getFechaDevolucion());
+            ejecutar.setInt(3,r.getIdEstudiante());
             int resultado = ejecutar.executeUpdate();
             // Ejecuta
             if (resultado > 0) {

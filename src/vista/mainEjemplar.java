@@ -6,13 +6,10 @@ package vista;
  */
 import Controlador.EjemplarControlador;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 import modelo.Ejemplar;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import modelo.Libros;
+import modelo.Libro;
 
 public class mainEjemplar {
 
@@ -59,9 +56,9 @@ public class mainEjemplar {
                 }
 
                 // Mostrar IDs de libros disponibles
-                ArrayList<Libros> listaLibros = ejemplarControlador.listarLibros();
+                ArrayList<Libro> listaLibros = ejemplarControlador.listarLibros();
                 System.out.println("IDs de libros disponibles:");
-                for (Libros libro : listaLibros) {
+                for (Libro libro : listaLibros) {
                     System.out.println("ID Libro: " + libro.getIdLibro());
                 }
 
@@ -85,7 +82,7 @@ public class mainEjemplar {
                     }
                 }
                 // Código relevante para la inserción
-                Ejemplar nuevoEjemplar = new Ejemplar(idLibro, codigoEjemplar, estado, numEjemplares);
+                Ejemplar nuevoEjemplar = new Ejemplar();
                 ejemplarControlador.crearEjemplar(nuevoEjemplar);
                 
             } else if (op1 == 2) {
@@ -130,9 +127,9 @@ public class mainEjemplar {
                     }
 
                     // Mostrar IDs de libros disponibles
-                    ArrayList<Libros> listaLibros = ejemplarControlador.listarLibros();
+                    ArrayList<Libro> listaLibros = ejemplarControlador.listarLibros();
                     System.out.println("IDs de libros disponibles:");
-                    for (Libros libro : listaLibros) {
+                    for (Libro libro : listaLibros) {
                         System.out.println("ID Libro: " + libro.getIdLibro());
                     }
 
@@ -156,7 +153,7 @@ public class mainEjemplar {
                         }
                     }
 
-                    Ejemplar ejemplarActualizado = new Ejemplar(nuevoIdLibro, nuevoCodigoEjemplar, nuevoEstado, nuevoNumEjemplares);
+                    Ejemplar ejemplarActualizado = new Ejemplar();
                     ejemplarActualizado.setIdEjemplar(ejemplar.getIdEjemplar());
                     ejemplarControlador.actualizarEjemplar(ejemplarActualizado);
                 } else {
@@ -180,7 +177,7 @@ public class mainEjemplar {
             } else if (op1 == 0) {
                 // Regresar al menú principal
                 System.out.println("Regresando al menú principal...");
-                Main1.perfilBliotecario(args); // Asegúrate de que el método perfilBliotecario acepta args
+                Perfiles.perfilBliotecario(args); // Asegúrate de que el método perfilBliotecario acepta args
                 break;
             }
         } while (op1 != 0);
@@ -192,7 +189,7 @@ public class mainEjemplar {
 
 
 //public class mainEjemplar {
-//    public static void Main1(String[] args) {
+//    public static void Perfiles(String[] args) {
 //        Scanner es = new Scanner(System.in);
 //        EjemplarControlador ejemplarControlador = new EjemplarControlador();
 //        int op1;
@@ -366,7 +363,7 @@ public class mainEjemplar {
 //
 //            } else if (op1 == 0) {
 //                System.out.println("Regresando al menú principal...\n");
-//                Main1.Main1(null); // Asumiendo que el menú principal está en la clase 'Main1'
+//                Perfiles.Perfiles(null); // Asumiendo que el menú principal está en la clase 'Perfiles'
 //                return; // Salir de este método y regresar al menú principal
 //            }
 //        }

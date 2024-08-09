@@ -141,7 +141,7 @@ public class mainGenero {
 
             } else if (op1 == 0) {
                 System.out.println("Regresando al menú principal...\n");
-                Main1.perfilBliotecario(null);
+                Perfiles.perfilBliotecario(null);
                 return; // Salir de este método y regresar al menú principal
             }
         } while (op1 != 0);
