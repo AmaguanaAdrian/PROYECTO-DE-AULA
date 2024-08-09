@@ -13,9 +13,15 @@ public class Ejemplar extends Libro {
     public Ejemplar() {
     }
 
-    // Constructor para crear un Ejemplar con información de libro   
-    public Ejemplar(String codigoEjemplar, boolean estado, int idLibro, String titulo, String fechaPublicado, String isbn, int numEjemplares) {
-        super(titulo, fechaPublicado, isbn, idLibro);
+    public Ejemplar(int idEjemplar, String codigoEjemplar, boolean estado) {
+        this.idEjemplar = idEjemplar;
+        this.codigoEjemplar = codigoEjemplar;
+        this.estado = estado;
+    }
+
+    public Ejemplar(int idEjemplar, String codigoEjemplar, boolean estado, String titulo, String fechaPublicado, String isbn, int idLibro, String autor, String genero) {
+        super(titulo, fechaPublicado, isbn, idLibro, autor, genero);
+        this.idEjemplar = idEjemplar;
         this.codigoEjemplar = codigoEjemplar;
         this.estado = estado;
     }

@@ -65,11 +65,18 @@ public class LibrosControlador {
         }
         return libro;
     }
-
     // Listar todos los libros
+
     public ArrayList<Libro> listarLibros() {
         ArrayList<Libro> listarLibros = new ArrayList<>();
-        String consultaSQL = "SELECT lib_titulo, lib_fechaPublicado, lib_isbn FROM Libros;";
+        String consultaSQL = "SELECT lib_titulo, lib_fechaPublicado, lib_isbn, "
+                + // Asegúrate de que cada columna esté separada por comas
+                "lib_numEjemplares, "
+                + "aut.aut_nombres AS autor_nombres, aut.aut_apellidos AS autor_apellidos, "
+                + "gen.gen_nombreGen AS genero "
+                + "FROM Libros lib "
+                + "JOIN Autores aut ON lib.aut_id = aut.aut_id "
+                + "JOIN Generos gen ON lib.gen_id = gen.gen_id;";
         try {
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             resultado = ejecutar.executeQuery();
@@ -78,15 +85,21 @@ public class LibrosControlador {
                 libro.setTitulo(resultado.getString("lib_titulo"));
                 libro.setFechaPublicado(resultado.getString("lib_fechaPublicado"));
                 libro.setIsbn(resultado.getString("lib_isbn"));
+                libro.setNumEjemplares(resultado.getInt("lib_numEjemplares")); // Obtener el número de ejemplares
+                String autorNombre = resultado.getString("autor_nombres") + " " + resultado.getString("autor_apellidos");
+                libro.setAutor(autorNombre); // Asegúrate de que el método setAutor exista en la clase Libro
+                libro.setGenero(resultado.getString("genero")); // Asegúrate de que el método setGenero exista en la clase Libro
                 listarLibros.add(libro);
             }
         } catch (Exception e) {
             System.out.println("ERROR listar libros: " + e);
         } finally {
-//            cerrarRecursos();
+            // cerrarRecursos();
         }
         return listarLibros;
     }
+
+
 
     // Listar libros por título
     public ArrayList<Libro> listarLibrosPorTitulo(String titulo) {
@@ -111,17 +124,4 @@ public class LibrosControlador {
         return listarLibros;
     }
 
-    // Cerrar recursos
-//    private void cerrarRecursos() {
-//        try {
-//            if (resultado != null) {
-//                resultado.close();
-//            }
-//            if (ejecutar != null) {
-//                ejecutar.close();
-//            }
-//        } catch (Exception e) {
-//            System.out.println("ERROR al cerrar recursos: " + e);
-//        }
-//    }
 }

@@ -133,8 +133,10 @@ public class mainLibros {
                         Autor Au = new Autor();
                         Au.setIdAutor(op);
                     }
-//                    String titulo, fechaPublicado, isbn;
-//                    int generoId, numeroEjemplares;
+
+                    // Aquí se crea un nuevo libro
+                    Libro nuevoLibro = new Libro();
+
                     while (true) {
                         System.out.println("Ingrese el título del libro:");
                         titulo = br.readLine();
@@ -215,7 +217,7 @@ public class mainLibros {
                         continue;
                     }
 
-//                  Mostrar lista de géneros
+                    // Mostrar lista de géneros
                     ArrayList<Genero> listaGeneros = generoControlador.listarGeneros();
                     System.out.println("  Lista de géneros:");
                     for (Genero g : listaGeneros) {
@@ -224,11 +226,11 @@ public class mainLibros {
 
                     while (true) {
                         System.out.println("0.  Ingresar otro genero");
-                        System.out.print("Ingrese el ID del género:");
+                        System.out.print("Ingrese el número del género:");
                         try {
                             generoId = Integer.parseInt(es.nextLine());
                             if (generoId == 0) {
-                                System.out.print("Ingrese el nombre del génnero: ");
+                                System.out.print("Ingrese el nombre del género: ");
                                 String nombreGenero = es.nextLine();
 
                                 Genero nuevoGenero = new Genero(nombreGenero);
@@ -256,19 +258,27 @@ public class mainLibros {
                     if (!datosCorrectos) {
                         continue;
                     }
-//                    
-
-                    Libro nuevoLibro = new Libro();
-                    libroControlador.crearLibro(nuevoLibro, op, generoId);
-
+                    nuevoLibro.setTitulo(titulo);
+                    nuevoLibro.setFechaPublicado(fechaPublicado); 
+                    nuevoLibro.setIsbn(isbn); 
+                    nuevoLibro.setNumEjemplares(numeroEjemplares);
+                    libroControlador.crearLibro(nuevoLibro, op, generoId); 
                 }
                 case 2 -> {
-//            } else if (op1 == 2) {
-//                case
                     // Mostrar lista de libros
                     ArrayList<Libro> listaLibros = libroControlador.listarLibros();
-                    for (Libro l : listaLibros) {
-                        System.out.println(l.toString());
+                    if (listaLibros.isEmpty()) {
+                        System.out.println("No hay libros disponibles.");
+                    } else {
+                        // Imprimir encabezados de la tabla
+                        System.out.println("+----------------------+-----------------+-----------------+--------------------------------+-----------------+------------+");
+                        System.out.println("| Título               | Fecha Publicado | ISBN            | Autor                          | Género          | Ejemplares |");
+                        System.out.println("+----------------------+-----------------+-----------------+--------------------------------+-----------------+------------+");
+
+                        for (Libro l : listaLibros) {
+                            l.imprimirDetalles(); // Llama al método para imprimir detalles
+                        }
+                        System.out.println("+----------------------+-----------------+-----------------+--------------------------------+-----------------+------------+");
                     }
                 }
 //            } else if (op1 == 3) {

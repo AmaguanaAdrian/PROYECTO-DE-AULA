@@ -143,6 +143,26 @@ public class AutorControlador {
             System.out.println("ERROR al cerrar recursos: " + e);
         }
     }
+    public String obtenerNombreAutor(int autorId) {
+        String consultaSQL = "SELECT aut_nombres, aut_apellidos FROM Autores WHERE aut_id = ?;";
+        try {
+            ejecutar = connection.prepareStatement(consultaSQL);
+            ejecutar.setInt(1, autorId);
+            resultado = ejecutar.executeQuery();
+            if (resultado.next()) {
+                return resultado.getString("aut_nombres") + " " + resultado.getString("aut_apellidos");
+            } else {
+                System.out.println("No se encontró un autor con ese ID.");
+                return "Desconocido";
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR al obtener el nombre del autor: " + e);
+            return "Error";
+        } finally {
+            cerrarRecursos();
+        }
+    }
+
 }
 
 //public class AutorControlador {
