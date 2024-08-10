@@ -83,7 +83,7 @@ public class mainEjemplar {
                 }
                 // Código relevante para la inserción
                 Ejemplar nuevoEjemplar = new Ejemplar();
-                ejemplarControlador.crearEjemplar(nuevoEjemplar);
+//                ejemplarControlador.crearEjemplar(nuevoEjemplar);
                 
             } else if (op1 == 2) {
                 // Mostrar lista de ejemplares

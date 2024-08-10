@@ -3,41 +3,43 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Controlador;
+
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import java.util.ArrayList;
 import modelo.Ejemplar;
 import java.sql.ResultSet;
 import modelo.Libro;
+
 /**
  *
  * @author USER
  */
 public class EjemplarControlador {
+
     ConexionBDD conexion = new ConexionBDD();
     Connection connection = (Connection) conexion.conectar();
     PreparedStatement ejecutar;
     ResultSet resultado;
 
-public void crearEjemplar(Ejemplar ej) {
-    try {
-        String consultaSQL = "INSERT INTO Ejemplares (eje_codigoEjem, eje_estado, lib_id ) VALUES (?, ?, ?);";
-        ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);  // Usa `prepareStatement` en lugar de `prepareCall`
-        ejecutar.setString(1, ej.getCodigoEjemplar());
-        ejecutar.setBoolean(2, ej.isEstado());
-        ejecutar.setInt(3, ej.getIdLibro());
+    public void crearEjemplar(Ejemplar ej, int idLibro) {
+        try {
+            String consultaSQL = "INSERT INTO Ejemplares (eje_codigoEjem, lib_id ) VALUES (?, ?);";
+            ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);  // Usa `prepareStatement` en lugar de `prepareCall`
+            ejecutar.setString(1, ej.getCodigoEjemplar());
+            ejecutar.setInt(2, idLibro);
 //        ejecutar.setInt(4, ej.getNumEjemplares());  // Asegúrate de que este campo existe en la tabla `ejemplares`
-        int res = ejecutar.executeUpdate();
-        if (res > 0) {
-            System.out.println("El ejemplar ha sido creado con éxito");
-        } else {
-            System.out.println("Favor ingresar correctamente los datos solicitados");
+            int res = ejecutar.executeUpdate();
+            if (res > 0) {
+                System.out.println("El ejemplar ha sido creado con éxito");
+            } else {
+                System.out.println("Favor ingresar correctamente los datos solicitados");
+            }
+            ejecutar.close();
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e);
         }
-        ejecutar.close();
-    } catch (Exception e) {
-        System.out.println("ERROR: " + e);
     }
-}
 
     // Buscar ejemplar por código
     public Ejemplar buscarEjemplarPorCodigo(String codigoEjemplar) {
@@ -121,23 +123,48 @@ public void crearEjemplar(Ejemplar ej) {
             System.out.println("ERROR: " + e);
         }
     }
-   public ArrayList<Libro> listarLibros() {
-    ArrayList<Libro> listaLibros = new ArrayList<>();
-    try {
-        String consultaSQL = "SELECT lib_id, lib_titulo FROM Libros;";
-        ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
-        resultado = ejecutar.executeQuery();
-        while (resultado.next()) {
-            Libro libro = new Libro();
-            libro.setIdLibro(resultado.getInt("lib_id"));
-            libro.setTitulo(resultado.getString("lib_titulo"));
-            listaLibros.add(libro);
+
+    public ArrayList<Libro> listarLibros() {
+        ArrayList<Libro> listaLibros = new ArrayList<>();
+        try {
+            String consultaSQL = "SELECT lib_id, lib_titulo FROM Libros;";
+            ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
+            resultado = ejecutar.executeQuery();
+            while (resultado.next()) {
+                Libro libro = new Libro();
+                libro.setIdLibro(resultado.getInt("lib_id"));
+                libro.setTitulo(resultado.getString("lib_titulo"));
+                listaLibros.add(libro);
+            }
+            resultado.close();
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
         }
-        resultado.close();
-    } catch (Exception e) {
-        System.out.println("ERROR: " + e.getMessage());
+        return listaLibros;
     }
-    return listaLibros;
+    public Ejemplar buscarEjemplarDisponible(int idLibro) {
+    Ejemplar ejemplar = null;
+    try {
+        String consultaSQL = "SELECT eje_id, lib_id, eje_estado, eje_codigoEjem " +
+                             "FROM Ejemplares e, Libros l " +
+                             "WHERE l.lib_id = e.lib_id " +
+                             "AND e.lib_id = ? " +
+                             "AND eje_estado = 1";
+        ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
+        ejecutar.setInt(1, idLibro);
+        ResultSet rs = ejecutar.executeQuery();
+        if (rs.next()) {
+            ejemplar = new Ejemplar();
+            ejemplar.setIdEjemplar(rs.getInt("eje_id"));
+            ejemplar.setIdLibro(rs.getInt("lib_id"));
+            ejemplar.setEstado(rs.getBoolean("eje_estado"));
+            ejemplar.setCodigoEjemplar(rs.getString("eje_codigoEjem"));
+        }
+        ejecutar.close();
+    } catch (Exception e) {
+        System.out.println("ERROR: " + e);
+    }
+    return ejemplar;
 }
 
 }

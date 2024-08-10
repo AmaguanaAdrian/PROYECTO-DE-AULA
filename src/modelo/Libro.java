@@ -11,16 +11,20 @@ public class Libro {
     private String fechaPublicado;
     private String isbn;
     private int numEjemplares;
+    private String autor; // Nuevo atributo
+    private String genero; // Nuevo atributo
 
     public Libro() {
     }
 
-    public Libro(String titulo, String fechaPublicado, String isbn, int idLibro) {
+    public Libro(String titulo, String fechaPublicado, String isbn, int idLibro, String autor, String genero) {
         this.idLibro = idLibro;
         this.titulo = titulo;
         this.fechaPublicado = fechaPublicado;
         this.isbn = isbn;
         this.numEjemplares = numEjemplares;
+        this.autor = autor; // Inicializar autor
+        this.genero = genero; // Inicializar género
     }
 
     public int getIdLibro() {
@@ -63,13 +67,32 @@ public class Libro {
         this.numEjemplares = numEjemplares;
     }
 
-    @Override
-    public String toString() {
-        return 
-                "idLibro= " + getIdLibro() +'\''
-                + ", titulo= '" + getTitulo() + '\''
-                + ", fechaPublicado= '" + getFechaPublicado() + '\''
-                + ", isbn= '" + getIsbn() + '\'';
+    public String getAutor() {
+        return autor;
     }
 
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+    public void imprimirDetalles() {
+        System.out.printf("| %-20s | %-15s | %-15s | %-30s | %-15s | %-10d |\n",
+                          titulo, fechaPublicado, isbn, autor, genero, numEjemplares);
+    }
+//    @Override
+//    public String toString() {
+//        return "idLibro= " + idLibro +
+//                ", titulo= '" + titulo + '\'' +
+//                ", fechaPublicado= '" + fechaPublicado + '\'' +
+//                ", isbn= '" + isbn + '\'' +
+//                ", autor= '" + autor + '\'' + // Incluir autor
+//                ", genero= '" + genero + '\''; // Incluir género
+//    }
 }

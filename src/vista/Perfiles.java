@@ -264,7 +264,7 @@ public class Perfiles {
             int op = es.nextInt();
             switch (op) {
                 case 1 -> {
-
+                    
                     
                     
                     EstudianteControlador estC = new EstudianteControlador();
@@ -283,6 +283,7 @@ public class Perfiles {
                     r.setIdEstudiante(idEstudiante);
                     ReservaControlador rc = new ReservaControlador();
                     rc.crearReserva(r, idEstudiante);
+                    
    
                     //AQUI VA LO DE LA RESERVA
                 }

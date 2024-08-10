@@ -25,7 +25,7 @@ public class ConexionBDD {
 ////            System.out.println("CONECTADO"); 
         } catch (ClassNotFoundException | SQLException e)//CAPTURAR ERRORES 
         {
-            System.out.println("ERROR DE CONEXION A LA BASE DE DATOS");
+            System.out.println("ERROR DE CONEXION A LA BASE DE DATOS"+e);
         }
         return conexion;
     }
