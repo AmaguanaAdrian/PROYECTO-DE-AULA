@@ -8,18 +8,18 @@ public class Ejemplar extends Libro {
 
     private int idEjemplar;
     private String codigoEjemplar;
-    private boolean estado;
+    private Boolean estado;
 
     public Ejemplar() {
     }
 
-    public Ejemplar(int idEjemplar, String codigoEjemplar, boolean estado) {
+    public Ejemplar(int idEjemplar, String codigoEjemplar, Boolean estado) {
         this.idEjemplar = idEjemplar;
         this.codigoEjemplar = codigoEjemplar;
         this.estado = estado;
     }
 
-    public Ejemplar(int idEjemplar, String codigoEjemplar, boolean estado, String titulo, String fechaPublicado, String isbn, int idLibro, String autor, String genero) {
+    public Ejemplar(int idEjemplar, String codigoEjemplar, Boolean estado, String titulo, String fechaPublicado, String isbn, int idLibro, String autor, String genero) {
         super(titulo, fechaPublicado, isbn, idLibro, autor, genero);
         this.idEjemplar = idEjemplar;
         this.codigoEjemplar = codigoEjemplar;
@@ -42,11 +42,11 @@ public class Ejemplar extends Libro {
         this.codigoEjemplar = codigoEjemplar;
     }
 
-    public boolean isEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
@@ -54,7 +54,6 @@ public class Ejemplar extends Libro {
         return imprimir() + "\n"
                 + "ID Ejemplar: " + getIdEjemplar() + "\n"
                 + "Código Ejemplar: " + getCodigoEjemplar() + "\n"
-                + "ID Libro: " + getIdLibro() + "\n"
-                + "Estado: " + (isEstado() ? "Disponible" : "No Disponible");
+                + "ID Libro: " + getIdLibro() + "\n";
     }
 }

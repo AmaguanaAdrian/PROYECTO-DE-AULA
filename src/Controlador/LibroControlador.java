@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import modelo.Libro;
 import com.mysql.jdbc.PreparedStatement;
+import java.util.List;
+import modelo.Ejemplar;
 
 /**
  *
@@ -156,4 +158,44 @@ public class LibroControlador {
         return idLibro;
     }
 
+    public boolean buscarEjemplaresDisponibles(int idLibro) {
+        try {
+            String consultaSQL = "SELECT e.eje_estado "
+                    + "FROM Ejemplares e, Libros l "
+                    + "WHERE l.lib_id = e.lib_id "
+                    + "AND e.lib_id = ? "
+                    + "AND e.eje_estado = 1"; // Solo seleccionamos los ejemplares con estado 1 (disponible)
+            ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
+            ejecutar.setInt(1, idLibro);
+            ResultSet rs = ejecutar.executeQuery();
+            return rs.next(); // Si hay al menos un registro, devuelve true
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e);
+            return false; // Si hay un error, devuelve false
+        }
+    }
+
+    public String infoLibro1(int idLibro) {
+        try {
+            String consultaSQL = "SELECT l.lib_titulo, a.aut_nombres, a.aut_apellidos, l.lib_fechaPublicacion "
+                    + "FROM Libros l, Autores a "
+                    + "WHERE l.aut_id = a.aut_id "
+                    + "AND l.lib_id = ?";
+            ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
+            ejecutar.setInt(1, idLibro);
+            ResultSet rs = ejecutar.executeQuery();
+            if (rs.next()) {
+                String titulo = rs.getString("lib_titulo");
+                String autorNombres = rs.getString("aut_nombres");
+                String autorApellidos = rs.getString("aut_apellidos");
+                String fechaPublicacion = rs.getString("lib_fechaPublicacion");
+                return titulo + " - " + autorNombres + " " + autorApellidos + " - " + fechaPublicacion;
+            } else {
+                return "No se encontró información del libro";
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e);
+            return "Error al obtener información del libro";
+        }
+    }
 }

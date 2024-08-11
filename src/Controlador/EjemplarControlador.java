@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controlador;
 
 import com.mysql.jdbc.Connection;
@@ -92,7 +88,7 @@ public class EjemplarControlador {
             String consultaSQL = "UPDATE Ejemplares SET eje_codigoEjem = ?, eje_estado = ?, lib_id = ? WHERE eje_id = ?;";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             ejecutar.setString(1, ejemplar.getCodigoEjemplar());
-            ejecutar.setBoolean(2, ejemplar.isEstado());
+            ejecutar.setBoolean(2, ejemplar.getEstado());
             ejecutar.setInt(3, ejemplar.getIdLibro());
             int res = ejecutar.executeUpdate();
             if (res > 0) {
@@ -142,29 +138,6 @@ public class EjemplarControlador {
         }
         return listaLibros;
     }
-    public Ejemplar buscarEjemplarDisponible(int idLibro) {
-    Ejemplar ejemplar = null;
-    try {
-        String consultaSQL = "SELECT eje_id, lib_id, eje_estado, eje_codigoEjem " +
-                             "FROM Ejemplares e, Libros l " +
-                             "WHERE l.lib_id = e.lib_id " +
-                             "AND e.lib_id = ? " +
-                             "AND eje_estado = 1";
-        ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
-        ejecutar.setInt(1, idLibro);
-        ResultSet rs = ejecutar.executeQuery();
-        if (rs.next()) {
-            ejemplar = new Ejemplar();
-            ejemplar.setIdEjemplar(rs.getInt("eje_id"));
-            ejemplar.setIdLibro(rs.getInt("lib_id"));
-            ejemplar.setEstado(rs.getBoolean("eje_estado"));
-            ejemplar.setCodigoEjemplar(rs.getString("eje_codigoEjem"));
-        }
-        ejecutar.close();
-    } catch (Exception e) {
-        System.out.println("ERROR: " + e);
-    }
-    return ejemplar;
-}
+    
 
 }

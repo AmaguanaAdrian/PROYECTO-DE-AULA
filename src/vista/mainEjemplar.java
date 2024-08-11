@@ -91,7 +91,7 @@ public class mainEjemplar {
                 System.out.println("Lista de ejemplares:");
                 for (Ejemplar ej : listaEjemplares) {
                     System.out.println("Código: " + ej.getCodigoEjemplar() +
-                            ", Estado: " + (ej.isEstado() ? "Disponible" : "No disponible") +
+                            ", Estado: " + (ej.getEstado() ? "Disponible" : "No disponible") +
                             ", ID Libro: " + ej.getIdLibro() +
                             ", Número de ejemplares: " + ej.getNumEjemplares());
                 }

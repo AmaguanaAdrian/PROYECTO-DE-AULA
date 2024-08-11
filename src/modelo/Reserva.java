@@ -14,6 +14,11 @@ public class Reserva {
 
     public Reserva() {
     }
+    
+    public Reserva(String fechaRetiro,  String fechaDevolucion) {
+        this.fechaRetiro = fechaRetiro;
+        this.fechaDevolucion = fechaDevolucion;
+    }
 
     public Reserva(int idReserva, int idEstudiante, String fechaRetiro, String fechaReserva, String fechaDevolucion) {
         this.idReserva = idReserva;

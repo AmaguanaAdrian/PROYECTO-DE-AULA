@@ -3,6 +3,7 @@ package vista;
 import Controlador.AutorControlador;
 import Controlador.EstudianteControlador;
 import Controlador.BibliotecarioControlador;
+import Controlador.LibroControlador;
 import Controlador.ReservaControlador;
 import controlador.UsuarioControlador;
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ import modelo.Estudiante;
 import modelo.Reserva;
 import modelo.Usuario;
 import java.io.IOException;
+import modelo.Ejemplar;
+import modelo.Libro;
 
 public class Perfiles {
 
@@ -257,8 +260,6 @@ public class Perfiles {
     public static void perfilEstudiante(String[] args) {
 
         Scanner es = new Scanner(System.in);
-//        int i = 1;
-//        OUTER:
         do {
             menus.menuEstudiante();
             int op = es.nextInt();
@@ -316,5 +317,4 @@ public class Perfiles {
         } while (true);
 
     }
-
 }
