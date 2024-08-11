@@ -24,7 +24,7 @@ public class ReservaControlador {
     public void crearReserva(Reserva r, int idUsuario, ArrayList<Ejemplar> listaEjemplares) {
     try {
         // Inserta la reserva
-        String consultaSQL = "INSERT INTO Reservas (res_fechaRetiro, res_fechaReserva, res_fechaDevolucion, est_id) VALUES (?, NOW(), ?, ?);";
+        String consultaSQL = "INSERT INTO Reservas (res_fechaRetiro, res_fechaReserva, res_fechaDevolucion,res_estado, est_id) VALUES (?, NOW(), ?,?);";
         ejecutar = (com.mysql.jdbc.PreparedStatement) connection.prepareCall(consultaSQL);
         ejecutar.setString(1, r.getFechaRetiro());
         ejecutar.setString(2, r.getFechaDevolucion());

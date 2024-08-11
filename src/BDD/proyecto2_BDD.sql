@@ -40,7 +40,7 @@ CREATE TABLE Reservas (
   res_fechaRetiro DATE NOT NULL,
   res_fechaReserva DATE NOT NULL,
   res_fechaDevolucion DATE NOT NULL,
-  res_estado BOOLEAN NOT NULL DEFAULT TRUE,
+  res_estado VARCHAR(20) NOT NULL DEFAULT 'Pendiente',
   est_id INT NOT NULL,
   FOREIGN KEY (est_id) REFERENCES Estudiantes(est_id)
 );
@@ -63,7 +63,7 @@ CREATE TABLE Libros(
 CREATE TABLE Ejemplares(
   eje_id INT AUTO_INCREMENT PRIMARY KEY,
   eje_codigoEjem VARCHAR(25) NOT NULL UNIQUE,
-  eje_estado BOOLEAN NOT NULL DEFAULT TRUE,
+  eje_estado VARCHAR(20) NOT NULL DEFAULT 'Disponible',
   lib_id INT NOT NULL,
   FOREIGN KEY (lib_id) REFERENCES Libros(lib_id)
 );
