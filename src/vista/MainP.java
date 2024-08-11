@@ -141,17 +141,14 @@ public class MainP {
                             "4. TECNOLOGÍA SUPERIOR EN AUTOMATIZACIÓN E INSTRUMENTACIÓN\n",
                             "5. TECNOLOGÍA SUPERIOR EN PROCESAMIENTO DE ALIMENTOS\n"
                         };
-
                         boolean carreraSeleccionada = false;
                         while (!carreraSeleccionada) {
                             System.out.print("Seleccione la carrera que está cursando: ");
                             for (String carrera : carreras) {
                                 System.out.print(carrera);
                             }
-
                             int carreraOpcion = es.nextInt();
-                            es.nextLine(); // Consumir el salto de línea pendiente
-
+                            es.nextLine();
                             if (carreraOpcion >= 1 && carreraOpcion <= carreras.length) {
                                 est.setCarreraCursando(carreras[carreraOpcion - 1].split("\\. ")[1]);
                                 carreraSeleccionada = true;
@@ -163,27 +160,20 @@ public class MainP {
                                 }
                             }
                         }
-
                         System.out.println("Carrera seleccionada: " + est.getCarreraCursando());
-
                         System.out.print("Ingrese número de matrícula: ");
                         est.setNumMatricula(es.next());
                         es.nextLine(); // Consumir el salto de línea pendiente
-
                         System.out.print("Ingrese el nivel que está cursando actualmente: ");
                         est.setNivelCursando(es.nextInt());
                         es.nextLine(); // Consumir el salto de línea pendiente
-
                         est.setIdUsuario(idUsuario);
-
                         EstudianteControlador estC = new EstudianteControlador();
                         estC.crearEstudiante(est);
-
                         datosValidos = true; // Salir del bucle de datos válidos
                     }
                     b = 2;
                 }
-
                 default -> {
                     System.out.println("Error: solo se permiten números 1, 2 o 0. Intente de nuevo.");
                     b = -1; // BANDERA

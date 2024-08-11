@@ -85,7 +85,7 @@ public class LibroControlador {
     public ArrayList<Libro> listarLibros() {
         ArrayList<Libro> listarLibros = new ArrayList<>();
         String consultaSQL = "SELECT lib_titulo, lib_fechaPublicado, lib_isbn, "
-                + // Asegúrate de que cada columna esté separada por comas
+                + 
                 "lib_numEjemplares, "
                 + "aut.aut_nombres AS autor_nombres, aut.aut_apellidos AS autor_apellidos, "
                 + "gen.gen_nombreGen AS genero "

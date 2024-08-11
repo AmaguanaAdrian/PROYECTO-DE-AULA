@@ -7,27 +7,41 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import modelo.Ejemplar;
-import modelo.Reserva;
+import modelo.Libro;
 
 /**
  *
  * @author david
  */
 public class mainDetReserva {
-// AQUI ESTA SOLO PARA QUE BUSQUE CON EL TITULO PERO NO ESTA COMPLETO
-
     
     public static void main(String[] args) {
         LibroControlador libC = new LibroControlador();
         EstudianteControlador estC = new EstudianteControlador();
         Scanner es = new Scanner(System.in);
-        Ejemplar[] listaEjemplares = new Ejemplar[4]; // Lista estática con 5 posiciones
+        Ejemplar[] listaEjemplares = new Ejemplar[4]; // Lista estática con 4 posiciones
         int indice = 0; // Índice para controlar la inserción en el array
 
-        while (true) {
-            System.out.print("Ingrese el título del libro (o 0 para salir): ");
-            String inputUsuario = es.nextLine(); // Variable local para manejar la entrada del usuario
+        // Listar libros al iniciar
+        ArrayList<Libro> listaLibros = libC.listarLibros();
+        if (listaLibros.isEmpty()) {
+            System.out.println("No hay libros disponibles.");
+        } else {
+            // Imprimir encabezados de la tabla
+            System.out.println("+----------------------+-----------------+-----------------+--------------------------------+-----------------+------------+");
+            System.out.println("| Título               | Fecha Publicado | ISBN            | Autor                          | Género          | Ejemplares |");
+            System.out.println("+----------------------+-----------------+-----------------+--------------------------------+-----------------+------------+");
 
+            for (Libro l : listaLibros) {
+                l.imprimirDetalles(); // Llama al método para imprimir detalles
+            }
+            System.out.println("+----------------------+-----------------+-----------------+--------------------------------+-----------------+------------+");
+        }
+
+        // Bucle para buscar libros por título
+        while (true) {
+            System.out.print("Ingrese el título del libro o 0 (salir): ");
+            String inputUsuario = es.nextLine(); // Variable local para manejar la entrada del usuario
             // Verificar si el usuario desea salir
             if (inputUsuario.equals("0")) {
                 break;
@@ -77,6 +91,8 @@ public class mainDetReserva {
 
         // Aquí puedes agregar otro método para buscar libro por ISBN si lo necesitas.
     }
+}
+
 //
 //    public static void main(String[] args) {
 //        LibroControlador libC = new LibroControlador();
@@ -196,4 +212,4 @@ public class mainDetReserva {
 //
 //        //AQUI LE HACES OTRO MAIN QUE SEA PARA BUSCAR LIBRO POR ISBN
 //    }
-}
+
