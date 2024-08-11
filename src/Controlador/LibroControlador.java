@@ -177,7 +177,7 @@ public class LibroControlador {
 
     public String infoLibro1(int idLibro) {
         try {
-            String consultaSQL = "SELECT l.lib_titulo, a.aut_nombres, a.aut_apellidos, l.lib_fechaPublicacion "
+            String consultaSQL = "SELECT l.lib_titulo, a.aut_nombres, a.aut_apellidos, l.lib_fechaPublicado "
                     + "FROM Libros l, Autores a "
                     + "WHERE l.aut_id = a.aut_id "
                     + "AND l.lib_id = ?";
@@ -188,7 +188,7 @@ public class LibroControlador {
                 String titulo = rs.getString("lib_titulo");
                 String autorNombres = rs.getString("aut_nombres");
                 String autorApellidos = rs.getString("aut_apellidos");
-                String fechaPublicacion = rs.getString("lib_fechaPublicacion");
+                String fechaPublicacion = rs.getString("lib_fechaPublicado");
                 return titulo + " - " + autorNombres + " " + autorApellidos + " - " + fechaPublicacion;
             } else {
                 return "No se encontró información del libro";
