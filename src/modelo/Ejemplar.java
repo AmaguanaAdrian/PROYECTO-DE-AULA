@@ -12,6 +12,9 @@ public class Ejemplar extends Libro {
 
     public Ejemplar() {
     }
+    public Ejemplar(int idEjemplar) {
+        this.idEjemplar = idEjemplar;
+    }
 
     public Ejemplar(int idEjemplar, String codigoEjemplar, Boolean estado) {
         this.idEjemplar = idEjemplar;

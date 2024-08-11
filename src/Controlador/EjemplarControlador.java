@@ -138,6 +138,5 @@ public class EjemplarControlador {
         }
         return listaLibros;
     }
-    
 
 }

@@ -61,6 +61,25 @@ public class ReservaControlador {
         System.out.println("ERROR: " + e.getMessage());
     }
 }
+    
+    public void crearDetReserva(int idReserva, ArrayList<Ejemplar> listaEjemplares) {
+    try {
+        // Iterar sobre la lista de ejemplares para insertarlos en la tabla Detalles_reservas
+        for (Ejemplar ejemplar : listaEjemplares) {
+            String consultaEjemplar = "INSERT INTO detalles_reservas(res_id,eje_id) VALUES (?, ?);";
+            PreparedStatement Ejemplar = connection.prepareStatement(consultaEjemplar);
+            Ejemplar.setInt(1, idReserva); // Usar el id de la reserva pasada como parámetro
+            Ejemplar.setInt(2, ejemplar.getIdEjemplar()); // Asumiendo que Ejemplar tiene un método getId()
+            Ejemplar.executeUpdate();
+            Ejemplar.close(); // Cerrar el PreparedStatement después de cada inserción
+        }
+
+        System.out.println("Los detalles de la reserva han sido insertados con éxito.");
+    } catch (SQLException e) {
+        System.out.println("ERROR al insertar los detalles de la reserva: " + e.getMessage());
+    }
+}
+
 //    // cualquier consulta a bdd hacia el bakend un resultset
 //    // Método para crear una reserva
 //    public void crearReserva(Reserva r, int idUsuario) {
@@ -116,4 +135,6 @@ public class ReservaControlador {
         }
         return listaReservas;
     }
+    
+    
 }
