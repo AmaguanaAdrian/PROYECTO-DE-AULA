@@ -66,7 +66,7 @@ public class mainLibros {
                     System.out.println("0. Registrar otro Autor");
                     System.out.println("Ingrese el número del Autor:");
                     op = es.nextInt();
-                    es.nextLine(); // Consume el salto de línea
+                    es.nextLine();
 
                     if (op == 0) {
                         while (true) {

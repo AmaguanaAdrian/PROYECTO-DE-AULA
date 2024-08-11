@@ -14,16 +14,18 @@ import modelo.Reserva;
  *
  * @author david
  */
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class mainDetReserva {
 
     public static void main(String[] args) {
-
-        Scanner es = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         // Controladores
-        LibroControlador libC = new LibroControlador();
-        EstudianteControlador estC = new EstudianteControlador();
-        ReservaControlador rc = new ReservaControlador();
+        LibroControlador libroControlador = new LibroControlador();
+        EstudianteControlador estudianteControlador = new EstudianteControlador();
+        ReservaControlador reservaControlador = new ReservaControlador();
 
         ArrayList<Ejemplar> listaEjemplares = new ArrayList<>();
         int idEstudiante = 0;
@@ -32,7 +34,7 @@ public class mainDetReserva {
         System.out.println("Seleccione los libros que desea reservar:");
 
         // Listar libros disponibles
-        ArrayList<Libro> listaLibros = libC.listarLibros();
+        ArrayList<Libro> listaLibros = libroControlador.listarLibros();
         if (listaLibros.isEmpty()) {
             System.out.println("No hay libros disponibles.");
             return; // Salir si no hay libros
@@ -42,40 +44,39 @@ public class mainDetReserva {
             System.out.println("| Título               | Fecha Publicado | ISBN            | Autor                          | Género          | Ejemplares |");
             System.out.println("+----------------------+-----------------+-----------------+--------------------------------+-----------------+------------+");
 
-            for (Libro l : listaLibros) {
-                l.imprimirDetalles(); // Llama al método para imprimir detalles
+            for (Libro libro : listaLibros) {
+                libro.imprimirDetalles(); // Llama al método para imprimir detalles
             }
             System.out.println("+----------------------+-----------------+-----------------+--------------------------------+-----------------+------------+");
         }
-
-        // Bucle para seleccionar libros
         while (true) {
             System.out.print("Ingrese el título del libro o 0 (salir): ");
-            String inputUsuario = es.nextLine(); // Variable local para manejar la entrada del usuario
-
-            // Verificar si el usuario desea salir
+            String inputUsuario = scanner.nextLine().trim();
             if (inputUsuario.equals("0")) {
                 break;
             }
-
-            String titulo = inputUsuario; // Ahora 'titulo' tiene el valor que ingresó el usuario
-
-            int idEjemplar = libC.idPorTitulo(titulo, "");
+            int idEjemplar = libroControlador.idPorTitulo(inputUsuario, "");
             if (idEjemplar == 0) {
-                System.out.println("No se encontró el libro con título: " + titulo );
+                System.out.println("No se encontró el libro con título: " + inputUsuario);
                 continue;
             }
-
-            boolean hayEjemplaresDisponibles = libC.buscarEjemplaresDisponibles(idEjemplar);
+            boolean hayEjemplaresDisponibles = libroControlador.buscarEjemplaresDisponibles(idEjemplar);
             if (hayEjemplaresDisponibles) {
-                System.out.println("Hay ejemplares disponibles para este libro.");
+                System.out.println("Ejemplares disponibles.");
                 System.out.print("¿Desea seleccionar este libro? (si/no): ");
-                String respuesta = es.nextLine();
-
+                String respuesta = scanner.nextLine().trim();
                 if (respuesta.equalsIgnoreCase("si")) {
-                    // Crear objeto Ejemplar con los datos necesarios
                     Ejemplar ejemplar = new Ejemplar(idEjemplar);
-                    listaEjemplares.add(ejemplar); // Agrega el ejemplar a la lista
+                    listaEjemplares.add(ejemplar); 
+                    System.out.println("Libro seleccionado: " + inputUsuario);
+                    
+                    // Preguntar si desea continuar seleccionando libros
+                    System.out.print("¿Desea seleccionar otro libro? (si/no): ");
+                    String continuar = scanner.nextLine().trim();
+                    if (continuar.equalsIgnoreCase("no")) {
+                        break; 
+                    }
+
                 } else {
                     System.out.println("No se seleccionó el libro.");
                 }
@@ -84,47 +85,51 @@ public class mainDetReserva {
                 System.out.println("No hay ejemplares disponibles para este libro.");
             }
         }
-
         if (listaEjemplares.isEmpty()) {
             System.out.println("No seleccionaste ningún libro.");
-            return; // Salir si no se seleccionó ningún libro
+            return;
         }
-
-        // Paso 2: Obtener la cédula del estudiante y verificar su existencia
         System.out.print("Ingrese la cédula para registrar la reserva: ");
-        String cedula = es.next();
-        idEstudiante = estC.buscarIdEstudiante(cedula);
-        es.nextLine(); // Limpiar el buffer de entrada
+        String cedula = scanner.nextLine().trim();
+        idEstudiante = estudianteControlador.buscarIdEstudiante(cedula);
 
         if (idEstudiante == 0) {
             System.out.println("No se encontró un estudiante con la cédula proporcionada.");
-            return; // Salir si no se encuentra el estudiante
+            return;
         }
-
-        // Paso 3: Ingreso de datos de la reserva
-        Reserva r = new Reserva();
+        Reserva reserva = new Reserva();
 
         System.out.print("Ingrese la fecha de retiro (yyyy-MM-dd): ");
-        r.setFechaRetiro(es.nextLine());
-        System.out.print("Ingrese la fecha de devolucion (yyyy-MM-dd): ");
-        r.setFechaDevolucion(es.nextLine());
-        r.setIdEstudiante(idEstudiante);
+        reserva.setFechaRetiro(scanner.nextLine().trim());
+        System.out.print("Ingrese la fecha de devolución (yyyy-MM-dd): ");
+        reserva.setFechaDevolucion(scanner.nextLine().trim());
+        reserva.setIdEstudiante(idEstudiante);
+
+        // Mostrar detalles de la reserva
+        System.out.println("\nDetalles de la reserva:");
+        System.out.println("Cédula del estudiante: " + cedula);
+        System.out.println("Fecha de retiro: " + reserva.getFechaRetiro());
+        System.out.println("Fecha de devolución: " + reserva.getFechaDevolucion());
+        System.out.println("Libros seleccionados:");
+        for (Ejemplar ejemplar : listaEjemplares) {
+            System.out.println(" - " + libroControlador.obtenerTituloPorId(ejemplar.getIdEjemplar())); // Asumiendo que hay un método para obtener el título
+        }
 
         // Paso 4: Confirmación de la reserva
         System.out.print("¿Desea confirmar la reserva? (si/no): ");
-        String confirmacion = es.nextLine();
+        String confirmacion = scanner.nextLine().trim();
 
         if (confirmacion.equalsIgnoreCase("si")) {
             // Insertar la reserva en la base de datos
-            rc.crearReserva(r, idEstudiante, listaEjemplares);
+            reservaControlador.crearReserva(reserva, idEstudiante, listaEjemplares);
             System.out.println("Reserva creada exitosamente.");
         } else {
             System.out.println("La reserva ha sido cancelada. No se guardará ninguna información.");
-            // No se hace nada, simplemente se descartan los datos en memoria.
         }
+
+        scanner.close(); // Cerrar el scanner al final
     }
 }
-
 //        LibroControlador libC = new LibroControlador();
 //        EstudianteControlador estC = new EstudianteControlador();
 //        Scanner es = new Scanner(System.in);

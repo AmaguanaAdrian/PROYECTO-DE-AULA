@@ -8,7 +8,7 @@ public class menus {
 
     public static void introduccion() {
         System.out.println("""
-    ╔═════════════════════════════════════════════════════════════╗
+    ╔═══════════════════════════════════════════════ ══════════════════════╗
     ║                                                             ║
     ║      Bienvenido al Sistema de Reserva de Libros para        ║
     ║      Bibliotecas. Este sistema te permitirá gestionar       ║
@@ -18,7 +18,7 @@ public class menus {
     ║                                                             ║
     ║  ¡¡Presiona Enter para comenzar y explorar el sistema.¡     ║
     ║                                                             ║
-    ╚═════════════════════════════════════════════════════════════╝
+    ╚══════════════════════════════════════════════════════════════════════╝
 
     """.indent(30));
 
@@ -30,8 +30,8 @@ public class menus {
     |------------------------------------------------|
     |  OPCIONES:                                     |
     |   1. Registrar Bibliotecario                   |
-    |   2. Hacer Reserva                             |
-    |   3. Registrar Estudiante                      |
+    |   2  Registrar Estudiante                      |
+    |   3. Gestion de reservas                       |
     |   4. Gestión de Libros                         |
     |   5. Gestion Genero                            |
     |   6. Gestion de Autores                        |
@@ -133,7 +133,7 @@ public class menus {
     |-------------------------------------------------|
     |  OPCIONES:                                      |
     |   1. Iniciar sesión                             |
-    |   2. Registrarse como Estudiante                   |
+    |   2. Registrarse como Estudiante                |
     |   0. Salir del sistema                          |
       """.indent(30));
 

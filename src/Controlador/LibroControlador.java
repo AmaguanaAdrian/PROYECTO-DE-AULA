@@ -198,4 +198,23 @@ public class LibroControlador {
             return "Error al obtener información del libro";
         }
     }
+    public String obtenerTituloPorId(int idEjemplar) {
+        String consultaSQL = "SELECT lib_titulo FROM Libros WHERE lib_id = ?;";
+        String titulo = "Título no encontrado"; // Valor por defecto si no se encuentra el libro
+        try {
+            PreparedStatement ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
+            ejecutar.setInt(1, idEjemplar);
+            ResultSet rs = ejecutar.executeQuery();
+
+            if (rs.next()) {
+                titulo = rs.getString("lib_titulo");
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR al obtener el título: " + e);
+        } finally {
+            // cerrarRecursos(); // Asegúrate de cerrar la conexión, ResultSet, y PreparedStatement si es necesario
+        }
+
+        return titulo;
+    }
 }
