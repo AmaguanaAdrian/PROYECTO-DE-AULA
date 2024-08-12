@@ -24,7 +24,7 @@ public class LibroControlador {
     }
 
     // Crear un nuevo libro
-    public int crearLibro(Libro libro, int op, int generoId) {
+    public int crearLibro(Libro libro, int idAutor, int generoId) {
         String consultaSQL = "INSERT INTO Libros (lib_titulo, lib_fechaPublicado, lib_isbn,lib_numEjemplares, aut_id, gen_id) VALUES (?, ?, ?, ?, ?,?);";
         int idLibro = -1; // Inicializamos el ID del libro a -1
 
@@ -34,7 +34,7 @@ public class LibroControlador {
             ejecutar.setString(2, libro.getFechaPublicado());
             ejecutar.setString(3, libro.getIsbn());
             ejecutar.setInt(4, libro.getNumEjemplares());
-            ejecutar.setInt(5, op);
+            ejecutar.setInt(5, idAutor);
             ejecutar.setInt(6, generoId);
             ejecutar.executeUpdate();
 
@@ -160,24 +160,43 @@ public class LibroControlador {
     public Ejemplar buscarEjemplarDisponible(int idLibro) {
         Ejemplar ejemplar = null;
         try {
-            String consultaSQL = "SELECT e.eje_codigoEjem, e.eje_estado FROM"
-                    + " Ejemplares e, Libros l WHERE"
-                    + " l.lib_id = e.lib_id"
-                    + " AND e.lib_id = ?"
-                    + " AND e.eje_estado = 'Disponible';";
-            ejecutar = (PreparedStatement) connection.prepareStatement(consultaSQL);
-            ejecutar.setInt(1, idLibro);
-            ResultSet rs = ejecutar.executeQuery();
+            String consultaSQL = "SELECT e.eje_id, e.eje_codigoEjem, e.eje_estado FROM Ejemplares e WHERE e.lib_id = ? AND e.eje_estado = 'Disponible';";
+            PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(consultaSQL);
+            stmt.setInt(1, idLibro);
+            ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 ejemplar = new Ejemplar();
+                ejemplar.setIdEjemplar(rs.getInt("eje_id")); // Obtener ID del ejemplar
                 ejemplar.setCodigoEjemplar(rs.getString("eje_codigoEjem"));
-                ejemplar.setEstado(rs.getString("eje_estado").equalsIgnoreCase("Disponible")); // Verifica si el estado es "Disponible"
+                ejemplar.setEstado(rs.getString("eje_estado").equalsIgnoreCase("Disponible"));
             }
         } catch (Exception e) {
-            System.out.println("ERROR: " + e);
+            System.out.println("ERROR: " + e.getMessage());
         }
         return ejemplar;
     }
+
+//    public Ejemplar buscarEjemplarDisponible(int idLibro) {
+//        Ejemplar ejemplar = null;
+//        try {
+//            String consultaSQL = "SELECT e.eje_codigoEjem, e.eje_estado FROM"
+//                    + " Ejemplares e, Libros l WHERE"
+//                    + " l.lib_id = e.lib_id"
+//                    + " AND e.lib_id = ?"
+//                    + " AND e.eje_estado = 'Disponible';";
+//            ejecutar = (PreparedStatement) connection.prepareStatement(consultaSQL);
+//            ejecutar.setInt(1, idLibro);
+//            ResultSet rs = ejecutar.executeQuery();
+//            if (rs.next()) {
+//                ejemplar = new Ejemplar();
+//                ejemplar.setCodigoEjemplar(rs.getString("eje_codigoEjem"));
+//                ejemplar.setEstado(rs.getString("eje_estado").equalsIgnoreCase("Disponible")); // Verifica si el estado es "Disponible"
+//            }
+//        } catch (Exception e) {
+//            System.out.println("ERROR: " + e);
+//        }
+//        return ejemplar;
+//    }
 //    public Ejemplar buscarEjemplarDisponible(int idLibro) {
 //        Ejemplar ejemplar = null;
 //        try {
@@ -199,7 +218,6 @@ public class LibroControlador {
 //        }
 //        return ejemplar;
 //    }
-
     public String infoLibro1(int idLibro) {
         try {
             String consultaSQL = "SELECT l.lib_titulo, a.aut_nombres, a.aut_apellidos, l.lib_fechaPublicado "
@@ -285,8 +303,8 @@ public class LibroControlador {
 
     public void actualizarEstadoEjemplar(String codigoEjemplar, String estado) {
         try {
-            String sql = "UPDATE Ejemplares SET eje_estado = ? WHERE eje_codigoEjem = ?";
-            PreparedStatement statement = (PreparedStatement) connection.prepareStatement(sql);
+            String consultaSql = "UPDATE Ejemplares SET eje_estado = ? WHERE eje_codigoEjem = ?";
+            PreparedStatement statement = (PreparedStatement) connection.prepareStatement(consultaSql);
             statement.setString(1, estado);
             statement.setString(2, codigoEjemplar);
             int filasActualizadas = statement.executeUpdate();
@@ -303,7 +321,4 @@ public class LibroControlador {
         }
     }
 
-    public boolean buscarEjemplaresDisponibles(int idEjemplar) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

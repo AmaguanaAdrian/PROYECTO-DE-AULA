@@ -30,7 +30,7 @@ public class Funciones {
     }
 
     public static boolean isValidText(String texto) {
-        String regex = "^[a-zA-Z]+( [a-zA-Z]+)*$";
+        String regex = "^[a-zA-Z0-9ñ\\s]+$";
         return texto.matches(regex);
     }
 

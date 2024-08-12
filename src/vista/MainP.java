@@ -1,6 +1,5 @@
 package vista;
 
-import Controlador.BibliotecarioControlador;
 import Controlador.ConexionBDD;
 import Controlador.EstudianteControlador;
 import com.mysql.jdbc.Connection;
@@ -10,7 +9,6 @@ import java.io.IOException;
 import java.util.Scanner;
 import modelo.Estudiante;
 import modelo.Usuario;
-import modelo.Bibliotecario;
 
 /**
  *
@@ -68,7 +66,7 @@ public class MainP {
                                 } else if (usu_rol == 2) {
                                     // Acciones para usuarios con rol 2
                                     System.out.println("----Acceso como Bibliotecario----");
-                                    Perfiles.perfilBliotecario(args);
+                                    Perfiles.perfilBibliotecario(args);
                                     b = 1;
 
                                 } else if (usu_rol == 3) {
@@ -98,7 +96,7 @@ public class MainP {
                 case 2 -> {
                     boolean datosValidos = false;
                     while (!datosValidos) {
-                        System.out.println("Ingrese los datos personales del estudiante: ");
+                        System.out.println("-----INGRESE LOS DATOS PARA EL REGISTRO-----");
 
                         Usuario u = new Usuario();
                         System.out.print("Ingrese sus Nombres: ");
@@ -107,7 +105,8 @@ public class MainP {
                         System.out.print("Ingrese sus Apellidos: ");
                         u.setApellidos(es.nextLine());
 
-                        System.out.print("Ingrese su número de cédula: ");
+                        System.out.print("Ingrese su número de cédula\n"
+                                + "(recuerde que este sera su usuario): ");
                         u.setCedula(es.next());
                         es.nextLine(); // Consumir el salto de línea pendiente
 
@@ -139,7 +138,8 @@ public class MainP {
                             "2. TECNOLOGÍA SUPERIOR EN REDES Y TELECOMUNICACIONES\n",
                             "3. TECNOLOGÍA SUPERIOR EN ELECTRONICA\n",
                             "4. TECNOLOGÍA SUPERIOR EN AUTOMATIZACIÓN E INSTRUMENTACIÓN\n",
-                            "5. TECNOLOGÍA SUPERIOR EN PROCESAMIENTO DE ALIMENTOS\n"
+                            "5. TECNOLOGÍA SUPERIOR EN PROCESAMIENTO DE ALIMENTOS\n",
+                            "Seleccione utilizando los números del índice"
                         };
                         boolean carreraSeleccionada = false;
                         while (!carreraSeleccionada) {

@@ -25,7 +25,7 @@ public class EstudianteControlador {
             // DAR CLIC EN EL PLAY (ejecutar la consulta)
             int res = ejecutar.executeUpdate();
             if (res > 0) {
-                System.out.println("La persona ha sido creada con exito");
+                System.out.println("Registro exitoso");
                 // CERRAR CONSULTA
                 ejecutar.close();
             } else {
@@ -33,8 +33,8 @@ public class EstudianteControlador {
                 ejecutar.close();
             }
         } catch (SQLException e) {
-            //captura el error y permite que la consola se siga ejecuntando
-            System.out.println("Error" + e);
+            System.out.println("¡ERROR EN EL SISTEMA! COMUNIQUESE CON EL ADMINISTRADOR\n"
+                    + "PARA SOLUCIONAR SU PROBLEMA: ");
         }
     }
     public Estudiante buscarEstLog(String cedula, String clave) {
@@ -76,7 +76,7 @@ public class EstudianteControlador {
             return est;
         } catch (Exception e) {
             System.out.println("¡ERROR EN EL SISTEMA! COMUNIQUESE CON EL ADMINISTRADOR\n"
-                    + "PARA SOLUCIONAR SU PROBLEMA: " + e);
+                    + "PARA SOLUCIONAR SU PROBLEMA: ");
         }
         return est;
         
@@ -98,7 +98,8 @@ public class EstudianteControlador {
             }
 
         } catch (SQLException e) {
-            System.out.println("Error2, comuniquese con el administrador" + e);
+            System.out.println("¡ERROR EN EL SISTEMA! COMUNIQUESE CON EL ADMINISTRADOR\n"
+                    + "PARA SOLUCIONAR SU PROBLEMA: ");
         }
         return 0;
     }

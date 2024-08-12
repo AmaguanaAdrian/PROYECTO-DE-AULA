@@ -12,15 +12,16 @@ import java.io.Reader;
 import modelo.Autor;
 import modelo.Genero;
 import modelo.Libro;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+import modelo.Ejemplar;
 
 /**
  *
  * @author
  */
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
-import modelo.Ejemplar;
+
 
 public class mainLibros {
 
@@ -52,7 +53,7 @@ public class mainLibros {
             switch (op1) {
                 case 1 -> {
                     boolean datosCorrectos = true;
-                    int op = 0;
+                    int idAutor = 0;
                     String nombreAutor, apellidosAutor, fechaNaceAutor, titulo, fechaPublicado, isbn;
                     int autorId, generoId, numeroEjemplares;
 
@@ -65,10 +66,10 @@ public class mainLibros {
 
                     System.out.println("0. Registrar otro Autor");
                     System.out.println("Ingrese el número del Autor:");
-                    op = es.nextInt();
+                    idAutor = es.nextInt();
                     es.nextLine();
 
-                    if (op == 0) {
+                    if (idAutor == 0) {
                         while (true) {
                             System.out.print("Ingrese el nombre del autor: ");
                             nombreAutor = br.readLine();
@@ -133,19 +134,19 @@ public class mainLibros {
 
                     } else {
                         Autor Au = new Autor();
-                        Au.setIdAutor(op);
+                        Au.setIdAutor(idAutor);
                     }
 
                     // Aquí se crea un nuevo libro
                     Libro nuevoLibro = new Libro();
 
                     while (true) {
-                        System.out.println("Ingrese el título del libro:");
+                        System.out.print("Ingrese el título del libro: ");
                         titulo = br.readLine();
                         if (Funciones.isValidText(titulo)) {
                             break;
                         } else {
-                            System.out.println("Título no puede estar vacío ni contener caracteres especiales. ¿Volver a intentarlo? (si/no):");
+                            System.out.print("Título no puede estar vacío ni contener caracteres especiales. ¿Volver a intentarlo? (si/no): ");
                             String respuesta = es.nextLine();
                             if (!respuesta.equalsIgnoreCase("si")) {
                                 datosCorrectos = false;
@@ -265,7 +266,7 @@ public class mainLibros {
                     nuevoLibro.setIsbn(isbn);
                     nuevoLibro.setNumEjemplares(numeroEjemplares);
 
-                    int idLibro = libroControlador.crearLibro(nuevoLibro, op, generoId);
+                    int idLibro = libroControlador.crearLibro(nuevoLibro, idAutor, generoId);
 
 //                  Crear ejemplares
                     for (int i = 0; i < numeroEjemplares; i++) {
@@ -299,94 +300,73 @@ public class mainLibros {
                         System.out.println("+----------------------+-----------------+-----------------+--------------------------------+-----------------+------------+");
                     }
                 }
-                case 3 -> {
-                    String isbn, nuevoTitulo, nuevaFechaPublicado;
-                    boolean datosCorrectos = true;
-                    while (true) {
-                        System.out.println("Ingrese el ISBN del libro que desea actualizar:");
-                        isbn = es.nextLine();
-                        if (isbn.matches("\\d{12}")) {
-                            break;
-                        } else {
-                            System.out.println("ISBN debe contener exactamente 13 dígitos. ¿Volver a intentarlo? (si/no):");
-                            if (!es.nextLine().equalsIgnoreCase("si")) {
-                                datosCorrectos = false;
-                                break;
-                            }
-                        }
-                    }
-                    if (!datosCorrectos) {
-                        continue;
-                    }
-                    Libro libroExistente = libroControlador.buscarDatosLibro(isbn);
-                    if (libroExistente.getIdLibro() != 0) {
-                        while (true) {
-                            System.out.println("Ingrese el nuevo título del libro:");
-                            nuevoTitulo = es.nextLine();
-                            if (!nuevoTitulo.isEmpty() && !nuevoTitulo.matches(".*\\d.*")) {
-                                break;
-                            } else {
-                                System.out.println("Título no puede estar vacío ni contener números. ¿Volver a intentarlo? (si/no):");
-                                if (!es.nextLine().equalsIgnoreCase("si")) {
-                                    datosCorrectos = false;
-                                    break;
-                                }
-                            }
-                        }
-
-                        if (!datosCorrectos) {
-                            continue;
-                        }
-
-                        while (true) {
-                            System.out.println("Ingrese la nueva fecha de publicación (YYYY-MM-DD):");
-                            nuevaFechaPublicado = es.nextLine();
-                            if (nuevaFechaPublicado.matches("\\d{4}-\\d{2}-\\d{2}")) {
-                                break;
-                            } else {
-                                System.out.println("Fecha no válida. ¿Volver a intentarlo? (si/no):");
-                                if (!es.nextLine().equalsIgnoreCase("si")) {
-                                    datosCorrectos = false;
-                                    break;
-                                }
-                            }
-                        }
-
-                        if (!datosCorrectos) {
-                            continue;
-                        }
-
-//                    Libro actualizadoLibro = new Libro(libroExistente.getIdLibro(), nuevoTitulo, nuevaFechaPublicado, isbn);
-//                    libroControlador.(actualizadoLibro, isbn);
-                    } else {
-                        System.out.println("Libro no encontrado.");
-                    }
-                }
-                case 4 -> {
-                    // Eliminar libro
-                    String isbn;
-                    boolean datosCorrectos = true;
-                    while (true) {
-                        System.out.println("Ingrese el ISBN del libro que desea eliminar:");
-                        isbn = es.nextLine();
-                        if (isbn.matches("\\d{13}")) {
-                            break;
-                        } else {
-                            System.out.println("ISBN debe contener exactamente 13 dígitos. ¿Volver a intentarlo? (si/no):");
-                            if (!es.nextLine().equalsIgnoreCase("si")) {
-                                datosCorrectos = false;
-                                break;
-                            }
-                        }
-                    }
-                    if (!datosCorrectos) {
-                        continue;
-                    }
-//                libroControlador.eliminarLibro(isbn);
-
-                }
+//                case 3 -> {
+//                    String isbn, nuevoTitulo, nuevaFechaPublicado;
+//                    boolean datosCorrectos = true;
+//                    while (true) {
+//                        System.out.println("Ingrese el ISBN del libro que desea actualizar:");
+//                        isbn = es.nextLine();
+//                        if (isbn.matches("\\d{1,4}[- ]?\\d{1,4}[- ]?\\d{1,4}[- ]?\\d{1,4}")) {
+//                            break;
+//                        } else {
+//                            System.out.println("ISBN debe contener exactamente 13 dígitos. ¿Volver a intentarlo? (si/no):");
+//                            if (!es.nextLine().equalsIgnoreCase("si")) {
+//                                datosCorrectos = false;
+//                                break;
+//                            }
+//                        }
+//                    }
+//                    if (!datosCorrectos) {
+//                        continue;
+//                    }
+//                    Libro libroExistente = libroControlador.buscarDatosLibro(isbn);
+//                    if (libroExistente.getIdLibro() != 0) {
+//                        es.nextLine();
+//                        while (true) {
+//                            System.out.println("Ingrese el nuevo título del libro:");
+//                            nuevoTitulo = es.nextLine();
+//                            if (!nuevoTitulo.isEmpty() && !nuevoTitulo.matches(".*\\d.*")) {
+//                                break;
+//                            } else {
+//                                System.out.println("Título no puede estar vacío ni contener números. ¿Volver a intentarlo? (si/no):");
+//                                if (!es.nextLine().equalsIgnoreCase("si")) {
+//                                    datosCorrectos = false;
+//                                    break;
+//                                }
+//                            }
+//                        }
+//
+//                        if (!datosCorrectos) {
+//                            continue;
+//                        }
+//
+//                        while (true) {
+//                            System.out.println("Ingrese la nueva fecha de publicación (YYYY-MM-DD):");
+//                            nuevaFechaPublicado = es.nextLine();
+//                            if (nuevaFechaPublicado.matches("\\d{4}-\\d{2}-\\d{2}")) {
+//                                break;
+//                            } else {
+//                                System.out.println("Fecha no válida. ¿Volver a intentarlo? (si/no):");
+//                                if (!es.nextLine().equalsIgnoreCase("si")) {
+//                                    datosCorrectos = false;
+//                                    break;
+//                                }
+//                            }
+//                        }
+//
+//                        if (!datosCorrectos) {
+//                            continue;
+//                        }
+//
+////                    Libro actualizadoLibro = new Libro(libroExistente.getIdLibro(), nuevoTitulo, nuevaFechaPublicado, isbn);
+////                    libroControlador.(actualizadoLibro, isbn);
+//                    } else {
+//                        System.out.println("Libro no encontrado.");
+//                    }
+//                }
+                
                 case 0 -> // Regresar al menú principal
-                    Perfiles.perfilBliotecario(args);
+                    Perfiles.perfilBibliotecario(args);
                 // Llama al menú principal del bibliotecario
                 default -> {
                 }

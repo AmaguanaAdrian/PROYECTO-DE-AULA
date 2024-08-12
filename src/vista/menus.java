@@ -29,13 +29,9 @@ public class menus {
     |              PERFIL BIBLIOTECARIO              |
     |------------------------------------------------|
     |  OPCIONES:                                     |
-    |   1. Registrar Bibliotecario                   |
-    |   2  Registrar Estudiante                      |
-    |   3. Gestion de reservas                       |
-    |   4. Gestión de Libros                         |
-    |   5. Gestion Genero                            |
-    |   6. Gestion de Autores                        |
-    |   7. Gestionar Ejemplares                      |
+    |   1. Registrar un Esudiante                    |
+    |   2. Gestion de reservas                       |
+    |   3. Gestión de Libros                         |
     |   0. Cerrar sesión                             | 
       """.indent(30));
 
@@ -58,18 +54,16 @@ public class menus {
     }
 
     public static void menuLibros() {
-        System.out.println("""
-    |   GESTIÓN DE LIBROS     |
-    |-------------------------|
-    |   OPCIONES:             |
-    |   1. Insertar libros    |
-    |   2. Listar de libros   |
-    |   3. Actualizar libros  |
-    |   4. Eliminar libros    |
-    |   0. Volver al menú     |
-    """.indent(30));
-        System.out.print("Opción: ");
-    }
+    System.out.println("""
+                |       GESTIÓN DE LIBROS       |
+                |-------------------------------|
+                |   OPCIONES:                   |
+                |   1. Insertar libros          |
+                |   2. Listar libros            |
+                |   0. Volver al menú principal |
+                """.indent(30));
+    System.out.print("Ingrese una opción: ");
+}
 
     public static void menuGenero() {
         System.out.println("""
@@ -150,6 +144,18 @@ public class menus {
     """.indent(30));
         System.out.print("Opción: ");
     }
+    
+    public static void menuGestionReservas() {
+    System.out.println("""
+                |       GESTIÓN DE RESERVAS        |
+                |----------------------------------|
+                |   OPCIONES:                      |
+                |   1. Listar reservas pendientes  |
+                |   2. Entregar reserva            |
+                |   0. Volver al menú principal    |
+                """.indent(30));
+    System.out.print("Ingrese una opción: ");
+}
     
 
 }

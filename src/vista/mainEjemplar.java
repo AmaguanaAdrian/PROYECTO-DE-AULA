@@ -24,8 +24,11 @@ public class mainEjemplar {
             while (true) {
                 try {
                     op1 = Integer.parseInt(es.nextLine());
-                    if (op1 >= 0 && op1 <= 4) break;
-                    else System.out.println("Opción no válida, por favor elija una opción entre 0 y 4.");
+                    if (op1 >= 0 && op1 <= 4) {
+                        break;
+                    } else {
+                        System.out.println("Opción no válida, por favor elija una opción entre 0 y 4.");
+                    }
                 } catch (NumberFormatException e) {
                     System.out.println("Entrada no válida. Por favor, ingrese un número.");
                 }
@@ -84,16 +87,16 @@ public class mainEjemplar {
                 // Código relevante para la inserción
                 Ejemplar nuevoEjemplar = new Ejemplar();
 //                ejemplarControlador.crearEjemplar(nuevoEjemplar);
-                
+
             } else if (op1 == 2) {
                 // Mostrar lista de ejemplares
                 ArrayList<Ejemplar> listaEjemplares = ejemplarControlador.listarEjemplares();
                 System.out.println("Lista de ejemplares:");
                 for (Ejemplar ej : listaEjemplares) {
-                    System.out.println("Código: " + ej.getCodigoEjemplar() +
-                            ", Estado: " + (ej.getEstado() ? "Disponible" : "No disponible") +
-                            ", ID Libro: " + ej.getIdLibro() +
-                            ", Número de ejemplares: " + ej.getNumEjemplares());
+                    System.out.println("Código: " + ej.getCodigoEjemplar()
+                            + ", Estado: " + (ej.getEstado() ? "Disponible" : "No disponible")
+                            + ", ID Libro: " + ej.getIdLibro()
+                            + ", Número de ejemplares: " + ej.getNumEjemplares());
                 }
 
             } else if (op1 == 3) {
@@ -177,7 +180,7 @@ public class mainEjemplar {
             } else if (op1 == 0) {
                 // Regresar al menú principal
                 System.out.println("Regresando al menú principal...");
-                Perfiles.perfilBliotecario(args); // Asegúrate de que el método perfilBliotecario acepta args
+                Perfiles.perfilBibliotecario(args); // Asegúrate de que el método perfilBliotecario acepta args
                 break;
             }
         } while (op1 != 0);
