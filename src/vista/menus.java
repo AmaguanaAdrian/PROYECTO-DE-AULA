@@ -8,11 +8,11 @@ public class menus {
 
     public static void introduccion() {
         System.out.println("""
-    ╔═══════════════════════════════════════════════ ══════════════════════╗
+    ╔══════════════════════════════════════════════════════════════════════╗
     ║                                                             ║
-    ║      Bienvenido al Sistema de Reserva de Libros para        ║
-    ║      Bibliotecas. Este sistema te permitirá gestionar       ║
-    ║      reservas, préstamos y el genero de libros              ║
+    ║      Bienvenido al Sistema de Reserva de Libros.            ║
+    ║      Este sistema te permitirá gestionar                    ║
+    ║      reservas de disponibles en bibliotecalibros            ║
     ║                  Podrás realizar                            ║
     ║       todas tus gestiones con facilidad y rapidez.          ║
     ║                                                             ║

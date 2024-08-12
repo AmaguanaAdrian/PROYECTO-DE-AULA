@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Reserva;
 import java.sql.SQLException;
+import modelo.DetalleReserva;
 import modelo.Ejemplar;
 
 /**
@@ -79,32 +80,6 @@ public class ReservaControlador {
         System.out.println("ERROR al insertar los detalles de la reserva: " + e.getMessage());
     }
 }
-
-//    // cualquier consulta a bdd hacia el bakend un resultset
-//    // Método para crear una reserva
-//    public void crearReserva(Reserva r, int idUsuario) {
-//        try {
-//            ReservaControlador resC = new ReservaControlador();
-//            // String estático con componentes dinámicos (gets)
-//            String consultaSQL = "INSERT INTO reservas (res_fechaRetiro, res_fechaReserva,res_fechaDevolucion, est_id) VALUES (?, NOW(), ?,?);";
-//            ejecutar = (com.mysql.jdbc.PreparedStatement) connection.prepareCall(consultaSQL);
-//            ejecutar.setString(1, r.getFechaRetiro());
-//            ejecutar.setString(2, r.getFechaDevolucion());
-//            ejecutar.setInt(3, r.getIdEstudiante());
-//            int resultado = ejecutar.executeUpdate();
-//            // Ejecuta
-//            if (resultado > 0) {
-//                System.out.println("La reserva ha sido creada con éxito");
-//            } else {
-//                System.out.println("Favor ingresar correctamente los datos solicitados");
-//            }
-//            ejecutar.close();
-//        } catch (SQLException e) {
-//            // Captura el error y permite que la consola siga ejecutándose
-//            System.out.println("ERROR: " + e.getMessage());
-//        }
-//    }
-
     // Método para buscar una reserva por ID
     public Reserva buscarReserva(int idReserva) {
         Reserva r = new Reserva();
@@ -135,6 +110,48 @@ public class ReservaControlador {
         }
         return listaReservas;
     }
+    public void obtenerReservasPendientes() {
+    ArrayList<DetalleReserva> reservasPendientes = new ArrayList<>();
+
+    try {
+        String consulta = "SELECT l.lib_titulo AS Titulo, " +
+                          "e.eje_codigoEjem AS CodigoEjemplar, " +
+                          "CONCAT(a.aut_nombres, ' ', a.aut_apellidos) AS Autor, " +
+                          "l.lib_isbn AS ISBN, " +
+                          "r.res_fechaReserva AS FechaReserva, " +
+                          "r.res_estado AS EstadoReserva " +
+                          "FROM Reservas r " +
+                          "JOIN Detalles_reservas dr ON r.res_id = dr.res_id " +
+                          "JOIN Ejemplares e ON dr.eje_id = e.eje_id " +
+                          "JOIN Libros l ON e.lib_id = l.lib_id " +
+                          "JOIN Autores a ON l.aut_id = a.aut_id " +
+                          "WHERE r.res_estado = 'Pendiente' " +
+                          "ORDER BY r.res_fechaReserva ASC";
+
+        PreparedStatement statement = connection.prepareStatement(consulta);
+        ResultSet rs = statement.executeQuery();
+
+        while (rs.next()) {
+            DetalleReserva reserva = new DetalleReserva();
+            reserva.setTitulo(rs.getString("Titulo"));
+            reserva.setCodigoEjemplar(rs.getString("CodigoEjemplar"));
+            reserva.setAutor(rs.getString("Autor"));
+            reserva.setIsbn(rs.getString("ISBN"));
+            reserva.setFechaReserva(rs.getString("FechaReserva"));
+            reserva.setEstadoReserva(rs.getString("EstadoReserva"));
+            reservasPendientes.add(reserva);
+        }
+
+        rs.close(); // Cerrar ResultSet
+        statement.close(); // Cerrar PreparedStatement
+
+        System.out.println("Reservas pendientes obtenidas con éxito.");
+
+    } catch (SQLException e) {
+        System.out.println("ERROR al obtener las reservas pendientes: " + e.getMessage());
+    }
     
-    
+    // Aquí puedes retornar la lista o procesarla según lo necesites
+    // return reservasPendientes;
+}
 }
